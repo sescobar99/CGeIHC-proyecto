@@ -1,7 +1,7 @@
 # Index <!-- omit in toc -->
 - [Brief introduction](#brief-introduction)
 - [Map](#map)
-- [How to move](#how-to-move)
+- [How to move and explore](#how-to-move-and-explore)
 - [Existing elements](#existing-elements)
 - [Existing animations](#existing-animations)
 
@@ -23,9 +23,22 @@ In the other one, the commercial area (gray one) you can find a restaurant, hous
 
 Here is an aerial picture of the island
 
-![aerial-pic](../imgs/UserDocs/aerial-pic.png)
+![aerial-pic](../imgs/UserDocs/aerial-pic.png) **[PENDING]**
 
 ## How to move and explore
+
+
+You can move forward, backward, and sidewards using "WASD" keys
+* W: Forward
+* S: Backward
+* A: Leftward
+* D: Rightward
+
+You can also rotate the camera view using the mouse cursor. If you move it up, the camera will rotate upwards. If you move it down, the camera will rotate downwards, and so on.
+
+**Beware** of the 3dimensional movements. This means that depending on where the camera is pointing using WASD keys will move you on a different axis
+
+"P" key will toggle the background music **[PENDING]**
 
 ## Existing elements
 
