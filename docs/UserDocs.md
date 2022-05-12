@@ -2,12 +2,30 @@
 - [Brief introduction](#brief-introduction)
 - [Map](#map)
 - [How to move and explore](#how-to-move-and-explore)
-- [Existing elements](#existing-elements)
-- [Existing animations](#existing-animations)
+- [Included elements](#included-elements)
+  - [Trees](#trees)
+  - [Rocks](#rocks)
+  - [People](#people)
+  - [Volcano](#volcano)
+  - [Heliport](#heliport)
+  - [Vehicle](#vehicle)
+  - [The Wall](#the-wall)
+  - [Park entrance](#park-entrance)
+  - [Housing](#housing)
+  - [Hotel](#hotel)
+  - [Restaurant](#restaurant)
+  - [Gift shop](#gift-shop)
+  - [Non animated dinosaurs](#non-animated-dinosaurs)
+- [Included animations](#included-animations)
+  - [Mosasaurus](#mosasaurus)
+  - [Helicopter](#helicopter)
+  - [Pterosaur](#pterosaur)
+  - [Tyrannosaur](#tyrannosaur)
+  - [Train](#train)
 
 ## Brief introduction
 
-The objective of this project was to recreate an amusement/dinosaur park using computer graphics techniques. To do it, we proposed a design with different zones which included dinosaurs and several zones of interest. 
+The objective of this project was to recreate an amusement/dinosaur park using computer graphics techniques. To do it, we proposed a design with different zones which included dinosaurs and several buildings of interest. 
 The user is encouraged to explore the virtual scene using the provided map, controls, and list of elements.
 
 
@@ -40,6 +58,40 @@ You can also rotate the camera view using the mouse cursor. If you move it up, t
 
 "P" key will toggle the background music **[PENDING]**
 
-## Existing elements
+## Included elements
 
-## Existing animations
+### Trees
+
+### Rocks
+
+### People
+
+### Volcano
+
+### Heliport
+
+### Vehicle
+
+### The Wall
+
+### Park entrance
+
+### Housing
+
+### Hotel
+
+### Restaurant
+
+### Gift shop
+### Non animated dinosaurs
+
+## Included animations
+
+### Mosasaurus
+### Helicopter
+
+### Pterosaur
+
+### Tyrannosaur
+
+### Train
