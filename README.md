@@ -11,7 +11,7 @@
 * Backup video [demo 1](vids/demo1.mp4) [PENDING]
 * Backup video [demo 2](vids/demo2.mp4) [PENDING]
 * Backup video [demo 3](vids/demo3.mp4) [PENDING]
-* A setup video can be found [here](vids/setup.mp4) [PENDING]
+* A setup video can be found [here](vids/setup.mkv)
 
 ---
 
