@@ -25,8 +25,9 @@
 
 ## Brief introduction
 
-The objective of this project was to recreate an amusement/dinosaur park using computer graphics techniques. To do it, we proposed a design with different zones which included dinosaurs and several buildings of interest. 
-The user is encouraged to explore the virtual scene using the provided map, controls, and list of elements.
+The objective of this project was to recreate an amusement/dinosaur park using computer graphics techniques. To do it, we proposed a design with different zones which included dinosaurs and several buildings of interest.
+
+You (the user) are encouraged to explore the virtual scene using the provided map, controls, and list of elements.
 
 
 ## Map
@@ -37,7 +38,7 @@ The island is divided into two main zones.
 
 The safari area (green one) has a volcano, the tyrannosaurus, and mosasaurs cages, and a train touring them all.
 
-In the other one, the commercial area (gray one) you can find a restaurant, housing, a hotel, and a gift shop.
+In the other one, the commercial area (gray) you can find a restaurant, housing, a hotel, and a gift shop.
 
 Here is an aerial picture of the island
 
@@ -56,7 +57,7 @@ You can also rotate the camera view using the mouse cursor. If you move it up, t
 
 **Beware** of the 3dimensional movements. This means that depending on where the camera is pointing using WASD keys will move you on a different axis
 
-"P" key will toggle the background music **[PENDING]**
+The "P" key toggles the background music **[PENDING]**
 
 ## Included elements
 
