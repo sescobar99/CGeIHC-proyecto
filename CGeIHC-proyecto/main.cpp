@@ -44,7 +44,7 @@ GLFWmonitor *monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 10.0f, 90.0f));
+Camera camera(glm::vec3(0.0f, 100.0f, 90.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -74,7 +74,9 @@ bool	animacion = false,
 // Music
 bool music = false;
 
-
+// Floor tiling
+float escalaTiling = 0.9f;
+float espaciadoTiling = 100.0f * escalaTiling;
 
 void animate(void)
 {
@@ -159,7 +161,8 @@ int main()
 
 	// load models
 	// -----------
-	Model piso("resources/objects/piso/plano.obj");	
+	Model piso("resources/objects/piso/tile.obj");
+	Model pisoPasto("resources/objects/piso/pasto.obj");
 	Model carro("resources/objects/lambo/carroceria.obj");
 	Model llanta("resources/objects/lambo/Wheel.obj");
 
@@ -260,11 +263,13 @@ int main()
 		staticShader.setMat4("view", view);
 
 
-		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 20; j++) {
-				drawTilingFloor(glm::vec3((20.0f * static_cast<float>(i)), -1.0f, (20.0f* static_cast<float>(j))), glm::vec3(0.2), staticShader, glm::mat4(1.0f), piso);
+		for (int i = 0; i < 8; i++) {
+			for (int j = -5; j < 5; j++) {
+				drawTilingFloor(glm::vec3((espaciadoTiling * static_cast<float>(i)), -1.0f, (espaciadoTiling* static_cast<float>(j))), glm::vec3(escalaTiling), staticShader, glm::mat4(1.0f), piso);
+				drawTilingFloor(glm::vec3((-espaciadoTiling * static_cast<float>(i)), -1.0f, (espaciadoTiling * static_cast<float>(j))), glm::vec3(escalaTiling), staticShader, glm::mat4(1.0f), pisoPasto);
 			}
 		}
+
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro
@@ -395,11 +400,11 @@ void getResolution()
 }
 
 
-glm::mat4 drawTilingFloor(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model piso) {
+glm::mat4 drawTilingFloor(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model pisoD) {
 	glm::mat4 model = glm::translate(origin, offset);
 	glm::mat4 tempPos = model;
 	model = glm::scale(model, scale);
 	shader.setMat4("model", model);
-	piso.Draw(shader);
+	pisoD.Draw(shader);
 	return tempPos;
 }
