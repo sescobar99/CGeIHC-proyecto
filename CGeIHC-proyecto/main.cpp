@@ -1,8 +1,8 @@
 ﻿/*---------------------------------------------------------*/
-/* ----------------  Práctica                   -----------*/
-/*-----------------    2022-2   ---------------------------*/
-/*------------- Alumno:                     ---------------*/
-/*------------- No. Cuenta                  ---------------*/
+/* ------------      Proyecto Final             -----------*/
+/*-------------        2022-2   ---------------------------*/
+/*------------- Alumno: Santiago Escobar    ---------------*/
+/*------------- No. Cuenta : 722030330      ---------------*/
 #include <Windows.h>
 
 #include <glad/glad.h>
@@ -35,7 +35,9 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 //void my_input(GLFWwindow *window);
 void my_input(GLFWwindow* window, int key, int scancode, int action, int mods);
 void animate(void);
-glm::mat4 drawTilingFloor(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model piso);
+//glm::mat4 drawTiling(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R);
+glm::mat4 drawObject(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R);
+glm::mat4 drawObject(glm::vec3 offset, glm::vec3 rotationAxis, float rotationAngle, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R);
 // settings
 unsigned int SCR_WIDTH = 800;
 unsigned int SCR_HEIGHT = 600;
@@ -74,9 +76,29 @@ bool	animacion = false,
 // Music
 bool music = false;
 
+
+//Object location
+// 
+//rotation
+glm::vec3 yAxis = glm::vec3(0.0f, 1.0f, 0.0f);
+
 // Floor tiling
-float escalaTiling = 0.9f;
-float espaciadoTiling = 100.0f * escalaTiling;
+float floorScale = 2.0f;
+float floorTilingSpacing = 100.0f * floorScale; 
+float floorYOffset = -1.0f;
+int floorLimitX = 4;
+int floorLowerLimitZ = -3;
+int floorUpperLimitZ = 3;
+
+// Fence
+float fenceOffsetX = -floorTilingSpacing / 2;
+float fenceUpperLimitZ = (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2);
+float fenceLowerLimitZ = (floorLowerLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2);
+float fenceScale = 15.0f;
+float fenceSize = 2.436f;
+float fenceTilingSpacing = fenceSize * fenceScale;
+
+
 
 void animate(void)
 {
@@ -165,6 +187,11 @@ int main()
 	Model pisoPasto("resources/objects/piso/pasto.obj");
 	Model carro("resources/objects/lambo/carroceria.obj");
 	Model llanta("resources/objects/lambo/Wheel.obj");
+	Model volcano("resources/objects/volcano/volcano2.obj");
+	Model fence("resources/objects/fence/fence.obj");
+	Model fenceDoor("resources/objects/fence/fencedoor.obj");
+	Model cube10("resources/objects/unitcube/unitCube.obj");
+	
 
 	ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
 	animacionPersonaje.initShaders(animShader.ID);
@@ -263,13 +290,48 @@ int main()
 		staticShader.setMat4("view", view);
 
 
-		for (int i = 0; i < 8; i++) {
-			for (int j = -5; j < 5; j++) {
-				drawTilingFloor(glm::vec3((espaciadoTiling * static_cast<float>(i)), -1.0f, (espaciadoTiling* static_cast<float>(j))), glm::vec3(escalaTiling), staticShader, glm::mat4(1.0f), piso);
-				drawTilingFloor(glm::vec3((-espaciadoTiling * static_cast<float>(i)), -1.0f, (espaciadoTiling * static_cast<float>(j))), glm::vec3(escalaTiling), staticShader, glm::mat4(1.0f), pisoPasto);
+		for (int i = 0; i < floorLimitX; i++) {
+			for (int j = floorLowerLimitZ; j < floorUpperLimitZ; j++) {
+				drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing* static_cast<float>(j))), glm::vec3(floorScale), staticShader, glm::mat4(1.0f), piso);
+				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, glm::mat4(1.0f), pisoPasto);
 			}
 		}
 
+		//Draw Fence
+		// Simulate doors
+		//
+
+		//Debe ser en angulo -90 para las mallas
+		//-45 para la izquierda
+		//-225 para la derecha
+		
+		//Left gate
+		tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
+
+
+		drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceTilingSpacing), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fence);
+
+		//Right gate
+		drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -225.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
+
+		drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, 0.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
+		drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceTilingSpacing), yAxis, -45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
+		/*
+		drawObject(glm::vec3(fenceOffsetX, floorYOffset, -fenceTilingSpacing), yAxis, 45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);*/
+		//for (int j = floorLowerLimitZ; j < floorUpperLimitZ; j++) {
+			//drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, glm::mat4(1.0f), piso);
+		//drawObject(glm::vec3(fenceOffsetX, floorYOffset, (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2)- ), yAxis, 90.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fence);
+			
+		//}
+			
+		
+		//drawObject(glm::vec3(fenceOffsetX, floorYOffset, (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2)), glm::vec3(1.0f), staticShader, glm::mat4(1.0f), cube10);
+		
+		
+				
+		// staticShader.setMat4("model", model);
+		//volcano.Draw(staticShader);
+		// fence.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro
@@ -400,11 +462,20 @@ void getResolution()
 }
 
 
-glm::mat4 drawTilingFloor(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model pisoD) {
+glm::mat4 drawObject(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R) {
 	glm::mat4 model = glm::translate(origin, offset);
 	glm::mat4 tempPos = model;
 	model = glm::scale(model, scale);
 	shader.setMat4("model", model);
-	pisoD.Draw(shader);
+	model2R.Draw(shader);
+	return tempPos;
+}
+glm::mat4 drawObject(glm::vec3 offset, glm::vec3 rotationAxis, float rotationAngle, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R) {
+	glm::mat4 model = glm::translate(origin, offset);
+	glm::mat4 tempPos = model;
+	model = glm::rotate(model, glm::radians(rotationAngle), rotationAxis);
+	model = glm::scale(model, scale);
+	shader.setMat4("model", model);
+	model2R.Draw(shader);
 	return tempPos;
 }
