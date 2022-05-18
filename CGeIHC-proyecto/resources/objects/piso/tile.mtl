@@ -12,5 +12,5 @@ newmtl 02___Default
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka TexturesCom_FloorsVarious0033_1_seamless_S.jpg
-	map_Kd TexturesCom_FloorsVarious0033_1_seamless_S.jpg
+	map_Ka TexturesCom_FloorsVarious0033_1_seamless_S.png
+	map_Kd TexturesCom_FloorsVarious0033_1_seamless_S.png
