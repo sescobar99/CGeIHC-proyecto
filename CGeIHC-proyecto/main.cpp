@@ -79,6 +79,9 @@ bool music = false;
 
 //Object location
 // 
+// Origin
+glm::mat4 originWorld = glm::mat4(1.0f);
+
 //rotation
 glm::vec3 yAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 
@@ -87,16 +90,22 @@ float floorScale = 2.0f;
 float floorTilingSpacing = 100.0f * floorScale; 
 float floorYOffset = -1.0f;
 int floorLimitX = 4;
-int floorLowerLimitZ = -3;
-int floorUpperLimitZ = 3;
+int floorLowerLimitZ = -2;
+int floorUpperLimitZ = 2;
 
 // Fence
 float fenceOffsetX = -floorTilingSpacing / 2;
-float fenceUpperLimitZ = (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2);
-float fenceLowerLimitZ = (floorLowerLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2);
 float fenceScale = 15.0f;
 float fenceSize = 2.436f;
 float fenceTilingSpacing = fenceSize * fenceScale;
+float fenceUpperLimitZ = (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) - (fenceTilingSpacing / 2);
+float fenceLowerLimitZ = (floorLowerLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) + (fenceTilingSpacing/2);
+float fenceNumber = (floorTilingSpacing * (floorUpperLimitZ - floorLowerLimitZ + 1)) / fenceTilingSpacing ;
+
+//Volcano
+float volcanoScale = 5.0f;
+glm::vec3 volcanoSize = glm::vec3(37.81f * volcanoScale, 37.81f * volcanoScale, 13.978f * volcanoScale);
+glm::vec3 volcanoPosition = glm::vec3((-floorLimitX*floorTilingSpacing) + (volcanoSize.x), floorYOffset + (volcanoSize.z/2) , 0.0f);
 
 
 
@@ -128,6 +137,10 @@ int main()
 	// --------------------
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
+
+	//Debug
+	std::cout << fenceNumber << std::endl;
+
 
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "CGeIHC", NULL, NULL);
 	if (window == NULL)
@@ -189,7 +202,7 @@ int main()
 	Model llanta("resources/objects/lambo/Wheel.obj");
 	Model volcano("resources/objects/volcano/volcano2.obj");
 	Model fence("resources/objects/fence/fence.obj");
-	Model fenceDoor("resources/objects/fence/fencedoor.obj");
+	//Model fenceDoor("resources/objects/fence/fencedoor.obj");
 	Model cube10("resources/objects/unitcube/unitCube.obj");
 	
 
@@ -288,50 +301,36 @@ int main()
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
-
+		
 
 		for (int i = 0; i < floorLimitX; i++) {
-			for (int j = floorLowerLimitZ; j < floorUpperLimitZ; j++) {
-				drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing* static_cast<float>(j))), glm::vec3(floorScale), staticShader, glm::mat4(1.0f), piso);
-				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, glm::mat4(1.0f), pisoPasto);
+			for (int j = floorLowerLimitZ; j <= floorUpperLimitZ; j++) {
+				drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing* static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, piso);
+				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld , pisoPasto);
 			}
 		}
 
-		//Draw Fence
-		// Simulate doors
-		//
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Fence
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Simulate doors 
+		/*Pareto
+			//Left gate
+			tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
+			//Right gate
+			drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -225.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
+		*/			
+		tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceLowerLimitZ), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, originWorld, fence);
+		for (int i = 1; i <= fenceNumber; i++) {
+			tmp = drawObject(glm::vec3(0.0f, 0.0f, fenceTilingSpacing), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, tmp, fence);
+		}
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Volcan
+		// -------------------------------------------------------------------------------------------------------------------------
+		drawObject(volcanoPosition, glm::vec3(volcanoScale) , staticShader, originWorld, volcano);
 
-		//Debe ser en angulo -90 para las mallas
-		//-45 para la izquierda
-		//-225 para la derecha
 		
-		//Left gate
-		tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
 
-
-		drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceTilingSpacing), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fence);
-
-		//Right gate
-		drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -225.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
-
-		drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, 0.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
-		drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceTilingSpacing), yAxis, -45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
-		/*
-		drawObject(glm::vec3(fenceOffsetX, floorYOffset, -fenceTilingSpacing), yAxis, 45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);*/
-		//for (int j = floorLowerLimitZ; j < floorUpperLimitZ; j++) {
-			//drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, glm::mat4(1.0f), piso);
-		//drawObject(glm::vec3(fenceOffsetX, floorYOffset, (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2)- ), yAxis, 90.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fence);
-			
-		//}
-			
-		
-		//drawObject(glm::vec3(fenceOffsetX, floorYOffset, (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2)), glm::vec3(1.0f), staticShader, glm::mat4(1.0f), cube10);
-		
-		
-				
-		// staticShader.setMat4("model", model);
-		//volcano.Draw(staticShader);
-		// fence.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro
@@ -410,7 +409,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);	
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		music != music;
+		music = !music;
 
 	//Car animation
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
