@@ -107,7 +107,13 @@ float volcanoScale = 5.0f;
 glm::vec3 volcanoSize = glm::vec3(37.81f * volcanoScale, 37.81f * volcanoScale, 13.978f * volcanoScale);
 glm::vec3 volcanoPosition = glm::vec3((-floorLimitX*floorTilingSpacing) + (volcanoSize.x), floorYOffset + (volcanoSize.z/2) , 0.0f);
 
+//Arlo
+float arloScale = 5.0f * 10.0f;
+glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * arloScale);
 
+//Tree
+float treeScale = 3.0f * 7.0f;
+glm::vec3 treeSize = glm::vec3(1.36f * treeScale, 1.43f * treeScale, 3.42 * treeScale);
 
 void animate(void)
 {
@@ -202,9 +208,13 @@ int main()
 	Model llanta("resources/objects/lambo/Wheel.obj");
 	Model volcano("resources/objects/volcano/volcano2.obj");
 	Model fence("resources/objects/fence/fence.obj");
-	//Model fenceDoor("resources/objects/fence/fencedoor.obj");
-	Model cube10("resources/objects/unitcube/unitCube.obj");
+	Model cube10("resources/objects/unitcube/unitCube.obj");	
+	Model stadium("resources/objects/stadium/stadium.obj");
+	Model cuelloLargo("resources/objects/dinosaurs/cuellolargo/arlo.obj");
+	Model tree("resources/objects/tree/tree.obj");	
+	Model tRex("resources/objects/dinosaurs/t-rex/t-rex.obj");
 	
+
 
 	ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
 	animacionPersonaje.initShaders(animShader.ID);
@@ -319,19 +329,38 @@ int main()
 			tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
 			//Right gate
 			drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -225.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
-		*/			
-		tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceLowerLimitZ), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, originWorld, fence);
-		for (int i = 1; i <= fenceNumber; i++) {
-			tmp = drawObject(glm::vec3(0.0f, 0.0f, fenceTilingSpacing), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, tmp, fence);
-		}
+		*/	
+
+		//tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceLowerLimitZ), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, originWorld, fence);
+		//for (int i = 1; i <= fenceNumber; i++) {
+			//tmp = drawObject(glm::vec3(0.0f, 0.0f, fenceTilingSpacing), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, tmp, fence);
+		//}
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Volcan
 		// -------------------------------------------------------------------------------------------------------------------------
-		drawObject(volcanoPosition, glm::vec3(volcanoScale) , staticShader, originWorld, volcano);
+		
+
+		// Funcionales
+		// drawObject(volcanoPosition, glm::vec3(volcanoScale) , staticShader, originWorld, volcano);
+		//drawObject(glm::vec3(0.0f), glm::vec3(4.0f), staticShader, originWorld, stadium);
+		//drawObject(glm::vec3(-10.0f, 0.0f, 0.0f), glm::vec3(treeScale), staticShader, originWorld, tree);		
+		//drawObject(glm::vec3(0.0f), glm::vec3(arloScale), staticShader, originWorld, cuelloLargo);
+		//drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, tRex);
+
+		//Pruebas
+
+		tmp = drawObject(glm::vec3(0.0f), glm::vec3(1.0f), staticShader, originWorld, cube10);
+		for(int i = 1; i< 10; i++){
+			tmp = drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, tmp , cube10);
+		}
 
 		
 
+		
 
+		
+
+	
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro
 		// -------------------------------------------------------------------------------------------------------------------------

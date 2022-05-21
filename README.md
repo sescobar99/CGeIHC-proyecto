@@ -33,11 +33,19 @@ This project has been developed, built, executed, downloaded, and tested using V
 
 ### Textures
 
-* Floor texture (FLOORSVARIOUS0033) took from: https://www.textures.com/download/FloorsVarious0033/24632
-* Grass texture (Grass0157) took from: https://www.textures.com/download/Grass0157/49062
+* Floor texture - (FLOORSVARIOUS0033) took from: https://www.textures.com/download/FloorsVarious0033/24632
+* Grass texture - (Grass0157) took from: https://www.textures.com/download/Grass0157/49062
+* Bricks texture - (BrickSmallNew0123) took from: https://www.textures.com/download/BrickSmallNew0123/111852
 
+* Volcano texture - (RockRough0001) took from: https://www.textures.com/download/RockRough0001/38669
+* Ocenan texture - (WaterPlain0012) took from: https://www.textures.com/download/WaterPlain0012/9438
+* Beach texture - (SoilBeach0131) took from: https://www.textures.com/download/SoilBeach0131/106132
+* Stadiumgate texture - (DoorsMetalBig0245) took from: https://www.textures.com/download/DoorsMetalBig0245/79191
 ### 3D Models
-
+* Tree01 - "Low Poly Tree"(https://skfb.ly/ooBRz) by Šimon Ustal is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/)
+* T-rex - took from: https://www.turbosquid.com/es/3d-models/t-rex-fbx-free/933905
+* Apatosaurus(arlo) - took from: https://www.turbosquid.com/es/3d-models/3d-arlo-good-dinosaur-model-1701149
+* Fence - took from: https://www.turbosquid.com/es/3d-models/3d-metal-fence-1393026#
 ### Sound
 
 ### Animations
