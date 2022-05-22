@@ -1,0 +1,123 @@
+# 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
+# File Created: 22.05.2022 13:37:38
+
+newmtl Auto_Mid_Tex
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.8000 0.8000 0.8000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.5356
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5200
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd Auto_Mid_Tex_albedo.jpg
+	map_d Auto_Mid_Tex_opacity.jpg
+	map_Tr Auto_Mid_Tex_AO.jpg
+	map_Pr Auto_Mid_Tex_roughness.jpg
+	map_Pm Auto_Mid_Tex_metallic.jpg
+	bump Auto_Mid_Tex_normal.jpg
+	map_bump Auto_Mid_Tex_normal.jpg
+
+newmtl Auto_Mid_Tex_02
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.8000 0.8000 0.8000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.5356
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5200
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd Auto_Mid_Tex_02_albedo.jpg
+	map_Tr Auto_Mid_Tex_02_AO.jpg
+	map_Pr Auto_Mid_Tex_02_roughness.jpg
+	map_Pm Auto_Mid_Tex_02_metallic.jpg
+	bump Auto_Mid_Tex_02_normal.jpg
+	map_bump Auto_Mid_Tex_02_normal.jpg
+
+newmtl Custom_Tex_01
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.8000 0.8000 0.8000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.4830
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5200
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd Custom_Tex_01_albedo.jpg
+	map_Tr Custom_Tex_01_AO.jpg
+	map_Pr Custom_Tex_01_roughness.jpg
+	map_Pm Custom_Tex_01_metallic.jpg
+	bump Custom_Tex_01_normal.jpg
+	map_bump Custom_Tex_01_normal.jpg
+
+newmtl Tires
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.8000 0.8000 0.8000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.5356
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5200
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd Tires_albedo.jpg
+	map_Tr Tires_AO.jpg
+	map_Pr Tires_roughness.jpg
+	map_Pm Tires_metallic.jpg
+	bump Tires_normal.png
+	map_bump Tires_normal.png
+
+newmtl Ayran
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.8000 0.8000 0.8000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.5356
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5200
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd Ayran_albedo.jpg
+	map_Tr Ayran_AO.jpg
+	map_Pr Ayran_roughness.jpg
+	map_Pm Ayran_metallic.jpg
+	bump Ayran_normal.png
+	map_bump Ayran_normal.png
+
+newmtl Metals
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.8000 0.8000 0.8000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.5356
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5200
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd Metals_albedo.jpg
+	map_Tr Metals_AO.jpg
+	map_Pr Metals_roughness.jpg
+	map_Pm Metals_metallic.jpg
+	bump Metals_normal.png
+	map_bump Metals_normal.png
