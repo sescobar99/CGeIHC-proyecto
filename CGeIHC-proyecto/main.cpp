@@ -126,10 +126,15 @@ float pterosaurWingOffsetZ = 3.6f * pterosaurScale;
 float pterosaurHeadOffsetY = 15.6f * pterosaurScale;
 float pterosaurHeadOffsetZ = -27.0f * pterosaurScale;
 
+
+//Velociraptor
+glm::vec3 velociraptorLocation = glm::vec3(0.0f);
+float velociraptorScale = 0.2f;
+
 //Helicopter
 glm::vec3 helicopterLocation = glm::vec3(10.0f, 10.0f, 0.0f);
 float helicopterScale = 1.0f;
-float helipadScale = 0.1f;
+float helipadScale = 0.15f;
 float helicopterOffsetPropellerRearX = 58.4f * helicopterScale;
 float helicopterOffsetPropellerRearY = 8.46f * helicopterScale;
 float helicopterOffsetPropellerRearZ = 0.0f * helicopterScale;
@@ -239,7 +244,7 @@ int main()
 	//Model tRex("resources/objects/dinosaurs/t-rex/t-rex.obj");
 	//Model ankylosaurus("resources/objects/dinosaurs/anquilo/anquilo.obj");
 	//Model triceratops("resources/objects/dinosaurs/triceratops/triceratops.obj");
-
+	//Model velociraptor("resources/objects/dinosaurs/velociraptor/velociraptor.obj");
 	//Pterosauruio
 	/*Model pterosaurBody("resources/objects/dinosaurs/pterosaur/cuerpo-ptero.obj");
 	Model pterosaurLeftWing("resources/objects/dinosaurs/pterosaur/ala-izquierda-ptero.obj");
@@ -251,7 +256,19 @@ int main()
 	Model helicopterPropellerFront("resources/objects/helicopter/helicopter_propeller_front.obj");
 	Model helicopterPropellerRear("resources/objects/helicopter/helicopter_propeller_rear.obj");
 	*/
-	Model helipad("resources/objects/helicopter/helipad.obj");
+	//Model helipad("resources/objects/helicopter/helipad.obj");
+
+
+	/* MOdelos pesados, utilice con precaucion
+	* Model gate("resources/objects/gate/gate.obj");
+	* Model gaten("resources/objects/gate/gate_no_normales.obj");
+	*/
+	
+
+	Model buggy("resources/objects/buggy/buggy.obj");
+
+	
+	
 
 	//ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
 	//animacionPersonaje.initShaders(animShader.ID);
@@ -397,6 +414,13 @@ int main()
 		//drawObject(glm::vec3(helicopterOffsetPropellerFrontX, helicopterOffsetPropellerFrontY, helicopterOffsetPropellerFrontZ), glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerFront);
 		//drawObject(glm::vec3(helicopterOffsetPropellerRearX, helicopterOffsetPropellerRearY, helicopterOffsetPropellerRearZ), zAxis, 0.0f, glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerRear);
 
+		//drawObject(helicopterLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);		
+		//drawObject(velociraptorLocation, glm::vec3(velociraptorScale), staticShader, originWorld, velociraptor);
+		//tmp = drawObject(velociraptorLocation, glm::vec3(1.0f), staticShader, originWorld, gate);
+		//drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, tmp, gaten);
+
+
+		//drawObject(velociraptorLocation, glm::vec3(1.0f), staticShader, originWorld, buggy);
 
 		//Pruebas
 
@@ -406,15 +430,9 @@ int main()
 		}
 
 		
-		drawObject(helicopterLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);
-		
-
 
 		
-
-
-
-
+		
 		
 
 	
