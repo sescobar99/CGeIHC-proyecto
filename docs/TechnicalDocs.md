@@ -8,7 +8,7 @@
       - [Third milestone](#third-milestone)
     - [Achieved](#achieved)
   - [Spatial distribution](#spatial-distribution)
-    - [Planned [PENDING]](#planned-pending)
+    - [Planned](#planned-1)
     - [Achieved](#achieved-1)
   - [3D Models](#3d-models)
   - [Animations](#animations)
@@ -39,27 +39,27 @@
 
 ## Spatial distribution
  
-### Planned [PENDING]
+### Planned
 
-**image here** 
+![Park map](../imgs/UserDocs/map.png)
 
 ### Achieved
 
 **image here**  [PENDING]
 
 ## 3D Models
-- [ ] Trees
+- [X] Trees
 - [ ] Rocks
 - [ ] People
 - [X] Volcano
 - [X] Helicopter
 - [X] Helipad
-- [ ] Buggy vehicle
+- [X] Buggy vehicle
 - [X] Park fence 
-- [ ] Park gate 
+- [X] Park gate 
 - [ ] Houses
-- [ ] Hotel
-- [ ] Restaurant
+- [X] Hotel
+- [X] Restaurant
 - [ ] Gift shop
 - [ ] Mosasaurus
 - [ ] Mosasaurus enclosure
@@ -82,6 +82,8 @@
 - [ ] Three wagon train touring along the park
 
 ### Non-complex
+- [ ] Buggy ride
+- [ ] Volcanic ash/smoke
 
 # Project budget and costs estimate
 
