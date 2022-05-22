@@ -78,7 +78,7 @@ bool music = false;
 // -------------------------------------------------------------------------------------------------------------------------
 // Preprocessor directives to control models (load + draw)
 // -------------------------------------------------------------------------------------------------------------------------
-#define DEBUGMODE 0
+#define DEBUGMODE 1
 #define DRAWFLOOR 1
 #define DRAWFENCE 0
 #define DRAWVOLCANO 0
@@ -95,6 +95,8 @@ bool music = false;
 // Modelos gate y restaurante son pesados, utilice con precaucion 
 #define DRAWGATE 0
 #define DRAWRESTAURANT 0
+#define DRAWHOTEL 1
+
 // #define DRAW 1
 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -109,26 +111,26 @@ glm::vec3 yAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 glm::vec3 zAxis = glm::vec3(0.0f, 0.0f, 1.0f);
 
 // Floor tiling
-float floorScale = 2.0f;
-float floorTilingSpacing = 100.0f * floorScale;
-float floorYOffset = -1.0f;
-int floorLimitX = 4;
-int floorLowerLimitZ = -2;
-int floorUpperLimitZ = 2;
+const float floorScale = 2.0f;
+const float floorTilingSpacing = 100.0f * floorScale;
+const float floorYOffset = -1.0f;
+const int floorLimitX = 4;
+const int floorLowerLimitZ = -2;
+const int floorUpperLimitZ = 2;
 
 // Fence
-float fenceOffsetX = -floorTilingSpacing / 2;
-float fenceScale = 15.0f;
-float fenceSize = 2.436f;
-float fenceTilingSpacing = fenceSize * fenceScale;
-float fenceUpperLimitZ = (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) - (fenceTilingSpacing / 2);
-float fenceLowerLimitZ = (floorLowerLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) + (fenceTilingSpacing / 2);
-float fenceNumber = (floorTilingSpacing * (floorUpperLimitZ - floorLowerLimitZ + 1)) / fenceTilingSpacing;
+const float fenceOffsetX = -floorTilingSpacing / 2;
+const float fenceScale = 15.0f;
+const float fenceSize = 2.436f;
+const float fenceTilingSpacing = fenceSize * fenceScale;
+const float fenceUpperLimitZ = (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) - (fenceTilingSpacing / 2);
+const float fenceLowerLimitZ = (floorLowerLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) + (fenceTilingSpacing / 2);
+const float fenceNumber = (floorTilingSpacing * (floorUpperLimitZ - floorLowerLimitZ + 1)) / fenceTilingSpacing;
 
 // Volcano
-float volcanoScale = 15.0f;
-glm::vec3 volcanoSize = glm::vec3(37.81f * volcanoScale, 37.81f * volcanoScale, 13.978f * volcanoScale);
-glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing) , floorYOffset + (volcanoSize.z / 2), 0.0f);
+const float volcanoScale = 15.0f;
+const glm::vec3 volcanoSize = glm::vec3(37.81f * volcanoScale, 37.81f * volcanoScale, 13.978f * volcanoScale);
+const glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing) , floorYOffset + (volcanoSize.z / 2), 0.0f);
 
 // Tree
 const float treeScale = 3.0f * 5.0f;
@@ -151,6 +153,14 @@ float helicopterOffsetPropellerFrontX = 5.84f * helicopterScale;
 float helicopterOffsetPropellerFrontY = 12.46f * helicopterScale;
 float helicopterOffsetPropellerFrontZ = 0.0f * helicopterScale;
 
+// Hotel
+float hotelScale = 11.0f;
+glm::vec3 hotelLocation = glm::vec3(350.0f, 0.0f, 1000.0f);
+glm::vec3 hotelRotationAxis = yAxis;
+float hotelRotation = 180.0f;
+
+
+// Restauran
 // ---------------
 // Dinosaurs
 // ---------------
@@ -160,7 +170,7 @@ const float arloScale = 5.0f * 10.0f;
 const glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * arloScale);
 //const float arloLocation;
 
-// Pterosau
+// Pterosaur
 glm::vec3 pterosaurLocation = glm::vec3(volcanoPosition.x + (10.0f * volcanoScale), volcanoPosition.y + (5.0f * volcanoScale), volcanoPosition.z);
 const float pterosaurScale = 0.5f;
 const float pterosaurWingOffsetX = 12.0f * pterosaurScale;
@@ -175,6 +185,10 @@ float  pterosaurWingRotation = 30.0f;
 glm::vec3 velociraptorLocation = glm::vec3(0.0f);
 float velociraptorScale = 0.2f;
 
+// ---------------
+// End dinosaurs
+// ---------------
+
 
 // Debug+measure cube
 int cubeNumber = 10;
@@ -185,6 +199,7 @@ glm::mat4 cubeLocationTmpZ = glm::mat4(1.0f);
 glm::vec3 debugObjectLocation = glm::vec3(cubeLocation.x + 10.f, cubeLocation.y, cubeLocation.z + 10.0f);
 glm::vec3 debugObjectRotation = glm::vec3(0.0f);
 float debugObjectSpeedMovement = 1.0f;
+float debugObjectScale = 1.0f;
 
 void animate(void)
 {
@@ -326,6 +341,9 @@ int main()
 #endif
 #if DRAWRESTAURANT == 1
 	Model restaurant("resources/objects/restaurant/restaurant.obj");
+#endif
+#if DRAWHOTEL == 1
+	Model hotel("resources/objects/hotel/hotel.obj");
 #endif
 #if DRAWTREES == 1
 	Model tree("resources/objects/tree/tree.obj");
@@ -509,10 +527,11 @@ int main()
 #if DRAWBUGGY == 1
 		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, buggy);
 #endif
-// #if DRAW == 1
-// #endif
 #if DRAWRESTAURANT == 1
 	drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(3.0f), staticShader, originWorld, restaurant);
+#endif
+#if DRAWHOTEL == 1
+	drawObject(hotelLocation, hotelRotationAxis, hotelRotation, glm::vec3(hotelScale), staticShader, originWorld, hotel);
 #endif
 
 #if DEBUGMODE  == 1
@@ -656,6 +675,10 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		debugObjectRotation.x = 0.0f;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		debugObjectRotation.y = 0.0f;
+	if (glfwGetKey(window, GLFW_KEY_KP_ADD) == GLFW_PRESS)
+		debugObjectScale += 0.1f;
+	if (glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS)
+		debugObjectScale -= 0.1f;
 	if (action == GLFW_PRESS){
 		std::cout << "Location: (" + 
 		to_string(debugObjectLocation.x) + "," +
@@ -663,7 +686,8 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		to_string(debugObjectLocation.z) + "). " + "Rotation: (" + 
 		to_string(debugObjectRotation.x) + "," +
 		to_string(debugObjectRotation.y) + "," + 
-		to_string(debugObjectRotation.z) + ")."
+		to_string(debugObjectRotation.z) + ")." + " Scale: " +
+		to_string(debugObjectScale) + "."
 		 << std::endl;
 	}
 #endif

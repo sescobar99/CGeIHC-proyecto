@@ -56,7 +56,8 @@ This project has been developed, built, executed, downloaded, and tested using V
 * Velociraptor - "Lego Velociraptor" (https://skfb.ly/oupnJ) by rabuhadavid is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * Gate - "Jurassic Park Gate" (https://skfb.ly/6SZS6) by Elin is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * Buggy - "Buggy_2" (https://skfb.ly/6UxxX) by Rzyas is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-* "Street Food Vendor Challenge - Kokorec" (https://skfb.ly/6TRMT) by Berk Gedik is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* "Restaurant" - "Street Food Vendor Challenge - Kokorec" (https://skfb.ly/6TRMT) by Berk Gedik is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Hotel - "Hotel Adriano - 1h 30min speed model" (https://skfb.ly/o8VUO) by Seafoam is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 ### Sound
 
 ### Animations
