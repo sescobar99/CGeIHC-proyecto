@@ -52,6 +52,9 @@ This project has been developed, built, executed, downloaded, and tested using V
 * Pterosaur - "Lego Pteronadon + Baby Ptero" (https://skfb.ly/o9DyF) by rabuhadavid is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * Helicopter - "Low Poly Helicopter" (https://skfb.ly/6AOHw) by antonmoek is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * Helipad - "Helipad" (https://skfb.ly/6ANDS) by srockzv is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Velociraptor - "Lego Velociraptor" (https://skfb.ly/oupnJ) by rabuhadavid is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Gate - "Jurassic Park Gate" (https://skfb.ly/6SZS6) by Elin is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Buggy - "Buggy_2" (https://skfb.ly/6UxxX) by Rzyas is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 ### Sound
 
 ### Animations
