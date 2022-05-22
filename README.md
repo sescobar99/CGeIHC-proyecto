@@ -44,6 +44,7 @@ This project has been developed, built, executed, downloaded, and tested using V
 * Stadiumgate texture - (DoorsMetalBig0245) took from: https://www.textures.com/download/DoorsMetalBig0245/79191
 ### 3D Models
 * Tree01 - "Low Poly Tree"(https://skfb.ly/ooBRz) by Šimon Ustal is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Tree02 - "Banana Plant" (https://skfb.ly/o99xU) by evolveduk is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * T-rex - took from: https://www.turbosquid.com/es/3d-models/t-rex-fbx-free/933905
 * Apatosaurus(arlo) - took from: https://www.turbosquid.com/es/3d-models/3d-arlo-good-dinosaur-model-1701149
 * Fence - took from: https://www.turbosquid.com/es/3d-models/3d-metal-fence-1393026#
@@ -55,6 +56,7 @@ This project has been developed, built, executed, downloaded, and tested using V
 * Velociraptor - "Lego Velociraptor" (https://skfb.ly/oupnJ) by rabuhadavid is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * Gate - "Jurassic Park Gate" (https://skfb.ly/6SZS6) by Elin is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * Buggy - "Buggy_2" (https://skfb.ly/6UxxX) by Rzyas is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* "Street Food Vendor Challenge - Kokorec" (https://skfb.ly/6TRMT) by Berk Gedik is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 ### Sound
 
 ### Animations

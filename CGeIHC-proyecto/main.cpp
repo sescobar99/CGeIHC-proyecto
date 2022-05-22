@@ -78,21 +78,23 @@ bool music = false;
 // -------------------------------------------------------------------------------------------------------------------------
 // Preprocessor directives to control models (load + draw)
 // -------------------------------------------------------------------------------------------------------------------------
+#define DEBUGMODE 0
 #define DRAWFLOOR 1
 #define DRAWFENCE 0
-#define DRAWVOLCANO 1
+#define DRAWVOLCANO 0
 #define DRAWLAMBO 0
 #define DRAWPTERO 0
-#define DRAWARLO 1
+#define DRAWARLO 0
 #define DRAWTREX 0
 #define DRAWANKYLO 0
 #define DRAWTRICERATOPS 0
 #define DRAWVELOCIRAPTOR 0
 #define DRAWHELICOPTER 0
-// Modelo gate es pesado, utilice con precaucion 
-#define DRAWGATE 0
 #define DRAWTREES 0
 #define DRAWBUGGY 0
+// Modelos gate y restaurante son pesados, utilice con precaucion 
+#define DRAWGATE 0
+#define DRAWRESTAURANT 0
 // #define DRAW 1
 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -129,7 +131,8 @@ glm::vec3 volcanoSize = glm::vec3(37.81f * volcanoScale, 37.81f * volcanoScale, 
 glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing) , floorYOffset + (volcanoSize.z / 2), 0.0f);
 
 // Tree
-const float treeScale = 3.0f * 7.0f;
+const float treeScale = 3.0f * 5.0f;
+float palmTreeScale = 1.89f * 13.0f;
 glm::vec3 treeSize = glm::vec3(1.36f * treeScale, 1.43f * treeScale, 3.42 * treeScale);
 const int treeNumber = 2;
 glm::vec3 treeLocation[treeNumber] = {
@@ -175,11 +178,11 @@ float velociraptorScale = 0.2f;
 
 // Debug+measure cube
 int cubeNumber = 10;
-glm::vec3 cubeLocation = glm::vec3(pterosaurLocation.x, pterosaurLocation.y, pterosaurLocation.z);
+glm::vec3 cubeLocation = glm::vec3(0.0f);
 glm::mat4 cubeLocationTmpX = glm::mat4(1.0f);
 glm::mat4 cubeLocationTmpY = glm::mat4(1.0f);
 glm::mat4 cubeLocationTmpZ = glm::mat4(1.0f);
-glm::vec3 debugObjectLocation = glm::vec3(0.0f);
+glm::vec3 debugObjectLocation = glm::vec3(cubeLocation.x + 10.f, cubeLocation.y, cubeLocation.z + 10.0f);
 glm::vec3 debugObjectRotation = glm::vec3(0.0f);
 float debugObjectSpeedMovement = 1.0f;
 
@@ -266,9 +269,10 @@ int main()
 
 	// load models
 	// -----------
-
+#if DEBUGMODE == 1
 	//Testing and measures cube 10 units in 3dsmax around 1m here
 	Model cube10("resources/objects/unitcube/unitCube.obj");
+#endif
 #if DRAWFLOOR == 1
 	Model piso("resources/objects/piso/tile.obj");
 	Model pisoPasto("resources/objects/piso/pasto.obj");
@@ -320,8 +324,12 @@ int main()
 	Model gate("resources/objects/gate/gate.obj");
 	// Model gaten("resources/objects/gate/gate_no_normales.obj");
 #endif
+#if DRAWRESTAURANT == 1
+	Model restaurant("resources/objects/restaurant/restaurant.obj");
+#endif
 #if DRAWTREES == 1
 	Model tree("resources/objects/tree/tree.obj");
+	Model palmTree("resources/objects/tree/bananatree.obj");
 #endif
 #if DRAWBUGGY == 1
 	Model buggy("resources/objects/buggy/buggy.obj");
@@ -496,14 +504,18 @@ int main()
 	for (int i = 0 ; i < treeNumber; i++){
 		drawObject(treeLocation[i], glm::vec3(treeScale), staticShader, originWorld, tree);
 	}
+	drawObject(debugObjectLocation, glm::vec3(palmTreeScale), staticShader, originWorld, palmTree);	
 #endif
 #if DRAWBUGGY == 1
 		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, buggy);
 #endif
 // #if DRAW == 1
 // #endif
+#if DRAWRESTAURANT == 1
+	drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(3.0f), staticShader, originWorld, restaurant);
+#endif
 
-
+#if DEBUGMODE  == 1
 		// Pruebas
 		cubeLocationTmpX = cubeLocationTmpY = cubeLocationTmpZ  = drawObject(cubeLocation, glm::vec3(1.0f), staticShader, originWorld, cube10);
 		
@@ -513,6 +525,7 @@ int main()
 			cubeLocationTmpY = drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, cubeLocationTmpY , cube10);
 			cubeLocationTmpZ = drawObject(glm::vec3(0.0f, 0.0f, 10.0f), glm::vec3(1.0f), staticShader, cubeLocationTmpZ , cube10);
 		}
+#endif
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro (lambo)
@@ -594,6 +607,7 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		music = !music;
+#if DEBUGMODE == 1		
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 		cubeLocation.z -= 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
@@ -651,13 +665,8 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		to_string(debugObjectRotation.y) + "," + 
 		to_string(debugObjectRotation.z) + ")."
 		 << std::endl;
-		// std::cout << "Rotation: (" + 
-		// to_string(debugObjectRotation.x) + "," +
-		// to_string(debugObjectRotation.y) + "," + 
-		// to_string(debugObjectRotation.z) + ")"
-		//  << std::endl;
-
 	}
+#endif
 		
 
 
