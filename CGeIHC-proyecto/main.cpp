@@ -6,16 +6,15 @@
 #include <Windows.h>
 
 #include <glad/glad.h>
-#include <glfw3.h>	//main
-#include <stdlib.h>		
-#include <glm/glm.hpp>	//camera y model
-#include <glm/gtc/matrix_transform.hpp>	//camera y model
+#include <glfw3.h> //main
+#include <stdlib.h>
+#include <glm/glm.hpp>					//camera y model
+#include <glm/gtc/matrix_transform.hpp> //camera y model
 #include <glm/gtc/type_ptr.hpp>
 #include <time.h>
 
-
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>	//Texture
+#include <stb_image.h> //Texture
 
 #define SDL_MAIN_HANDLED
 #include <SDL/SDL.h>
@@ -32,16 +31,16 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-//void my_input(GLFWwindow *window);
+// void my_input(GLFWwindow *window);
 void my_input(GLFWwindow* window, int key, int scancode, int action, int mods);
 void animate(void);
-//glm::mat4 drawTiling(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R);
+// glm::mat4 drawTiling(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R);
 glm::mat4 drawObject(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R);
 glm::mat4 drawObject(glm::vec3 offset, glm::vec3 rotationAxis, float rotationAngle, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R);
 // settings
 unsigned int SCR_WIDTH = 800;
 unsigned int SCR_HEIGHT = 600;
-GLFWmonitor *monitors;
+GLFWmonitor* monitors;
 
 void getResolution(void);
 
@@ -55,41 +54,61 @@ bool firstMouse = true;
 // timing
 const int FPS = 60;
 const int LOOP_TIME = 1000 / FPS; // = 16 milisec // 1000 millisec == 1 sec
-double	deltaTime = 0.0f,
-		lastFrame = 0.0f;
+double deltaTime = 0.0f,
+lastFrame = 0.0f;
 
-//Lighting
+// Lighting
 glm::vec3 lightPosition(0.0f, 4.0f, -10.0f);
 glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 
-
 // Auto
-float	movAuto_x = 0.0f,
-		movAuto_z = 0.0f,
-		orienta = 0.0f;
-bool	animacion = false,
-		recorrido1 = true,
-		recorrido2 = false,
-		recorrido3 = false,
-		recorrido4 = false;
+float movAuto_x = 0.0f,
+movAuto_z = 0.0f,
+orienta = 0.0f;
+bool animacion = false,
+recorrido1 = true,
+recorrido2 = false,
+recorrido3 = false,
+recorrido4 = false;
 
 // Music
 bool music = false;
 
+// -------------------------------------------------------------------------------------------------------------------------
+// Preprocessor directives to control models (load + draw)
+// -------------------------------------------------------------------------------------------------------------------------
+#define DRAWFLOOR 1
+#define DRAWFENCE 1
+#define DRAWVOLCANO 1
+#define DRAWLAMBO 1
+#define DRAWPTERO 1
+#define DRAWARLO 1
+#define DRAWTREX 1
+#define DRAWANKYLO 1
+#define DRAWTRICERATOPS 1
+#define DRAWVELOCIRAPTOR 1
+#define DRAWHELICOPTER 1
+// Modelo gate es pesado, utilice con precaucion 
+#define DRAWGATE 1
+#define DRAWTREES 1
+#define DRAWBUGGY 1
+// #define DRAW 1
 
-//Object location
-// 
+// -------------------------------------------------------------------------------------------------------------------------
+// Object location
+// -------------------------------------------------------------------------------------------------------------------------
+
 // Origin
 glm::mat4 originWorld = glm::mat4(1.0f);
 
-//rotation
+// Rotation
 glm::vec3 xAxis = glm::vec3(1.0f, 0.0f, 0.0f);
 glm::vec3 yAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 glm::vec3 zAxis = glm::vec3(0.0f, 0.0f, 1.0f);
 
 // Floor tiling
 float floorScale = 2.0f;
-float floorTilingSpacing = 100.0f * floorScale; 
+float floorTilingSpacing = 100.0f * floorScale;
 float floorYOffset = -1.0f;
 int floorLimitX = 4;
 int floorLowerLimitZ = -2;
@@ -101,37 +120,19 @@ float fenceScale = 15.0f;
 float fenceSize = 2.436f;
 float fenceTilingSpacing = fenceSize * fenceScale;
 float fenceUpperLimitZ = (floorUpperLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) - (fenceTilingSpacing / 2);
-float fenceLowerLimitZ = (floorLowerLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) + (fenceTilingSpacing/2);
-float fenceNumber = (floorTilingSpacing * (floorUpperLimitZ - floorLowerLimitZ + 1)) / fenceTilingSpacing ;
+float fenceLowerLimitZ = (floorLowerLimitZ * floorTilingSpacing) - (floorTilingSpacing / 2) + (fenceTilingSpacing / 2);
+float fenceNumber = (floorTilingSpacing * (floorUpperLimitZ - floorLowerLimitZ + 1)) / fenceTilingSpacing;
 
-//Volcano
+// Volcano
 float volcanoScale = 5.0f;
 glm::vec3 volcanoSize = glm::vec3(37.81f * volcanoScale, 37.81f * volcanoScale, 13.978f * volcanoScale);
-glm::vec3 volcanoPosition = glm::vec3((-floorLimitX*floorTilingSpacing) + (volcanoSize.x), floorYOffset + (volcanoSize.z/2) , 0.0f);
+glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing) + (volcanoSize.x), floorYOffset + (volcanoSize.z / 2), 0.0f);
 
-//Arlo
-float arloScale = 5.0f * 10.0f;
-glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * arloScale);
-
-//Tree
+// Tree
 float treeScale = 3.0f * 7.0f;
 glm::vec3 treeSize = glm::vec3(1.36f * treeScale, 1.43f * treeScale, 3.42 * treeScale);
 
-//Pterosaur
-glm::vec3 pterosaurLocation = glm::vec3(10.0f, 10.0f, 0.0f);
-float pterosaurScale = 0.5f;
-float pterosaurWingOffsetX = 12.0f * pterosaurScale;
-float pterosaurWingOffsetY = 12.0f * pterosaurScale;
-float pterosaurWingOffsetZ = 3.6f * pterosaurScale;
-float pterosaurHeadOffsetY = 15.6f * pterosaurScale;
-float pterosaurHeadOffsetZ = -27.0f * pterosaurScale;
-
-
-//Velociraptor
-glm::vec3 velociraptorLocation = glm::vec3(0.0f);
-float velociraptorScale = 0.2f;
-
-//Helicopter
+// Helicopter
 glm::vec3 helicopterLocation = glm::vec3(10.0f, 10.0f, 0.0f);
 float helicopterScale = 1.0f;
 float helipadScale = 0.15f;
@@ -142,17 +143,35 @@ float helicopterOffsetPropellerFrontX = 5.84f * helicopterScale;
 float helicopterOffsetPropellerFrontY = 12.46f * helicopterScale;
 float helicopterOffsetPropellerFrontZ = 0.0f * helicopterScale;
 
+// ---------------
+// Dinosaurs
+// ---------------
 
+// Arlo
+float arloScale = 5.0f * 10.0f;
+glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * arloScale);
+
+// Pterosaur
+glm::vec3 pterosaurLocation = glm::vec3(10.0f, 10.0f, 0.0f);
+float pterosaurScale = 0.5f;
+float pterosaurWingOffsetX = 12.0f * pterosaurScale;
+float pterosaurWingOffsetY = 12.0f * pterosaurScale;
+float pterosaurWingOffsetZ = 3.6f * pterosaurScale;
+float pterosaurHeadOffsetY = 15.6f * pterosaurScale;
+float pterosaurHeadOffsetZ = -27.0f * pterosaurScale;
+
+// Velociraptor
+glm::vec3 velociraptorLocation = glm::vec3(0.0f);
+float velociraptorScale = 0.2f;
 
 void animate(void)
 {
-	//Vehículo
+	// Vehículo
 	if (animacion)
 	{
 		movAuto_z += 3.0f;
 	}
 }
-
 
 int main()
 {
@@ -173,9 +192,8 @@ int main()
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
-	//Debug
+	// Debug
 	std::cout << fenceNumber << std::endl;
-
 
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "CGeIHC", NULL, NULL);
 	if (window == NULL)
@@ -212,15 +230,13 @@ int main()
 	Shader skyboxShader("Shaders/skybox.vs", "Shaders/skybox.fs");
 	Shader animShader("Shaders/anim.vs", "Shaders/anim.fs");
 
-	vector<std::string> faces
-	{
+	vector<std::string> faces{
 		"resources/skybox/right.jpg",
 		"resources/skybox/left.jpg",
 		"resources/skybox/top.jpg",
 		"resources/skybox/bottom.jpg",
 		"resources/skybox/front.jpg",
-		"resources/skybox/back.jpg"
-	};
+		"resources/skybox/back.jpg" };
 
 	Skybox skybox = Skybox(faces);
 
@@ -231,64 +247,90 @@ int main()
 
 	// load models
 	// -----------
-	//Model piso("resources/objects/piso/tile.obj");
-	//Model pisoPasto("resources/objects/piso/pasto.obj");
+#if DRAWFLOOR == 1
+	Model piso("resources/objects/piso/tile.obj");
+	Model pisoPasto("resources/objects/piso/pasto.obj");
+#endif
+#if DRAWVOLCANO == 1
+	Model volcano("resources/objects/volcano/volcano2.obj");
+#endif
+#if DRAWFENCE == 1
+	Model fence("resources/objects/fence/fence.obj");
+#endif
+#if DRAWLAMBO == 1
 	Model carro("resources/objects/lambo/carroceria.obj");
 	Model llanta("resources/objects/lambo/Wheel.obj");
-	//Model volcano("resources/objects/volcano/volcano2.obj");
-	Model fence("resources/objects/fence/fence.obj");
-	Model cube10("resources/objects/unitcube/unitCube.obj");	
-	//Model stadium("resources/objects/stadium/stadium.obj");
-	//Model cuelloLargo("resources/objects/dinosaurs/cuellolargo/arlo.obj");
-	//Model tree("resources/objects/tree/tree.obj");	
-	//Model tRex("resources/objects/dinosaurs/t-rex/t-rex.obj");
-	//Model ankylosaurus("resources/objects/dinosaurs/anquilo/anquilo.obj");
-	//Model triceratops("resources/objects/dinosaurs/triceratops/triceratops.obj");
-	//Model velociraptor("resources/objects/dinosaurs/velociraptor/velociraptor.obj");
-	//Pterosauruio
-	/*Model pterosaurBody("resources/objects/dinosaurs/pterosaur/cuerpo-ptero.obj");
+#endif
+
+	// Dinosaurs
+#if DRAWPTERO == 1
+	Model pterosaurBody("resources/objects/dinosaurs/pterosaur/cuerpo-ptero.obj");
 	Model pterosaurLeftWing("resources/objects/dinosaurs/pterosaur/ala-izquierda-ptero.obj");
 	Model pterosaurRightWing("resources/objects/dinosaurs/pterosaur/ala-derecha-ptero.obj");
-	Model pterosaurHead("resources/objects/dinosaurs/pterosaur/boca-ptero.obj");*/
-	
-	//Helicopter
-	/*Model helicopterBody("resources/objects/helicopter/helicopter_body.obj");
+	Model pterosaurHead("resources/objects/dinosaurs/pterosaur/boca-ptero.obj");
+#endif	
+#if DRAWARLO == 1
+	Model cuelloLargo("resources/objects/dinosaurs/cuellolargo/arlo.obj");
+#endif
+#if DRAWTREX == 1
+	Model tRex("resources/objects/dinosaurs/t-rex/t-rex.obj");
+	Model stadium("resources/objects/stadium/stadium.obj");
+#endif
+#if DRAWANKYLO == 1
+	Model ankylosaurus("resources/objects/dinosaurs/anquilo/anquilo.obj");
+#endif
+#if DRAWTRICERATOPS == 1
+	Model triceratops("resources/objects/dinosaurs/triceratops/triceratops.obj");
+#endif
+#if DRAWVELOCIRAPTOR == 1
+	Model velociraptor("resources/objects/dinosaurs/velociraptor/velociraptor.obj");
+#endif
+	// End dinosaur models
+
+#if DRAWHELICOPTER == 1	
+	Model helicopterBody("resources/objects/helicopter/helicopter_body.obj");
 	Model helicopterPropellerFront("resources/objects/helicopter/helicopter_propeller_front.obj");
 	Model helicopterPropellerRear("resources/objects/helicopter/helicopter_propeller_rear.obj");
-	*/
-	//Model helipad("resources/objects/helicopter/helipad.obj");
+	Model helipad("resources/objects/helicopter/helipad.obj");
+#endif
+#if DRAWGATE == 1
+	// Modelos pesado, utilice con precaucion
+	Model gate("resources/objects/gate/gate.obj");
+	// Model gaten("resources/objects/gate/gate_no_normales.obj");
+#endif
+#if DRAWTREES == 1
+	Model tree("resources/objects/tree/tree.obj");
+#endif
 
 
-	/* MOdelos pesados, utilice con precaucion
-	* Model gate("resources/objects/gate/gate.obj");
-	* Model gaten("resources/objects/gate/gate_no_normales.obj");
-	*/
-	
+
+	Model cube10("resources/objects/unitcube/unitCube.obj");
+
+
+
+
 
 	Model buggy("resources/objects/buggy/buggy.obj");
 
-	
-	
+	// ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
+	// animacionPersonaje.initShaders(animShader.ID);
 
-	//ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
-	//animacionPersonaje.initShaders(animShader.ID);
-		
 	// draw in wireframe
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// render loop
 	// -----------
 	while (!glfwWindowShouldClose(window))
 	{
 		skyboxShader.setInt("skybox", 0);
-		
+
 		// per-frame time logic
 		// --------------------
 		lastFrame = SDL_GetTicks();
 
 		// input
 		// -----
-		//my_input(window);
+		// my_input(window);
 		animate();
 
 		// render
@@ -298,7 +340,7 @@ int main()
 
 		// don't forget to enable shader before setting uniforms
 		staticShader.use();
-		//Setup Advanced Lights
+		// Setup Advanced Lights
 		staticShader.setVec3("viewPos", camera.Position);
 		staticShader.setVec3("dirLight.direction", lightDirection);
 		staticShader.setVec3("dirLight.ambient", glm::vec3(1.0f, 1.0f, 1.0f));
@@ -335,16 +377,15 @@ int main()
 		glm::vec3 lightColor = glm::vec3(0.6f);
 		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
 		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.75f);
-		
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Personaje Animacion
 		// -------------------------------------------------------------------------------------------------------------------------
-		//Remember to activate the shader with the animation
+		// Remember to activate the shader with the animation
 		animShader.use();
 		animShader.setMat4("projection", projection);
 		animShader.setMat4("view", view);
-	
+
 		animShader.setVec3("material.specular", glm::vec3(0.5f));
 		animShader.setFloat("material.shininess", 32.0f);
 		animShader.setVec3("light.ambient", ambientColor);
@@ -353,11 +394,11 @@ int main()
 		animShader.setVec3("light.direction", lightDirection);
 		animShader.setVec3("viewPos", camera.Position);
 
-		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//animShader.setMat4("model", model);
-		//animacionPersonaje.Draw(animShader);
+		// model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
+		// model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
+		// model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		// animShader.setMat4("model", model);
+		// animacionPersonaje.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario + Piso
@@ -365,80 +406,95 @@ int main()
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
-		
 
-		for (int i = 0; i < floorLimitX; i++) {
-			for (int j = floorLowerLimitZ; j <= floorUpperLimitZ; j++) {
-				//drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing* static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, piso);
-				//drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld , pisoPasto);
+#if DRAWFLOOR == 1
+		for (int i = 0; i < floorLimitX; i++)
+		{
+			for (int j = floorLowerLimitZ; j <= floorUpperLimitZ; j++)
+			{
+				drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, piso);
+				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, pisoPasto);
 			}
 		}
+#endif
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Fence
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Simulate doors 
-		/*Pareto
+		/* Simulate doors  Pareto
 			//Left gate
 			tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -45.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
 			//Right gate
 			drawObject(glm::vec3(fenceOffsetX, floorYOffset, 0.0f), yAxis, -225.0f, glm::vec3(fenceScale), staticShader, glm::mat4(1.0f), fenceDoor);
-		*/	
-
-		//tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceLowerLimitZ), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, originWorld, fence);
-		//for (int i = 1; i <= fenceNumber; i++) {
-			//tmp = drawObject(glm::vec3(0.0f, 0.0f, fenceTilingSpacing), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, tmp, fence);
-		//}
+		*/
+#if DRAWFENCE == 1
+		tmp = drawObject(glm::vec3(fenceOffsetX, floorYOffset, fenceLowerLimitZ), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, originWorld, fence);
+		for (int i = 1; i <= fenceNumber; i++)
+		{
+			tmp = drawObject(glm::vec3(0.0f, 0.0f, fenceTilingSpacing), yAxis, -90.0f, glm::vec3(fenceScale), staticShader, tmp, fence);
+		}
+#endif
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Volcan
+		// Volcano
 		// -------------------------------------------------------------------------------------------------------------------------
-		
+#if DRAWVOLCANO == 1
+		drawObject(volcanoPosition, glm::vec3(volcanoScale), staticShader, originWorld, volcano);
+#endif
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Dinosaurs
+		// -------------------------------------------------------------------------------------------------------------------------
+#if DRAWPTERO == 1
+		tmp = drawObject(pterosaurLocation, glm::vec3(pterosaurScale), staticShader, originWorld, pterosaurBody);
+		drawObject(glm::vec3(0.0f, pterosaurHeadOffsetY, pterosaurHeadOffsetZ), glm::vec3(pterosaurScale), staticShader, tmp, pterosaurHead);
+		drawObject(glm::vec3(-pterosaurWingOffsetX, pterosaurWingOffsetY, pterosaurWingOffsetZ), zAxis, 0.0f, glm::vec3(pterosaurScale), staticShader, tmp, pterosaurLeftWing);
+		drawObject(glm::vec3(pterosaurWingOffsetX, pterosaurWingOffsetY, pterosaurWingOffsetZ), zAxis, 0.0f, glm::vec3(pterosaurScale), staticShader, tmp, pterosaurRightWing);
+#endif
+#if DRAWARLO == 1
+		drawObject(glm::vec3(0.0f), glm::vec3(arloScale), staticShader, originWorld, cuelloLargo);
+#endif
+#if DRAWTREX == 1
+		drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, tRex);
+		drawObject(glm::vec3(0.0f), glm::vec3(4.0f), staticShader, originWorld, stadium);
+#endif
+#if DRAWANKYLO == 1
+		drawObject(glm::vec3(-10.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, ankylosaurus);
+#endif
+#if DRAWTRICERATOPS == 1
+		drawObject(glm::vec3(-10.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, triceratops);
+#endif
+#if DRAWVELOCIRAPTOR == 1
+		drawObject(velociraptorLocation, glm::vec3(velociraptorScale), staticShader, originWorld, velociraptor);
+#endif
+#if DRAWHELICOPTER == 1
+		tmp = drawObject(helicopterLocation, glm::vec3(helicopterScale), staticShader, originWorld, helicopterBody);
+		drawObject(glm::vec3(helicopterOffsetPropellerFrontX, helicopterOffsetPropellerFrontY, helicopterOffsetPropellerFrontZ), glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerFront);
+		drawObject(glm::vec3(helicopterOffsetPropellerRearX, helicopterOffsetPropellerRearY, helicopterOffsetPropellerRearZ), zAxis, 0.0f, glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerRear);
 
-		// Funcionales
-		// drawObject(volcanoPosition, glm::vec3(volcanoScale) , staticShader, originWorld, volcano);
-		//drawObject(glm::vec3(0.0f), glm::vec3(4.0f), staticShader, originWorld, stadium);
-		//drawObject(glm::vec3(-10.0f, 0.0f, 0.0f), glm::vec3(treeScale), staticShader, originWorld, tree);		
-		//drawObject(glm::vec3(0.0f), glm::vec3(arloScale), staticShader, originWorld, cuelloLargo);
-		//drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, tRex);
-		//drawObject(glm::vec3(-10.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, ankylosaurus);
-		//drawObject(glm::vec3(-10.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, triceratops);
-		//
-		// 
-	
-		//tmp = drawObject(pterosaurLocation, glm::vec3(pterosaurScale), staticShader, originWorld, pterosaurBody);
-		//drawObject(glm::vec3(0.0f, pterosaurHeadOffsetY, pterosaurHeadOffsetZ), glm::vec3(pterosaurScale), staticShader, tmp, pterosaurHead);
-		//drawObject(glm::vec3(-pterosaurWingOffsetX, pterosaurWingOffsetY, pterosaurWingOffsetZ), zAxis, 0.0f, glm::vec3(pterosaurScale), staticShader, tmp, pterosaurLeftWing);
-		//drawObject(glm::vec3(pterosaurWingOffsetX, pterosaurWingOffsetY, pterosaurWingOffsetZ), zAxis, 0.0f, glm::vec3(pterosaurScale), staticShader, tmp, pterosaurRightWing);
-
-		//tmp = drawObject(helicopterLocation, glm::vec3(helicopterScale), staticShader, originWorld, helicopterBody);
-		//drawObject(glm::vec3(helicopterOffsetPropellerFrontX, helicopterOffsetPropellerFrontY, helicopterOffsetPropellerFrontZ), glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerFront);
-		//drawObject(glm::vec3(helicopterOffsetPropellerRearX, helicopterOffsetPropellerRearY, helicopterOffsetPropellerRearZ), zAxis, 0.0f, glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerRear);
-
-		//drawObject(helicopterLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);		
-		//drawObject(velociraptorLocation, glm::vec3(velociraptorScale), staticShader, originWorld, velociraptor);
-		//tmp = drawObject(velociraptorLocation, glm::vec3(1.0f), staticShader, originWorld, gate);
-		//drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, tmp, gaten);
-
-
-		//drawObject(velociraptorLocation, glm::vec3(1.0f), staticShader, originWorld, buggy);
-
-		//Pruebas
-
-		//tmp = drawObject(glm::vec3(0.0f), glm::vec3(1.0f), staticShader, originWorld, cube10);
-		for(int i = 1; i< 10; i++){
-			//tmp = drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, tmp , cube10);
+		drawObject(helicopterLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);
+#endif
+#if DRAWGATE == 1
+		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gate);
+		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
+#endif
+#if DRAWTREES == 1
+		drawObject(glm::vec3(-10.0f, 0.0f, 0.0f), glm::vec3(treeScale), staticShader, originWorld, tree);
+#endif
+#if DRAWBUGGY == 1
+		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, buggy);
+#endif
+		// #if DRAW == 1
+		// #endif
+				// Pruebas
+				// tmp = drawObject(glm::vec3(0.0f), glm::vec3(1.0f), staticShader, originWorld, cube10);
+		for (int i = 1; i < 10; i++)
+		{
+			// tmp = drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, tmp , cube10);
 		}
 
-		
-
-		
-		
-		
-
-	
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Carro
+		// Carro (lambo)
 		// -------------------------------------------------------------------------------------------------------------------------
+#if DRAWLAMBO == 1
 		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(15.0f + movAuto_x, -1.0f, movAuto_z));
 		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -449,25 +505,26 @@ int main()
 		model = glm::translate(tmp, glm::vec3(8.5f, 2.5f, 12.9f));
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		staticShader.setMat4("model", model);
-		llanta.Draw(staticShader);	//Izq delantera
+		llanta.Draw(staticShader); // Izq delantera
 
 		model = glm::translate(tmp, glm::vec3(-8.5f, 2.5f, 12.9f));
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		llanta.Draw(staticShader);	//Der delantera
+		llanta.Draw(staticShader); // Der delantera
 
 		model = glm::translate(tmp, glm::vec3(-8.5f, 2.5f, -14.5f));
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		llanta.Draw(staticShader);	//Der trasera
+		llanta.Draw(staticShader); // Der trasera
 
 		model = glm::translate(tmp, glm::vec3(8.5f, 2.5f, -14.5f));
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		staticShader.setMat4("model", model);
-		llanta.Draw(staticShader);	//Izq trase
-		
+		llanta.Draw(staticShader); // Izq trase
+#endif
+
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -480,7 +537,7 @@ int main()
 
 		// Limitar el framerate a 60
 		deltaTime = SDL_GetTicks() - lastFrame; // time for full 1 loop
-		//std::cout <<"frame time = " << frameTime << " milli sec"<< std::endl;
+		// std::cout <<"frame time = " << frameTime << " milli sec"<< std::endl;
 		if (deltaTime < LOOP_TIME)
 		{
 			SDL_Delay((int)(LOOP_TIME - deltaTime));
@@ -500,7 +557,7 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
+void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
@@ -511,21 +568,20 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 		camera.ProcessKeyboard(LEFT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		camera.ProcessKeyboard(RIGHT, (float)deltaTime);	
+		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		music = !music;
 
-	//Car animation
+	// Car animation
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 		animacion ^= true;
-
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	// make sure the viewport matches the new window dimensions; note that width and 
+	// make sure the viewport matches the new window dimensions; note that width and
 	// height will be significantly larger than specified on retina displays.
 	glViewport(0, 0, width, height);
 }
@@ -564,8 +620,8 @@ void getResolution()
 	SCR_HEIGHT = (mode->height) - 80;
 }
 
-
-glm::mat4 drawObject(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R) {
+glm::mat4 drawObject(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R)
+{
 	glm::mat4 model = glm::translate(origin, offset);
 	glm::mat4 tempPos = model;
 	model = glm::scale(model, scale);
@@ -573,7 +629,8 @@ glm::mat4 drawObject(glm::vec3 offset, glm::vec3 scale, Shader shader, glm::mat4
 	model2R.Draw(shader);
 	return tempPos;
 }
-glm::mat4 drawObject(glm::vec3 offset, glm::vec3 rotationAxis, float rotationAngle, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R) {
+glm::mat4 drawObject(glm::vec3 offset, glm::vec3 rotationAxis, float rotationAngle, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R)
+{
 	glm::mat4 model = glm::translate(origin, offset);
 	glm::mat4 tempPos = model;
 	model = glm::rotate(model, glm::radians(rotationAngle), rotationAxis);
