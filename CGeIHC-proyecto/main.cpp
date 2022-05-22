@@ -46,7 +46,7 @@ GLFWmonitor *monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 100.0f, 90.0f));
+Camera camera(glm::vec3(0.0f, 80.0f, 40.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -83,7 +83,9 @@ bool music = false;
 glm::mat4 originWorld = glm::mat4(1.0f);
 
 //rotation
+glm::vec3 xAxis = glm::vec3(1.0f, 0.0f, 0.0f);
 glm::vec3 yAxis = glm::vec3(0.0f, 1.0f, 0.0f);
+glm::vec3 zAxis = glm::vec3(0.0f, 0.0f, 1.0f);
 
 // Floor tiling
 float floorScale = 2.0f;
@@ -114,6 +116,28 @@ glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * a
 //Tree
 float treeScale = 3.0f * 7.0f;
 glm::vec3 treeSize = glm::vec3(1.36f * treeScale, 1.43f * treeScale, 3.42 * treeScale);
+
+//Pterosaur
+glm::vec3 pterosaurLocation = glm::vec3(10.0f, 10.0f, 0.0f);
+float pterosaurScale = 0.5f;
+float pterosaurWingOffsetX = 12.0f * pterosaurScale;
+float pterosaurWingOffsetY = 12.0f * pterosaurScale;
+float pterosaurWingOffsetZ = 3.6f * pterosaurScale;
+float pterosaurHeadOffsetY = 15.6f * pterosaurScale;
+float pterosaurHeadOffsetZ = -27.0f * pterosaurScale;
+
+//Helicopter
+glm::vec3 helicopterLocation = glm::vec3(10.0f, 10.0f, 0.0f);
+float helicopterScale = 1.0f;
+float helipadScale = 0.1f;
+float helicopterOffsetPropellerRearX = 58.4f * helicopterScale;
+float helicopterOffsetPropellerRearY = 8.46f * helicopterScale;
+float helicopterOffsetPropellerRearZ = 0.0f * helicopterScale;
+float helicopterOffsetPropellerFrontX = 5.84f * helicopterScale;
+float helicopterOffsetPropellerFrontY = 12.46f * helicopterScale;
+float helicopterOffsetPropellerFrontZ = 0.0f * helicopterScale;
+
+
 
 void animate(void)
 {
@@ -202,22 +226,35 @@ int main()
 
 	// load models
 	// -----------
-	Model piso("resources/objects/piso/tile.obj");
-	Model pisoPasto("resources/objects/piso/pasto.obj");
+	//Model piso("resources/objects/piso/tile.obj");
+	//Model pisoPasto("resources/objects/piso/pasto.obj");
 	Model carro("resources/objects/lambo/carroceria.obj");
 	Model llanta("resources/objects/lambo/Wheel.obj");
-	Model volcano("resources/objects/volcano/volcano2.obj");
+	//Model volcano("resources/objects/volcano/volcano2.obj");
 	Model fence("resources/objects/fence/fence.obj");
 	Model cube10("resources/objects/unitcube/unitCube.obj");	
-	Model stadium("resources/objects/stadium/stadium.obj");
-	Model cuelloLargo("resources/objects/dinosaurs/cuellolargo/arlo.obj");
-	Model tree("resources/objects/tree/tree.obj");	
-	Model tRex("resources/objects/dinosaurs/t-rex/t-rex.obj");
+	//Model stadium("resources/objects/stadium/stadium.obj");
+	//Model cuelloLargo("resources/objects/dinosaurs/cuellolargo/arlo.obj");
+	//Model tree("resources/objects/tree/tree.obj");	
+	//Model tRex("resources/objects/dinosaurs/t-rex/t-rex.obj");
+	//Model ankylosaurus("resources/objects/dinosaurs/anquilo/anquilo.obj");
+	//Model triceratops("resources/objects/dinosaurs/triceratops/triceratops.obj");
+
+	//Pterosauruio
+	/*Model pterosaurBody("resources/objects/dinosaurs/pterosaur/cuerpo-ptero.obj");
+	Model pterosaurLeftWing("resources/objects/dinosaurs/pterosaur/ala-izquierda-ptero.obj");
+	Model pterosaurRightWing("resources/objects/dinosaurs/pterosaur/ala-derecha-ptero.obj");
+	Model pterosaurHead("resources/objects/dinosaurs/pterosaur/boca-ptero.obj");*/
 	
+	//Helicopter
+	/*Model helicopterBody("resources/objects/helicopter/helicopter_body.obj");
+	Model helicopterPropellerFront("resources/objects/helicopter/helicopter_propeller_front.obj");
+	Model helicopterPropellerRear("resources/objects/helicopter/helicopter_propeller_rear.obj");
+	*/
+	Model helipad("resources/objects/helicopter/helipad.obj");
 
-
-	ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
-	animacionPersonaje.initShaders(animShader.ID);
+	//ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
+	//animacionPersonaje.initShaders(animShader.ID);
 		
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -299,11 +336,11 @@ int main()
 		animShader.setVec3("light.direction", lightDirection);
 		animShader.setVec3("viewPos", camera.Position);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		animShader.setMat4("model", model);
-		animacionPersonaje.Draw(animShader);
+		//model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//animShader.setMat4("model", model);
+		//animacionPersonaje.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario + Piso
@@ -315,8 +352,8 @@ int main()
 
 		for (int i = 0; i < floorLimitX; i++) {
 			for (int j = floorLowerLimitZ; j <= floorUpperLimitZ; j++) {
-				drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing* static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, piso);
-				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld , pisoPasto);
+				//drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing* static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, piso);
+				//drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld , pisoPasto);
 			}
 		}
 
@@ -346,17 +383,37 @@ int main()
 		//drawObject(glm::vec3(-10.0f, 0.0f, 0.0f), glm::vec3(treeScale), staticShader, originWorld, tree);		
 		//drawObject(glm::vec3(0.0f), glm::vec3(arloScale), staticShader, originWorld, cuelloLargo);
 		//drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, tRex);
+		//drawObject(glm::vec3(-10.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, ankylosaurus);
+		//drawObject(glm::vec3(-10.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, triceratops);
+		//
+		// 
+	
+		//tmp = drawObject(pterosaurLocation, glm::vec3(pterosaurScale), staticShader, originWorld, pterosaurBody);
+		//drawObject(glm::vec3(0.0f, pterosaurHeadOffsetY, pterosaurHeadOffsetZ), glm::vec3(pterosaurScale), staticShader, tmp, pterosaurHead);
+		//drawObject(glm::vec3(-pterosaurWingOffsetX, pterosaurWingOffsetY, pterosaurWingOffsetZ), zAxis, 0.0f, glm::vec3(pterosaurScale), staticShader, tmp, pterosaurLeftWing);
+		//drawObject(glm::vec3(pterosaurWingOffsetX, pterosaurWingOffsetY, pterosaurWingOffsetZ), zAxis, 0.0f, glm::vec3(pterosaurScale), staticShader, tmp, pterosaurRightWing);
+
+		//tmp = drawObject(helicopterLocation, glm::vec3(helicopterScale), staticShader, originWorld, helicopterBody);
+		//drawObject(glm::vec3(helicopterOffsetPropellerFrontX, helicopterOffsetPropellerFrontY, helicopterOffsetPropellerFrontZ), glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerFront);
+		//drawObject(glm::vec3(helicopterOffsetPropellerRearX, helicopterOffsetPropellerRearY, helicopterOffsetPropellerRearZ), zAxis, 0.0f, glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerRear);
+
 
 		//Pruebas
 
-		tmp = drawObject(glm::vec3(0.0f), glm::vec3(1.0f), staticShader, originWorld, cube10);
+		//tmp = drawObject(glm::vec3(0.0f), glm::vec3(1.0f), staticShader, originWorld, cube10);
 		for(int i = 1; i< 10; i++){
-			tmp = drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, tmp , cube10);
+			//tmp = drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, tmp , cube10);
 		}
 
 		
+		drawObject(helicopterLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);
+		
+
 
 		
+
+
+
 
 		
 
