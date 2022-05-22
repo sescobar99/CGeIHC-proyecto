@@ -29,6 +29,7 @@ This project has been developed, built, executed, downloaded, and tested using V
 
 ---
 
+
 ## Acknowledgments
 
 ### Textures
@@ -42,10 +43,15 @@ This project has been developed, built, executed, downloaded, and tested using V
 * Beach texture - (SoilBeach0131) took from: https://www.textures.com/download/SoilBeach0131/106132
 * Stadiumgate texture - (DoorsMetalBig0245) took from: https://www.textures.com/download/DoorsMetalBig0245/79191
 ### 3D Models
-* Tree01 - "Low Poly Tree"(https://skfb.ly/ooBRz) by Šimon Ustal is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/)
+* Tree01 - "Low Poly Tree"(https://skfb.ly/ooBRz) by Šimon Ustal is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * T-rex - took from: https://www.turbosquid.com/es/3d-models/t-rex-fbx-free/933905
 * Apatosaurus(arlo) - took from: https://www.turbosquid.com/es/3d-models/3d-arlo-good-dinosaur-model-1701149
 * Fence - took from: https://www.turbosquid.com/es/3d-models/3d-metal-fence-1393026#
+* Ankylosaurus- "Dino - Ankylosaurus" (https://skfb.ly/6wMs7) by pikabobalex is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Triceratops - "Triceratops Photogrammetry test" (https://skfb.ly/6qEDP) by Nick G. Gizelis is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Pterosaur - "Lego Pteronadon + Baby Ptero" (https://skfb.ly/o9DyF) by rabuhadavid is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Helicopter - "Low Poly Helicopter" (https://skfb.ly/6AOHw) by antonmoek is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Helipad - "Helipad" (https://skfb.ly/6ANDS) by srockzv is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 ### Sound
 
 ### Animations
