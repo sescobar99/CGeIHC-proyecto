@@ -77,27 +77,28 @@ bool music = false;
 
 // -------------------------------------------------------------------------------------------------------------------------
 // Preprocessor directives to control models (load + draw)
+// 1 = Draw model
+// Gate and restaurant models are heavy, use with caution 
 // -------------------------------------------------------------------------------------------------------------------------
 #define DEBUGMODE 1
 #define DRAWFLOOR 1
-#define DRAWFENCE 0
-#define DRAWVOLCANO 0
+#define DRAWFENCE 1
+#define DRAWVOLCANO 1
 #define DRAWLAMBO 0
 #define DRAWPTERO 0
-#define DRAWARLO 0
+#define DRAWHOTEL 0
+#define DRAWRESTAURANT 0
+//PENDING LOCATION
+#define DRAWTREES 1
+//PENDING SIZE+LOCATION
+#define DRAWARLO 1
 #define DRAWTREX 0
 #define DRAWANKYLO 0
 #define DRAWTRICERATOPS 0
 #define DRAWVELOCIRAPTOR 0
 #define DRAWHELICOPTER 0
-#define DRAWTREES 0
 #define DRAWBUGGY 0
-// Modelos gate y restaurante son pesados, utilice con precaucion 
 #define DRAWGATE 0
-#define DRAWRESTAURANT 0
-#define DRAWHOTEL 1
-
-// #define DRAW 1
 
 // -------------------------------------------------------------------------------------------------------------------------
 // Object location
@@ -135,11 +136,15 @@ const glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing) 
 // Tree
 const float treeScale = 3.0f * 5.0f;
 float palmTreeScale = 1.89f * 13.0f;
-glm::vec3 treeSize = glm::vec3(1.36f * treeScale, 1.43f * treeScale, 3.42 * treeScale);
+const glm::vec3 treeSize = glm::vec3(1.36f * treeScale, 1.43f * treeScale, 3.42 * treeScale);
 const int treeNumber = 2;
 glm::vec3 treeLocation[treeNumber] = {
 	glm::vec3(100.0f, floorYOffset, 100.0f),
 	glm::vec3(150.0f, floorYOffset, 50.0f),
+};
+glm::vec3 palmTreeLocation[treeNumber] = {
+	glm::vec3(-100.0f, floorYOffset, -100.0f),
+	glm::vec3(-150.0f, floorYOffset, -50.0f),
 };
 
 // Helicopter
@@ -154,13 +159,18 @@ float helicopterOffsetPropellerFrontY = 12.46f * helicopterScale;
 float helicopterOffsetPropellerFrontZ = 0.0f * helicopterScale;
 
 // Hotel
-float hotelScale = 11.0f;
-glm::vec3 hotelLocation = glm::vec3(350.0f, 0.0f, 1000.0f);
-glm::vec3 hotelRotationAxis = yAxis;
-float hotelRotation = 180.0f;
+const float hotelScale = 11.0f;
+const glm::vec3 hotelLocation = glm::vec3(350.0f, 0.0f, 1000.0f);
+const glm::vec3 hotelRotationAxis = yAxis;
+const float hotelRotation = 180.0f;
 
 
-// Restauran
+// Restaurant
+const float restaurantScale = 0.18f;
+const glm::vec3 restaurantLocation = glm::vec3(90.0f, 0.0f, -400.0f);
+const glm::vec3 restaurantRotationAxis = yAxis;
+const float restaurantRotation = -135.0f;
+
 // ---------------
 // Dinosaurs
 // ---------------
@@ -168,7 +178,9 @@ float hotelRotation = 180.0f;
 // Arlo
 const float arloScale = 5.0f * 10.0f;
 const glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * arloScale);
-//const float arloLocation;
+const glm::vec3 arloLocation;
+const glm::vec3 arloRotationAxis = yAxis;
+const float arloRotation = -135.0f;
 
 // Pterosaur
 glm::vec3 pterosaurLocation = glm::vec3(volcanoPosition.x + (10.0f * volcanoScale), volcanoPosition.y + (5.0f * volcanoScale), volcanoPosition.z);
@@ -521,14 +533,14 @@ int main()
 #if DRAWTREES == 1
 	for (int i = 0 ; i < treeNumber; i++){
 		drawObject(treeLocation[i], glm::vec3(treeScale), staticShader, originWorld, tree);
+		drawObject(palmTreeLocation[i], glm::vec3(palmTreeScale), staticShader, originWorld, palmTree);	
 	}
-	drawObject(debugObjectLocation, glm::vec3(palmTreeScale), staticShader, originWorld, palmTree);	
 #endif
 #if DRAWBUGGY == 1
 		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, buggy);
 #endif
-#if DRAWRESTAURANT == 1
-	drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(3.0f), staticShader, originWorld, restaurant);
+#if DRAWRESTAURANT == 1	
+	 drawObject(restaurantLocation,restaurantRotationAxis, restaurantRotation, glm::vec3(restaurantScale), staticShader, originWorld, restaurant);
 #endif
 #if DRAWHOTEL == 1
 	drawObject(hotelLocation, hotelRotationAxis, hotelRotation, glm::vec3(hotelScale), staticShader, originWorld, hotel);
@@ -536,6 +548,7 @@ int main()
 
 #if DEBUGMODE  == 1
 		// Pruebas
+		// drawObject(debugObjectLocation, glm::vec3(1.0f), debugObjectRotation, glm::vec3(debugObjectScale), staticShader, originWorld, model);
 		cubeLocationTmpX = cubeLocationTmpY = cubeLocationTmpZ  = drawObject(cubeLocation, glm::vec3(1.0f), staticShader, originWorld, cube10);
 		
 		for (int i = 1; i < cubeNumber; i++)
@@ -676,9 +689,9 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		debugObjectRotation.y = 0.0f;
 	if (glfwGetKey(window, GLFW_KEY_KP_ADD) == GLFW_PRESS)
-		debugObjectScale += 0.1f;
+		debugObjectScale += 0.1f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS)
-		debugObjectScale -= 0.1f;
+		debugObjectScale -= 0.1f * debugObjectSpeedMovement;
 	if (action == GLFW_PRESS){
 		std::cout << "Location: (" + 
 		to_string(debugObjectLocation.x) + "," +
