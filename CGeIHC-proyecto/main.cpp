@@ -88,17 +88,17 @@ bool music = false;
 #define DRAWPTERO 0
 #define DRAWHOTEL 0
 #define DRAWRESTAURANT 0
+#define DRAWARLO 0
+#define DRAWHELICOPTER 0
 //PENDING LOCATION
-#define DRAWTREES 1
+#define DRAWTREES 0
 //PENDING SIZE+LOCATION
-#define DRAWARLO 1
 #define DRAWTREX 0
 #define DRAWANKYLO 0
 #define DRAWTRICERATOPS 0
 #define DRAWVELOCIRAPTOR 0
-#define DRAWHELICOPTER 0
 #define DRAWBUGGY 0
-#define DRAWGATE 0
+#define DRAWGATE 1
 
 // -------------------------------------------------------------------------------------------------------------------------
 // Object location
@@ -133,24 +133,17 @@ const float volcanoScale = 15.0f;
 const glm::vec3 volcanoSize = glm::vec3(37.81f * volcanoScale, 37.81f * volcanoScale, 13.978f * volcanoScale);
 const glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing) , floorYOffset + (volcanoSize.z / 2), 0.0f);
 
-// Tree
-const float treeScale = 3.0f * 5.0f;
-float palmTreeScale = 1.89f * 13.0f;
-const glm::vec3 treeSize = glm::vec3(1.36f * treeScale, 1.43f * treeScale, 3.42 * treeScale);
-const int treeNumber = 2;
-glm::vec3 treeLocation[treeNumber] = {
-	glm::vec3(100.0f, floorYOffset, 100.0f),
-	glm::vec3(150.0f, floorYOffset, 50.0f),
-};
-glm::vec3 palmTreeLocation[treeNumber] = {
-	glm::vec3(-100.0f, floorYOffset, -100.0f),
-	glm::vec3(-150.0f, floorYOffset, -50.0f),
-};
+// ---------------
+// Vehicles
+// ---------------
 
 // Helicopter
-glm::vec3 helicopterLocation = glm::vec3(10.0f, 10.0f, 0.0f);
-float helicopterScale = 1.0f;
-float helipadScale = 0.15f;
+float helicopterScale = 1.2f;
+float helipadScale = 0.4f;
+glm::vec3 helicopterLocation = glm::vec3(25.0f, 14.0f * helicopterScale, 440.0f);
+glm::vec3 helipadLocation = glm::vec3(helicopterLocation.x + (10.0f * helicopterScale) , 0.0f, helicopterLocation.z);
+//glm::vec3 helicopterRotationAxis = yAxis;
+//float helicopterRotation = 90.0f ;
 float helicopterOffsetPropellerRearX = 58.4f * helicopterScale;
 float helicopterOffsetPropellerRearY = 8.46f * helicopterScale;
 float helicopterOffsetPropellerRearZ = 0.0f * helicopterScale;
@@ -158,12 +151,15 @@ float helicopterOffsetPropellerFrontX = 5.84f * helicopterScale;
 float helicopterOffsetPropellerFrontY = 12.46f * helicopterScale;
 float helicopterOffsetPropellerFrontZ = 0.0f * helicopterScale;
 
+// ---------------
+// Buildings
+// ---------------
+
 // Hotel
 const float hotelScale = 11.0f;
 const glm::vec3 hotelLocation = glm::vec3(350.0f, 0.0f, 1000.0f);
 const glm::vec3 hotelRotationAxis = yAxis;
 const float hotelRotation = 180.0f;
-
 
 // Restaurant
 const float restaurantScale = 0.18f;
@@ -176,11 +172,11 @@ const float restaurantRotation = -135.0f;
 // ---------------
 
 // Arlo
-const float arloScale = 5.0f * 10.0f;
+const float arloScale = 5.0f * 11.1f;
 const glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * arloScale);
-const glm::vec3 arloLocation;
+const glm::vec3 arloLocation = glm::vec3(-200.0f, 0.0f, -100.0f);
 const glm::vec3 arloRotationAxis = yAxis;
-const float arloRotation = -135.0f;
+const float arloRotation = -60.0f;
 
 // Pterosaur
 glm::vec3 pterosaurLocation = glm::vec3(volcanoPosition.x + (10.0f * volcanoScale), volcanoPosition.y + (5.0f * volcanoScale), volcanoPosition.z);
@@ -198,9 +194,21 @@ glm::vec3 velociraptorLocation = glm::vec3(0.0f);
 float velociraptorScale = 0.2f;
 
 // ---------------
-// End dinosaurs
+// Biome
 // ---------------
-
+// Tree
+const float treeScale = 3.0f * 5.0f;
+float palmTreeScale = 1.89f * 13.0f;
+const glm::vec3 treeSize = glm::vec3(1.36f * treeScale, 1.43f * treeScale, 3.42 * treeScale);
+const int treeNumber = 2;
+glm::vec3 treeLocation[treeNumber] = {
+	glm::vec3(100.0f, floorYOffset, 100.0f),
+	glm::vec3(150.0f, floorYOffset, 50.0f),
+};
+glm::vec3 palmTreeLocation[treeNumber] = {
+	glm::vec3(arloLocation.x - (arloSize.x * 3) , floorYOffset, arloLocation.z + (arloSize.z/2)),
+	glm::vec3(-150.0f, floorYOffset, -50.0f),
+};
 
 // Debug+measure cube
 int cubeNumber = 10;
@@ -208,7 +216,7 @@ glm::vec3 cubeLocation = glm::vec3(0.0f);
 glm::mat4 cubeLocationTmpX = glm::mat4(1.0f);
 glm::mat4 cubeLocationTmpY = glm::mat4(1.0f);
 glm::mat4 cubeLocationTmpZ = glm::mat4(1.0f);
-glm::vec3 debugObjectLocation = glm::vec3(cubeLocation.x + 10.f, cubeLocation.y, cubeLocation.z + 10.0f);
+glm::vec3 debugObjectLocation = glm::vec3(cubeLocation.x, cubeLocation.y, cubeLocation.z);
 glm::vec3 debugObjectRotation = glm::vec3(0.0f);
 float debugObjectSpeedMovement = 1.0f;
 float debugObjectScale = 1.0f;
@@ -503,8 +511,7 @@ int main()
 		drawObject(glm::vec3(pterosaurWingOffsetX, pterosaurWingOffsetY, pterosaurWingOffsetZ), zAxis, pterosaurWingRotation, glm::vec3(pterosaurScale), staticShader, tmp, pterosaurRightWing);
 #endif
 #if DRAWARLO == 1
-		drawObject(debugObjectLocation,glm::vec3(1.0f), debugObjectRotation, glm::vec3(arloScale), staticShader, originWorld, cuelloLargo);
-		// drawObject(debugObjectLocation, glm::vec3(arloScale), staticShader, originWorld, cuelloLargo);
+		drawObject(arloLocation, arloRotationAxis, arloRotation, glm::vec3(arloScale), staticShader, originWorld, cuelloLargo);
 #endif
 #if DRAWTREX == 1
 		drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, tRex);
@@ -524,7 +531,7 @@ int main()
 		drawObject(glm::vec3(helicopterOffsetPropellerFrontX, helicopterOffsetPropellerFrontY, helicopterOffsetPropellerFrontZ), glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerFront);
 		drawObject(glm::vec3(helicopterOffsetPropellerRearX, helicopterOffsetPropellerRearY, helicopterOffsetPropellerRearZ), zAxis, 0.0f, glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerRear);
 
-		drawObject(helicopterLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);
+		drawObject(helipadLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);
 #endif
 #if DRAWGATE == 1
 		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gate);
