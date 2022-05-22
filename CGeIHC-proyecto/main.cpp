@@ -78,7 +78,7 @@ bool music = false;
 // -------------------------------------------------------------------------------------------------------------------------
 // Preprocessor directives to control models (load + draw)
 // 1 = Draw model
-// Gate and restaurant models are heavy, use with caution 
+// Gate and restaurant models are heavy, use with caution
 // -------------------------------------------------------------------------------------------------------------------------
 #define DEBUGMODE 1
 #define DRAWFLOOR 1
@@ -91,12 +91,12 @@ bool music = false;
 #define DRAWARLO 0
 #define DRAWHELICOPTER 0
 #define DRAWTREX 0
-//PENDING LOCATION
-#define DRAWTREES 1
-//PENDING SIZE+LOCATION
 #define DRAWANKYLO 0
 #define DRAWTRICERATOPS 0
 #define DRAWVELOCIRAPTOR 0
+// PENDING LOCATION
+#define DRAWTREES 1
+// PENDING SIZE+LOCATION
 #define DRAWBUGGY 0
 #define DRAWGATE 0
 
@@ -132,7 +132,7 @@ const float fenceNumber = (floorTilingSpacing * (floorUpperLimitZ - floorLowerLi
 // Volcano
 const float volcanoScale = 15.0f;
 const glm::vec3 volcanoSize = glm::vec3(37.81f * volcanoScale, 37.81f * volcanoScale, 13.978f * volcanoScale);
-const glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing) , floorYOffset + (volcanoSize.z / 2), 0.0f);
+const glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing), floorYOffset + (volcanoSize.z / 2), 0.0f);
 
 // ---------------
 // Vehicles
@@ -142,9 +142,9 @@ const glm::vec3 volcanoPosition = glm::vec3((-floorLimitX * floorTilingSpacing) 
 float helicopterScale = 1.2f;
 float helipadScale = 0.4f;
 glm::vec3 helicopterLocation = glm::vec3(25.0f, 14.0f * helicopterScale, 440.0f);
-glm::vec3 helipadLocation = glm::vec3(helicopterLocation.x + (10.0f * helicopterScale) , 0.0f, helicopterLocation.z);
-//glm::vec3 helicopterRotationAxis = yAxis;
-//float helicopterRotation = 90.0f ;
+glm::vec3 helipadLocation = glm::vec3(helicopterLocation.x + (10.0f * helicopterScale), 0.0f, helicopterLocation.z);
+// glm::vec3 helicopterRotationAxis = yAxis;
+// float helicopterRotation = 90.0f ;
 float helicopterOffsetPropellerRearX = 58.4f * helicopterScale;
 float helicopterOffsetPropellerRearY = 8.46f * helicopterScale;
 float helicopterOffsetPropellerRearZ = 0.0f * helicopterScale;
@@ -152,9 +152,16 @@ float helicopterOffsetPropellerFrontX = 5.84f * helicopterScale;
 float helicopterOffsetPropellerFrontY = 12.46f * helicopterScale;
 float helicopterOffsetPropellerFrontZ = 0.0f * helicopterScale;
 
+//Buggy
+
 // ---------------
 // Constructions
 // ---------------
+// Restaurant
+const float restaurantScale = 0.18f;
+const glm::vec3 restaurantLocation = glm::vec3(90.0f, 0.0f, -400.0f);
+const glm::vec3 restaurantRotationAxis = yAxis;
+const float restaurantRotation = -135.0f;
 
 // Hotel
 const float hotelScale = 11.0f;
@@ -162,13 +169,7 @@ const glm::vec3 hotelLocation = glm::vec3(350.0f, 0.0f, 1000.0f);
 const glm::vec3 hotelRotationAxis = yAxis;
 const float hotelRotation = 180.0f;
 
-// Restaurant
-const float restaurantScale = 0.18f;
-const glm::vec3 restaurantLocation = glm::vec3(90.0f, 0.0f, -400.0f);
-const glm::vec3 restaurantRotationAxis = yAxis;
-const float restaurantRotation = -135.0f;
-
-// Gate 
+// Gate
 const float gatetScale = 7.0f;
 const glm::vec3 gateLocation = glm::vec3(800.0f, 0.0f, 0.0f);
 const glm::vec3 gateRotationAxis = yAxis;
@@ -178,13 +179,6 @@ const float gateRotation = 90.0f;
 // Dinosaurs
 // ---------------
 
-// Arlo
-const float arloScale = 5.0f * 11.1f;
-const glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * arloScale);
-const glm::vec3 arloLocation = glm::vec3(-200.0f, 0.0f, -100.0f);
-const glm::vec3 arloRotationAxis = yAxis;
-const float arloRotation = -60.0f;
-
 // Pterosaur
 glm::vec3 pterosaurLocation = glm::vec3(volcanoPosition.x + (10.0f * volcanoScale), volcanoPosition.y + (5.0f * volcanoScale), volcanoPosition.z);
 const float pterosaurScale = 0.5f;
@@ -193,7 +187,14 @@ const float pterosaurWingOffsetY = 12.0f * pterosaurScale;
 const float pterosaurWingOffsetZ = 3.6f * pterosaurScale;
 const float pterosaurHeadOffsetY = 15.6f * pterosaurScale;
 const float pterosaurHeadOffsetZ = -27.0f * pterosaurScale;
-float  pterosaurWingRotation = 30.0f;
+float pterosaurWingRotation = 30.0f;
+
+// Arlo
+const float arloScale = 5.0f * 11.1f;
+const glm::vec3 arloSize = glm::vec3(0.315f * arloScale, 0.995f * arloScale, 1.29f * arloScale);
+const glm::vec3 arloLocation = glm::vec3(-200.0f, 0.0f, -100.0f);
+const glm::vec3 arloRotationAxis = yAxis;
+const float arloRotation = -60.0f;
 
 // Trex
 const float tRexScale = 4.0f;
@@ -202,9 +203,23 @@ const glm::vec3 tRexRotationAxis = yAxis;
 const float tRexRotation = 90.0f;
 const float tRexStadiumScale = 5.0f;
 
+// Ankylo
+const float ankyloScale = 8.0f;
+const glm::vec3 ankyloLocation = glm::vec3(-300.0f, floorYOffset, 0.0f);
+const glm::vec3 ankyloRotationAxis = yAxis;
+const float ankyloRotation = 0.0f;
+
+// Triceratops
+const float triceratopsScale = 2.8f;
+const glm::vec3 triceratopsLocation = glm::vec3(-200.0f, floorYOffset, 100.0f);
+const glm::vec3 triceratopsRotationAxis = yAxis;
+const float triceratopsRotation = 90.0f;
+
 // Velociraptor
-glm::vec3 velociraptorLocation = glm::vec3(0.0f);
-float velociraptorScale = 0.2f;
+const float velociraptorScale = 0.2f;
+const glm::vec3 velociraptorLocation = glm::vec3(-130.0f, -floorYOffset * 10.0f, 0.0f);
+const glm::vec3 velociraptorRotationAxis = allAxis;
+const glm::vec3 velociraptorRotation = glm::vec3(-260.0f, -60.0f, 90.0f);
 
 // ---------------
 // Biome
@@ -219,22 +234,24 @@ glm::vec3 treeLocation[treeNumber] = {
 	glm::vec3(150.0f, floorYOffset, 50.0f),
 };
 glm::vec3 palmTreeLocation[treeNumber] = {
-	glm::vec3(arloLocation.x - (arloSize.x * 3) , floorYOffset, arloLocation.z + (arloSize.z/2)),
+	glm::vec3(arloLocation.x - (arloSize.x * 3), floorYOffset, arloLocation.z + (arloSize.z / 2)),
 	glm::vec3(-150.0f, floorYOffset, -50.0f),
 };
 
+#if DEBUGMODE == 1
 // Debug+measure cube
 int cubeNumber = 10;
 glm::vec3 cubeLocation = glm::vec3(0.0f);
 glm::mat4 cubeLocationTmpX = glm::mat4(1.0f);
 glm::mat4 cubeLocationTmpY = glm::mat4(1.0f);
 glm::mat4 cubeLocationTmpZ = glm::mat4(1.0f);
-glm::vec3 debugObjectLocation = tRexLocation;
-//glm::vec3 debugObjectLocation = glm::vec3(0.0f);
+// glm::vec3 debugObjectLocation = tRexLocation;
+glm::vec3 debugObjectLocation = glm::vec3(0.0f);
 glm::vec3 debugObjectRotation = glm::vec3(0.0f);
 float debugObjectSpeedMovement = 1.0f;
-//float debugObjectScale = 1.0f;
-float debugObjectScale = tRexScale;
+float debugObjectScale = 1.0f;
+// float debugObjectScale = tRexScale;
+#endif
 
 void animate(void)
 {
@@ -320,33 +337,54 @@ int main()
 	// load models
 	// -----------
 #if DEBUGMODE == 1
-	//Testing and measures cube 10 units in 3dsmax around 1m here
+	// Testing and measures cube 10 units in 3dsmax around 1m here
 	Model cube10("resources/objects/unitcube/unitCube.obj");
 #endif
+	//Floor
 #if DRAWFLOOR == 1
 	Model piso("resources/objects/piso/tile.obj");
 	Model pisoPasto("resources/objects/piso/pasto.obj");
 	Model pisoArena("resources/objects/piso/beach.obj");
 	Model pisoAgua("resources/objects/piso/ocean.obj");
 #endif
+#if DRAWFENCE == 1
+	Model fence("resources/objects/fence/fence.obj");
+#endif
 #if DRAWVOLCANO == 1
 	Model volcano("resources/objects/volcano/volcano2.obj");
 #endif
-#if DRAWFENCE == 1
-	Model fence("resources/objects/fence/fence.obj");
+	// Vehicles
+#if DRAWHELICOPTER == 1
+	Model helicopterBody("resources/objects/helicopter/helicopter_body.obj");
+	Model helicopterPropellerFront("resources/objects/helicopter/helicopter_propeller_front.obj");
+	Model helicopterPropellerRear("resources/objects/helicopter/helicopter_propeller_rear.obj");
+	Model helipad("resources/objects/helicopter/helipad.obj");
+#endif
+#if DRAWBUGGY == 1
+	Model buggy("resources/objects/buggy/buggy.obj");
 #endif
 #if DRAWLAMBO == 1
 	Model carro("resources/objects/lambo/carroceria.obj");
 	Model llanta("resources/objects/lambo/Wheel.obj");
 #endif
-
+	//Constructions
+#if DRAWRESTAURANT == 1
+	Model restaurant("resources/objects/restaurant/restaurant.obj");
+#endif
+#if DRAWHOTEL == 1
+	Model hotel("resources/objects/hotel/hotel.obj");
+#endif
+#if DRAWGATE == 1	
+	Model gate("resources/objects/gate/gate.obj");
+	// Model gaten("resources/objects/gate/gate_no_normales.obj");
+#endif
 	// Dinosaurs
 #if DRAWPTERO == 1
 	Model pterosaurBody("resources/objects/dinosaurs/pterosaur/cuerpo-ptero.obj");
 	Model pterosaurLeftWing("resources/objects/dinosaurs/pterosaur/ala-izquierda-ptero.obj");
 	Model pterosaurRightWing("resources/objects/dinosaurs/pterosaur/ala-derecha-ptero.obj");
 	Model pterosaurHead("resources/objects/dinosaurs/pterosaur/boca-ptero.obj");
-#endif	
+#endif
 #if DRAWARLO == 1
 	Model cuelloLargo("resources/objects/dinosaurs/cuellolargo/arlo.obj");
 #endif
@@ -362,33 +400,13 @@ int main()
 #endif
 #if DRAWVELOCIRAPTOR == 1
 	Model velociraptor("resources/objects/dinosaurs/velociraptor/velociraptor.obj");
-#endif
-	// End dinosaurs models
-
-#if DRAWHELICOPTER == 1	
-	Model helicopterBody("resources/objects/helicopter/helicopter_body.obj");
-	Model helicopterPropellerFront("resources/objects/helicopter/helicopter_propeller_front.obj");
-	Model helicopterPropellerRear("resources/objects/helicopter/helicopter_propeller_rear.obj");
-	Model helipad("resources/objects/helicopter/helipad.obj");
-#endif
-#if DRAWGATE == 1
-	// Modelos pesado, utilice con precaucion
-	Model gate("resources/objects/gate/gate.obj");
-	// Model gaten("resources/objects/gate/gate_no_normales.obj");
-#endif
-#if DRAWRESTAURANT == 1
-	Model restaurant("resources/objects/restaurant/restaurant.obj");
-#endif
-#if DRAWHOTEL == 1
-	Model hotel("resources/objects/hotel/hotel.obj");
-#endif
+#endif	
+	// Biome
 #if DRAWTREES == 1
 	Model tree("resources/objects/tree/tree.obj");
 	Model palmTree("resources/objects/tree/bananatree.obj");
 #endif
-#if DRAWBUGGY == 1
-	Model buggy("resources/objects/buggy/buggy.obj");
-#endif
+
 
 	// ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
 	// animacionPersonaje.initShaders(animShader.ID);
@@ -491,10 +509,10 @@ int main()
 			for (int j = floorLowerLimitZ; j <= floorUpperLimitZ; j++)
 			{
 				drawObject(glm::vec3((floorTilingSpacing * static_cast<float>(i)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, piso);
-				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i+1)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, pisoPasto);
+				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i + 1)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, pisoPasto);
 			}
 		}
-		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f ,0.0f), glm::vec3(floorScale*10), staticShader, originWorld, pisoAgua);
+		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f, 0.0f), glm::vec3(floorScale * 10), staticShader, originWorld, pisoAgua);
 #endif
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -519,6 +537,35 @@ int main()
 #if DRAWVOLCANO == 1
 		drawObject(volcanoPosition, glm::vec3(volcanoScale), staticShader, originWorld, volcano);
 #endif
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Vehicles
+		// -------------------------------------------------------------------------------------------------------------------------
+#if DRAWHELICOPTER == 1
+		tmp = drawObject(helicopterLocation, glm::vec3(helicopterScale), staticShader, originWorld, helicopterBody);
+		drawObject(glm::vec3(helicopterOffsetPropellerFrontX, helicopterOffsetPropellerFrontY, helicopterOffsetPropellerFrontZ), glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerFront);
+		drawObject(glm::vec3(helicopterOffsetPropellerRearX, helicopterOffsetPropellerRearY, helicopterOffsetPropellerRearZ), zAxis, 0.0f, glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerRear);
+
+		drawObject(helipadLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);
+#endif
+#if DRAWBUGGY == 1
+		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, buggy);
+#endif
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Constructions
+		// -------------------------------------------------------------------------------------------------------------------------
+#if DRAWRESTAURANT == 1
+		drawObject(restaurantLocation, restaurantRotationAxis, restaurantRotation, glm::vec3(restaurantScale), staticShader, originWorld, restaurant);
+#endif
+#if DRAWHOTEL == 1
+		drawObject(hotelLocation, hotelRotationAxis, hotelRotation, glm::vec3(hotelScale), staticShader, originWorld, hotel);
+#endif
+#if DRAWGATE == 1
+		drawObject(debugObjectLocation, allAxis, debugObjectRotation, glm::vec3(debugObjectScale), staticShader, originWorld, gate);
+		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
+#endif
+
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Dinosaurs
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -532,55 +579,41 @@ int main()
 		drawObject(arloLocation, arloRotationAxis, arloRotation, glm::vec3(arloScale), staticShader, originWorld, cuelloLargo);
 #endif
 #if DRAWTREX == 1
-		drawObject(tRexLocation,tRexRotationAxis, tRexRotation, glm::vec3(tRexScale), staticShader, originWorld, tRex);
+		drawObject(tRexLocation, tRexRotationAxis, tRexRotation, glm::vec3(tRexScale), staticShader, originWorld, tRex);
 		drawObject(glm::vec3(tRexLocation.x, -15.0f, tRexLocation.z), glm::vec3(tRexStadiumScale), staticShader, originWorld, stadium);
 #endif
 #if DRAWANKYLO == 1
-		drawObject(glm::vec3(-10.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, ankylosaurus);
+		drawObject(ankyloLocation, ankyloRotationAxis, ankyloRotation, glm::vec3(ankyloScale), staticShader, originWorld, ankylosaurus);
 #endif
 #if DRAWTRICERATOPS == 1
-		drawObject(glm::vec3(-10.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, triceratops);
+		drawObject(triceratopsLocation, triceratopsRotationAxis, triceratopsRotation, glm::vec3(triceratopsScale), staticShader, originWorld, triceratops);
 #endif
 #if DRAWVELOCIRAPTOR == 1
-		drawObject(velociraptorLocation, glm::vec3(velociraptorScale), staticShader, originWorld, velociraptor);
+		drawObject(velociraptorLocation, velociraptorRotationAxis, velociraptorRotation, glm::vec3(velociraptorScale), staticShader, originWorld, velociraptor);
 #endif
-#if DRAWHELICOPTER == 1
-		tmp = drawObject(helicopterLocation, glm::vec3(helicopterScale), staticShader, originWorld, helicopterBody);
-		drawObject(glm::vec3(helicopterOffsetPropellerFrontX, helicopterOffsetPropellerFrontY, helicopterOffsetPropellerFrontZ), glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerFront);
-		drawObject(glm::vec3(helicopterOffsetPropellerRearX, helicopterOffsetPropellerRearY, helicopterOffsetPropellerRearZ), zAxis, 0.0f, glm::vec3(helicopterScale), staticShader, tmp, helicopterPropellerRear);
 
-		drawObject(helipadLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);
-#endif
-#if DRAWGATE == 1
-		drawObject(debugObjectLocation, allAxis, debugObjectRotation, glm::vec3(debugObjectScale), staticShader, originWorld, gate);
-		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
-#endif
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Biome
+		// -------------------------------------------------------------------------------------------------------------------------
 #if DRAWTREES == 1
-	for (int i = 0 ; i < treeNumber; i++){
-		drawObject(treeLocation[i], glm::vec3(treeScale), staticShader, originWorld, tree);
-		drawObject(palmTreeLocation[i], glm::vec3(palmTreeScale), staticShader, originWorld, palmTree);	
-	}
-#endif
-#if DRAWBUGGY == 1
-		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, buggy);
-#endif
-#if DRAWRESTAURANT == 1	
-	 drawObject(restaurantLocation,restaurantRotationAxis, restaurantRotation, glm::vec3(restaurantScale), staticShader, originWorld, restaurant);
-#endif
-#if DRAWHOTEL == 1
-	drawObject(hotelLocation, hotelRotationAxis, hotelRotation, glm::vec3(hotelScale), staticShader, originWorld, hotel);
+		for (int i = 0; i < treeNumber; i++)
+		{
+			drawObject(treeLocation[i], glm::vec3(treeScale), staticShader, originWorld, tree);
+			drawObject(palmTreeLocation[i], glm::vec3(palmTreeScale), staticShader, originWorld, palmTree);
+		}
 #endif
 
-#if DEBUGMODE  == 1
+
+#if DEBUGMODE == 1
 		// Pruebas
 		// drawObject(debugObjectLocation, glm::vec3(1.0f), debugObjectRotation, glm::vec3(debugObjectScale), staticShader, originWorld, model);
-		cubeLocationTmpX = cubeLocationTmpY = cubeLocationTmpZ  = drawObject(cubeLocation, glm::vec3(1.0f), staticShader, originWorld, cube10);
-		
+		cubeLocationTmpX = cubeLocationTmpY = cubeLocationTmpZ = drawObject(cubeLocation, glm::vec3(1.0f), staticShader, originWorld, cube10);
+
 		for (int i = 1; i < cubeNumber; i++)
 		{
-			cubeLocationTmpX = drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, cubeLocationTmpX , cube10);
-			cubeLocationTmpY = drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, cubeLocationTmpY , cube10);
-			cubeLocationTmpZ = drawObject(glm::vec3(0.0f, 0.0f, 10.0f), glm::vec3(1.0f), staticShader, cubeLocationTmpZ , cube10);
+			cubeLocationTmpX = drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, cubeLocationTmpX, cube10);
+			cubeLocationTmpY = drawObject(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f), staticShader, cubeLocationTmpY, cube10);
+			cubeLocationTmpZ = drawObject(glm::vec3(0.0f, 0.0f, 10.0f), glm::vec3(1.0f), staticShader, cubeLocationTmpZ, cube10);
 		}
 #endif
 
@@ -664,7 +697,7 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		music = !music;
-#if DEBUGMODE == 1		
+#if DEBUGMODE == 1
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 		cubeLocation.z -= 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
@@ -674,7 +707,7 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		cubeLocation.x += 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_PAGE_UP) == GLFW_PRESS)
-		cubeLocation.y += 1.0f * debugObjectSpeedMovement;		
+		cubeLocation.y += 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_PAGE_DOWN) == GLFW_PRESS)
 		cubeLocation.y -= 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
@@ -686,11 +719,11 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
 		debugObjectLocation.x += 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
-		debugObjectLocation.y += 1.0f * debugObjectSpeedMovement;		
+		debugObjectLocation.y += 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
 		debugObjectLocation.y -= 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_HOME) == GLFW_PRESS)
-		debugObjectSpeedMovement > 1 ? debugObjectSpeedMovement-- : (debugObjectSpeedMovement > 0 ?  debugObjectSpeedMovement-=0.1f : false);
+		debugObjectSpeedMovement > 1 ? debugObjectSpeedMovement-- : (debugObjectSpeedMovement > 0 ? debugObjectSpeedMovement -= 0.1f : false);
 	if (glfwGetKey(window, GLFW_KEY_END) == GLFW_PRESS)
 		debugObjectSpeedMovement >= 1 ? debugObjectSpeedMovement++ : debugObjectSpeedMovement += 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_DELETE) == GLFW_PRESS)
@@ -704,7 +737,7 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
 		debugObjectRotation.x += 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		debugObjectRotation.y += 1.0f * debugObjectSpeedMovement;		
+		debugObjectRotation.y += 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 		debugObjectRotation.y -= 1.0f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
@@ -717,20 +750,19 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		debugObjectScale += 0.1f * debugObjectSpeedMovement;
 	if (glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS)
 		debugObjectScale -= 0.1f * debugObjectSpeedMovement;
-	if (action == GLFW_PRESS){
-		std::cout << "Location: (" + 
-		to_string(debugObjectLocation.x) + "," +
-		to_string(debugObjectLocation.y) + "," + 
-		to_string(debugObjectLocation.z) + "). " + "Rotation: (" + 
-		to_string(debugObjectRotation.x) + "," +
-		to_string(debugObjectRotation.y) + "," + 
-		to_string(debugObjectRotation.z) + ")." + " Scale: " +
-		to_string(debugObjectScale) + "."
-		 << std::endl;
+	if (action == GLFW_PRESS)
+	{
+		std::cout << "Location: (" +
+			to_string(debugObjectLocation.x) + "," +
+			to_string(debugObjectLocation.y) + "," +
+			to_string(debugObjectLocation.z) + "). " + "Rotation: (" +
+			to_string(debugObjectRotation.x) + "," +
+			to_string(debugObjectRotation.y) + "," +
+			to_string(debugObjectRotation.z) + ")." + " Scale: " +
+			to_string(debugObjectScale) + "."
+			<< std::endl;
 	}
 #endif
-		
-
 
 	// Car animation
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
@@ -801,27 +833,27 @@ glm::mat4 drawObject(glm::vec3 offset, glm::vec3 rotationAxis, float rotationAng
 }
 
 /**
- * @brief This function allows to rotate in multiple axis passing rotationAngle as a glm::vec3 
+ * @brief This function allows to rotate in multiple axis passing rotationAngle as a glm::vec3
  * Rotates only the defined rotation angle around the corresponding axis
- * 
- * @param offset 
- * @param rotationAxis 
- * @param rotationAngle 
- * @param scale 
- * @param shader 
- * @param origin 
- * @param model2R 
- * @return glm::mat4 
+ *
+ * @param offset
+ * @param rotationAxis
+ * @param rotationAngle
+ * @param scale
+ * @param shader
+ * @param origin
+ * @param model2R
+ * @return glm::mat4
  */
 glm::mat4 drawObject(glm::vec3 offset, glm::vec3 rotationAxis, glm::vec3 rotationAngle, glm::vec3 scale, Shader shader, glm::mat4 origin, Model model2R)
 {
 	glm::mat4 model = glm::translate(origin, offset);
 	glm::mat4 tempPos = model;
-	if(rotationAxis.x == 1.0f)
+	if (rotationAxis.x == 1.0f)
 		model = glm::rotate(model, glm::radians(rotationAngle.x), xAxis);
-	if(rotationAxis.y == 1.0f)
+	if (rotationAxis.y == 1.0f)
 		model = glm::rotate(model, glm::radians(rotationAngle.y), yAxis);
-	if(rotationAxis.z == 1.0f)
+	if (rotationAxis.z == 1.0f)
 		model = glm::rotate(model, glm::radians(rotationAngle.z), zAxis);
 	model = glm::scale(model, scale);
 	shader.setMat4("model", model);
