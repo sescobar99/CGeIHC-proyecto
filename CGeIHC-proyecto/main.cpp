@@ -89,17 +89,21 @@ bool music = false;
 #define DRAWHOTEL 1
 #define DRAWRESTAURANT 1
 #define DRAWARLO 0
-#define DRAWHELICOPTER 1
+#define DRAWHELICOPTER 0
 #define DRAWTREX 0
 #define DRAWANKYLO 0
 #define DRAWTRICERATOPS 0
 #define DRAWVELOCIRAPTOR 0
 #define DRAWHOUSES 1
+#define DRAWGATE 1
+#define DRAWBUGGY 0
 // PENDING LOCATION
 #define DRAWTREES 1
 // PENDING SIZE+LOCATION
-#define DRAWBUGGY 0
-#define DRAWGATE 0
+#define ANIMATEWORKER 1
+#define ANIMATEWOMAN 1
+// NON FUNCTIONAL
+#define DRAWTRAIN 1
 
 
 
@@ -161,6 +165,10 @@ float helicopterOffsetPropellerFrontY = 12.46f * helicopterScale;
 float helicopterOffsetPropellerFrontZ = 0.0f * helicopterScale;
 
 //Buggy
+const float buggyScale = 5.0f;
+const glm::vec3 buggyLocation = glm::vec3(705.0f, 0.6f, 30.0f);
+const glm::vec3 buggyRotationAxis = yAxis;
+const float buggyRotation = -150.0f;
 
 // ---------------
 // Constructions
@@ -178,8 +186,8 @@ const glm::vec3 hotelRotationAxis = yAxis;
 const float hotelRotation = 180.0f;
 
 // Gate
-const float gatetScale = 7.0f;
-const glm::vec3 gateLocation = glm::vec3(800.0f, 0.0f, 0.0f);
+const float gateScale = 7.0f;
+const glm::vec3 gateLocation = glm::vec3(742.0f, 0.0f, 0.0f);
 const glm::vec3 gateRotationAxis = yAxis;
 const float gateRotation = 90.0f;
 
@@ -237,6 +245,22 @@ const glm::vec3 velociraptorRotationAxis = allAxis;
 const glm::vec3 velociraptorRotation = glm::vec3(-260.0f, -60.0f, 90.0f);
 
 // ---------------
+// People
+// ---------------
+
+// Woman
+const float womanScale = 0.9f;
+const glm::vec3 womanLocation = glm::vec3(780.0f,floorYOffset, 0.0f);
+const glm::vec3 womanRotationAxis = yAxis;
+const float womanRotation = -90.0f;
+
+// Worker
+const float workerScale = 0.12f;
+const glm::vec3 workerLocation = glm::vec3(30.0, floorYOffset , -300.0f);
+const glm::vec3 workerRotationAxis = yAxis;
+const float workerRotation = -90.0f;
+
+// ---------------
 // Biome
 // ---------------
 // Tree
@@ -260,12 +284,10 @@ glm::vec3 cubeLocation = glm::vec3(0.0f);
 glm::mat4 cubeLocationTmpX = glm::mat4(1.0f);
 glm::mat4 cubeLocationTmpY = glm::mat4(1.0f);
 glm::mat4 cubeLocationTmpZ = glm::mat4(1.0f);
-// glm::vec3 debugObjectLocation = tRexLocation;
 glm::vec3 debugObjectLocation = glm::vec3(0.0f);
 glm::vec3 debugObjectRotation = glm::vec3(0.0f);
 float debugObjectSpeedMovement = 1.0f;
 float debugObjectScale = 1.0f;
-// float debugObjectScale = tRexScale;
 #endif
 
 void animate(void)
@@ -379,6 +401,10 @@ int main()
 #if DRAWBUGGY == 1
 	Model buggy("resources/objects/buggy/buggy.obj");
 #endif
+#if DRAWTRAIN == 1
+	Model railRoads("resources/objects/train/railroad.obj");
+	Model train("resources/objects/train/train.obj");
+#endif
 #if DRAWLAMBO == 1
 	Model carro("resources/objects/lambo/carroceria.obj");
 	Model llanta("resources/objects/lambo/Wheel.obj");
@@ -420,17 +446,21 @@ int main()
 #endif
 #if DRAWVELOCIRAPTOR == 1
 	Model velociraptor("resources/objects/dinosaurs/velociraptor/velociraptor.obj");
-#endif	
+#endif
+	// People
+#if ANIMATEWOMAN == 1
+	ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
+	animacionPersonaje.initShaders(animShader.ID);
+#endif
+#if ANIMATEWORKER == 1
+	ModelAnim defeatedWorker("resources/objects/animated/Defeated/Defeated.dae");
+	defeatedWorker.initShaders(animShader.ID);
+#endif
 	// Biome
 #if DRAWTREES == 1
 	Model tree("resources/objects/tree/tree.obj");
 	Model palmTree("resources/objects/tree/bananatree.obj");
 #endif
-
-
-
-	// ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
-	// animacionPersonaje.initShaders(animShader.ID);
 
 	// draw in wireframe
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -511,11 +541,22 @@ int main()
 		animShader.setVec3("light.direction", lightDirection);
 		animShader.setVec3("viewPos", camera.Position);
 
-		// model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		// model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
-		// model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		// animShader.setMat4("model", model);
-		// animacionPersonaje.Draw(animShader);
+#if ANIMATEWOMAN
+		model = glm::translate(glm::mat4(1.0f), womanLocation);
+		model = glm::scale(model, glm::vec3(womanScale));
+		model = glm::rotate(model, glm::radians(womanRotation), womanRotationAxis);
+		animShader.setMat4("model", model);
+		animacionPersonaje.Draw(animShader);
+#endif
+#if ANIMATEWORKER
+		model = glm::translate(glm::mat4(1.0f), workerLocation);
+		model = glm::scale(model, glm::vec3(workerScale));
+		model = glm::rotate(model, glm::radians(workerRotation), workerRotationAxis);
+		animShader.setMat4("model", model);
+		defeatedWorker.Draw(animShader);
+#endif
+		
+
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario + Piso
@@ -534,10 +575,12 @@ int main()
 			}
 		}
 		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f, 0.0f), glm::vec3(floorScale * 10), staticShader, originWorld, pisoAgua);
+		drawObject(glm::vec3(floorTilingSpacing * floorLimitX , floorYOffset, 0.0f), glm::vec3(floorScale), staticShader, originWorld, pisoArena );
 		tmp = drawObject(roadLocation, glm::vec3(roadScale), staticShader, originWorld, pisoRoad );
 		for (int i = 1; i <= roadNumber; i++){
 			tmp = drawObject(glm::vec3(roadTilingSpacing, 0.0f, 0.0f), glm::vec3(roadScale), staticShader, tmp, pisoRoad );
 		}
+		
 		tmp = glm::translate(originWorld, glm::vec3(roadTilingSpacing * 4.5, roadLocation.y, roadLocation.z));
 		for (int i = 0; i <= 10; i++){
 			tmp = drawObject(glm::vec3(0.0f, 0.0f, roadTilingSpacing),yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad );
@@ -582,7 +625,11 @@ int main()
 		drawObject(helipadLocation, glm::vec3(helipadScale), staticShader, originWorld, helipad);
 #endif
 #if DRAWBUGGY == 1
-		drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, buggy);
+		drawObject(buggyLocation, buggyRotationAxis, buggyRotation, glm::vec3(buggyScale), staticShader, originWorld, buggy);
+#endif
+#if DRAWTRAIN == 1
+		drawObject(glm::vec3(0.0f, 1.0f, -300.0f), glm::vec3(20.0f), staticShader, originWorld, railRoads);
+		drawObject(glm::vec3(0.0f, 30.0f, -300.0f),yAxis, 90.0f, glm::vec3(0.7f), staticShader, originWorld, train);
 #endif
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -595,12 +642,10 @@ int main()
 		drawObject(hotelLocation, hotelRotationAxis, hotelRotation, glm::vec3(hotelScale), staticShader, originWorld, hotel);
 #endif
 #if DRAWGATE == 1
-		drawObject(debugObjectLocation, allAxis, debugObjectRotation, glm::vec3(debugObjectScale), staticShader, originWorld, gate);
+		drawObject(gateLocation, gateRotationAxis, gateRotation, glm::vec3(gateScale), staticShader, originWorld, gate);
 		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
 #endif
-#if DRAWHOUSES == 1	
-	
-	
+#if DRAWHOUSES == 1		
 	tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f , houseLocation.y, houseLocation.z));
 	for (int j = 0; j < housesNumber; j++){
 		for(int i = 0; i < housesNumber; i++){
