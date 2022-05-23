@@ -42,7 +42,11 @@ This project has been developed, built, executed, downloaded, and tested using V
 * Ocenan texture - (WaterPlain0012) took from: https://www.textures.com/download/WaterPlain0012/9438
 * Beach texture - (SoilBeach0131) took from: https://www.textures.com/download/SoilBeach0131/106132
 * Stadiumgate texture - (DoorsMetalBig0245) took from: https://www.textures.com/download/DoorsMetalBig0245/79191
-### 3D Models
+* House texture - (HouseWooden0026) took from: https://www.textures.com/download/HouseWooden0026/111815
+* Roof texture - (RooftilesCeramicOld0097) took from: https://www.textures.com/download/RooftilesCeramicOld0097/56289
+
+
+  ### 3D Models
 * Tree01 - "Low Poly Tree"(https://skfb.ly/ooBRz) by Šimon Ustal is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * Tree02 - "Banana Plant" (https://skfb.ly/o99xU) by evolveduk is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * T-rex - took from: https://www.turbosquid.com/es/3d-models/t-rex-fbx-free/933905

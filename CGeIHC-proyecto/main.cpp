@@ -86,20 +86,21 @@ bool music = false;
 #define DRAWVOLCANO 0
 #define DRAWLAMBO 0
 #define DRAWPTERO 0
-#define DRAWHOTEL 0
-#define DRAWRESTAURANT 0
+#define DRAWHOTEL 1
+#define DRAWRESTAURANT 1
 #define DRAWARLO 0
-#define DRAWHELICOPTER 0
+#define DRAWHELICOPTER 1
 #define DRAWTREX 0
 #define DRAWANKYLO 0
 #define DRAWTRICERATOPS 0
 #define DRAWVELOCIRAPTOR 0
+#define DRAWHOUSES 1
 // PENDING LOCATION
 #define DRAWTREES 1
 // PENDING SIZE+LOCATION
 #define DRAWBUGGY 0
 #define DRAWGATE 0
-#define DRAWHOUSES 1
+
 
 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -121,7 +122,12 @@ const float floorYOffset = -1.0f;
 const int floorLimitX = 4;
 const int floorLowerLimitZ = -2;
 const int floorUpperLimitZ = 2;
-
+//Road
+const float roadSize = 10.0f;
+const float roadScale = 4.0f;
+const float roadTilingSpacing = roadSize * roadScale;
+glm::vec3 roadLocation = glm::vec3(-(floorTilingSpacing/2) + (roadTilingSpacing/2), 0.0f, 0.0f);
+const float roadNumber = (floorLimitX * floorTilingSpacing) / roadTilingSpacing;
 // Fence
 const float fenceOffsetX = -floorTilingSpacing / 2;
 const float fenceScale = 15.0f;
@@ -178,13 +184,11 @@ const glm::vec3 gateRotationAxis = yAxis;
 const float gateRotation = 90.0f;
 
 // Houses
-
 const float houseScale = 0.5f;
 const glm::vec3 houseRotationAxis = yAxis;
 const float houseRotation = 90.0f;
-const glm::vec3 houseLocation = glm::vec3(300.0f, floorYOffset, 400.0f);
-// const int housesNumber = 5;
-// glm::vec3 housesLocation[housesNumber] = {};
+const glm::vec3 houseLocation = glm::vec3(230.0f, floorYOffset, 400.0f);
+const int housesNumber = 5;
 
 // ---------------
 // Dinosaurs
@@ -293,7 +297,7 @@ int main()
 	getResolution();
 
 	// Debug
-	// std::cout << fenceNumber << std::endl;
+	// std::cout << roadNumberPositiveZ << std::endl;
 
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "CGeIHC", NULL, NULL);
 	if (window == NULL)
@@ -357,6 +361,7 @@ int main()
 	Model pisoPasto("resources/objects/piso/pasto.obj");
 	Model pisoArena("resources/objects/piso/beach.obj");
 	Model pisoAgua("resources/objects/piso/ocean.obj");
+	Model pisoRoad("resources/objects/piso/road.obj");
 #endif
 #if DRAWFENCE == 1
 	Model fence("resources/objects/fence/fence.obj");
@@ -529,6 +534,18 @@ int main()
 			}
 		}
 		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f, 0.0f), glm::vec3(floorScale * 10), staticShader, originWorld, pisoAgua);
+		tmp = drawObject(roadLocation, glm::vec3(roadScale), staticShader, originWorld, pisoRoad );
+		for (int i = 1; i <= roadNumber; i++){
+			tmp = drawObject(glm::vec3(roadTilingSpacing, 0.0f, 0.0f), glm::vec3(roadScale), staticShader, tmp, pisoRoad );
+		}
+		tmp = glm::translate(originWorld, glm::vec3(roadTilingSpacing * 4.5, roadLocation.y, roadLocation.z));
+		for (int i = 0; i <= 10; i++){
+			tmp = drawObject(glm::vec3(0.0f, 0.0f, roadTilingSpacing),yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad );
+		}
+		tmp = glm::translate(originWorld, glm::vec3(roadTilingSpacing * 3.5, roadLocation.y, roadLocation.z));
+		for (int i = 0; i <= 10; i++){
+			tmp = drawObject(glm::vec3(0.0f, 0.0f, -roadTilingSpacing),yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad );
+		}
 #endif
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -582,7 +599,15 @@ int main()
 		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
 #endif
 #if DRAWHOUSES == 1	
-	drawObject(houseLocation,houseRotationAxis, houseRotation, glm::vec3(houseScale), staticShader, originWorld, house);
+	
+	
+	tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f , houseLocation.y, houseLocation.z));
+	for (int j = 0; j < housesNumber; j++){
+		for(int i = 0; i < housesNumber; i++){
+			tmp = drawObject(glm::vec3(100.0f, 0.0f, 0.0f),houseRotationAxis, houseRotation, glm::vec3(houseScale), staticShader, tmp, house);
+		}
+		tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f, houseLocation.y, houseLocation.z - (100.0f * j)));
+	}
 #endif
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Dinosaurs
