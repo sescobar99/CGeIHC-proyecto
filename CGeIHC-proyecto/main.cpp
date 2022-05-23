@@ -35,33 +35,34 @@
 // Preprocessor directives to manage project
 // -------------------------------------------------------------------------------------------------------------------------
 // Load + Draw  models ->  1 = Draw model , otherwise e.g. 0 = does not draw
-// Gate and restaurant models are heavy, use with caution
-#define DRAWFLOOR 1
-#define DRAWFENCE 1
-#define DRAWVOLCANO 0
-#define DRAWLAMBO 0
-#define DRAWPTERO 0
-#define DRAWHOTEL 1
-#define DRAWRESTAURANT 0
-#define DRAWARLO 0
-#define DRAWHELICOPTER 0
-#define DRAWTREX 0
-#define DRAWANKYLO 0
-#define DRAWTRICERATOPS 0
-#define DRAWVELOCIRAPTOR 0
-#define DRAWHOUSES 1
-#define DRAWGATE 0
-#define DRAWBUGGY 0
-#define ANIMATEWORKER 0
-#define ANIMATEWOMAN 0
-// PENDING LOCATION
-#define DRAWTREES 1
-// PENDING SIZE+LOCATION
-// NON FUNCTIONAL
-#define DRAWTRAIN 0
+// Be careful when activating [Heavy] and [medium]
+// Calculated load time in s
+// No objects 7s
+// In front of each one will be the approximate loading time of the model
+#define DRAWFLOOR 0 //1s
+#define DRAWFENCE 0 //1s
+#define DRAWVOLCANO 0 //1s
+#define DRAWLAMBO 0 //1s
+#define DRAWPTERO 0 //1s
+#define DRAWHOTEL 0 //1s
+#define DRAWARLO 0 // 1s
+#define DRAWHELICOPTER 0 // 1s
+#define DRAWANKYLO 0 // 1s 
+#define DRAWTRICERATOPS 0 //1s
+#define DRAWVELOCIRAPTOR 0 //1s
+#define DRAWHOUSES 0 // 1s
+#define ANIMATEWOMAN 0 // 1s
+#define DRAWTREES 0 // 1s // PENDING LOCATION
+#define DRAWBUGGY 0 // 2s
+#define DRAWSHOPS 1 // 4s [medium]
+#define DRAWGATE 0 // 6s [medium] 
+#define DRAWRESTAURANT 0 //9s [heavy]
+#define DRAWTREX 0 // 9s [heavy]
+#define ANIMATEWORKER 0 // 8s [heavy]
+#define DRAWTRAIN 0 // 14s [heavy++] 
 
 // Draws a gizmo and prints debug info to console
-#define DEBUGMODE 1
+#define DEBUGMODE 0 // 1s 
 
 // Changes between JP theme song and copyleft music
 #define COPYRIGHTMUSIC 1
@@ -204,6 +205,17 @@ const glm::vec3 houseRotationAxis = yAxis;
 const float houseRotation = 90.0f;
 const glm::vec3 houseLocation = glm::vec3(230.0f, floorYOffset, 400.0f);
 const int housesNumber = 5;
+
+// Shops
+const float shopAbandonedScale = 0.24f;
+const glm::vec3 shopAbandonedLocation = glm::vec3(400.0f, 0.0f, -60.0f);
+const glm::vec3 shopAbandonedRotationAxis = yAxis;
+const float shopAbandonedRotation = -90.0f;
+
+const float shopTobacoScale = 0.5f;
+const glm::vec3 shopTobacoLocation = glm::vec3(190.0f, 0.0f, -55.0f);
+const glm::vec3 shopTobacoRotationAxis = yAxis;
+const float shopTobacoRotation = 90.0f;
 
 // ---------------
 // Dinosaurs
@@ -395,11 +407,12 @@ int main()
 #endif
 	//Floor
 #if DRAWFLOOR == 1
-	Model piso("resources/objects/piso/tile.obj");
-	Model pisoPasto("resources/objects/piso/pasto.obj");
-	Model pisoArena("resources/objects/piso/beach.obj");
-	Model pisoAgua("resources/objects/piso/ocean.obj");
+	Model piso("resources/objects/piso/light/tile.obj");
+	Model pisoPasto("resources/objects/piso/light/pasto.obj");
+	Model pisoArena("resources/objects/piso/light/beach.obj");
+	Model pisoAgua("resources/objects/piso/light/ocean.obj");
 	Model pisoRoad("resources/objects/piso/road.obj");
+	Model pisoPTT("resources/objects/piso/memePTT.obj");
 #endif
 #if DRAWFENCE == 1
 	Model fence("resources/objects/fence/fence.obj");
@@ -439,6 +452,10 @@ int main()
 #endif
 #if DRAWHOUSES == 1	
 	Model house("resources/objects/house/house.obj");
+#endif
+#if DRAWSHOPS == 1
+	Model shopAbandoned("resources/objects/tiendas/abandonada/abandonada.obj");
+	Model shopTobaco("resources/objects/tiendas/tabaco/tabaco.obj");
 #endif
 
 	// Dinosaurs
@@ -604,7 +621,7 @@ int main()
 				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i + 1)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, pisoPasto);
 			}
 		}
-		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f, 0.0f), glm::vec3(floorScale * 10), staticShader, originWorld, pisoAgua);
+		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f, 0.0f), glm::vec3(floorScale * 20), staticShader, originWorld, pisoAgua);
 		drawObject(glm::vec3(floorTilingSpacing * floorLimitX, floorYOffset, 0.0f), glm::vec3(floorScale), staticShader, originWorld, pisoArena);
 		tmp = drawObject(roadLocation, glm::vec3(roadScale), staticShader, originWorld, pisoRoad);
 		for (int i = 1; i <= roadNumber; i++) {
@@ -684,6 +701,10 @@ int main()
 			}
 			tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f, houseLocation.y, houseLocation.z - (100.0f * j)));
 		}
+#endif
+#if DRAWSHOPS == 1
+		drawObject(shopAbandonedLocation, shopAbandonedRotationAxis, shopAbandonedRotation, glm::vec3(shopAbandonedScale), staticShader, originWorld, shopAbandoned);
+		drawObject(shopTobacoLocation, shopTobacoRotationAxis, shopTobacoRotation, glm::vec3(shopTobacoScale), staticShader, originWorld, shopTobaco);
 #endif
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Dinosaurs
