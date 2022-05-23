@@ -6,9 +6,9 @@
 
 * As the members of the team were in different classes, there are 3 guidelines documents. [Guidelines Aldair (Lab)](docs/Lineamientos%20Proyecto%20Lab-Aldair.pdf) , [Guidelines Luis (Lab)](docs/Lineamientos%20Proyecto%20Lab-Luis.pdf), [Guidelines Arturo (Lect)](docs/Lineamientos%20Proyecto%20Teoria-Arturo.pdf).
 * The project proposal can be found [here](docs/Propuesta.pdf)
-* The User documentation can be found [here](docs/UserDocs.md) [PENDING]. [Pdf version](docs/UserDocs.pdf) [PENDING]
-* The Technical documentation can be found [here](docs/TechnicalDocs.md) [PENDING]
-* Backup video [demo 1](vids/demo1.mp4) [PENDING]
+* The User documentation can be found [here](docs/UserDocs.md). [Pdf version](docs/UserDocs.pdf) [PENDING]
+* The Technical documentation can be found [here](docs/TechnicalDocs.md).
+* Backup video [demo 1](vids/video_backup_01.mkv)
 * Backup video [demo 2](vids/demo2.mp4) [PENDING]
 * Backup video [demo 3](vids/demo3.mp4) [PENDING]
 * A setup video can be found [here](vids/setup.mkv)
@@ -65,6 +65,8 @@ This project has been developed, built, executed, downloaded, and tested using V
 * "Train Track - Modular Pack" (https://skfb.ly/UEVF) by Digital Goblin is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * "Loco" (https://skfb.ly/G7SS) by Willy Decarpentrie is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * "Railway Signal Box No. 57 (Free)" (https://skfb.ly/onuTS) by Balaclava3DStudio is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
+* Shop01 - "Abandoned Shop/mall" (https://skfb.ly/6UwZA) by Thunder is licensed under Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/4.0/).
+* Shop02 - "shop" (https://skfb.ly/6YUUA) by kaya1 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
   
 ### Animations
 * Worker animation took from https://www.mixamo.com
