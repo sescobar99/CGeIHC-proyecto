@@ -99,6 +99,8 @@ bool music = false;
 // PENDING SIZE+LOCATION
 #define DRAWBUGGY 0
 #define DRAWGATE 0
+#define DRAWHOUSES 1
+
 
 // -------------------------------------------------------------------------------------------------------------------------
 // Object location
@@ -174,6 +176,15 @@ const float gatetScale = 7.0f;
 const glm::vec3 gateLocation = glm::vec3(800.0f, 0.0f, 0.0f);
 const glm::vec3 gateRotationAxis = yAxis;
 const float gateRotation = 90.0f;
+
+// Houses
+
+const float houseScale = 0.5f;
+const glm::vec3 houseRotationAxis = yAxis;
+const float houseRotation = 90.0f;
+const glm::vec3 houseLocation = glm::vec3(300.0f, floorYOffset, 400.0f);
+// const int housesNumber = 5;
+// glm::vec3 housesLocation[housesNumber] = {};
 
 // ---------------
 // Dinosaurs
@@ -378,6 +389,10 @@ int main()
 	Model gate("resources/objects/gate/gate.obj");
 	// Model gaten("resources/objects/gate/gate_no_normales.obj");
 #endif
+#if DRAWHOUSES == 1	
+	Model house("resources/objects/house/house.obj");
+#endif
+
 	// Dinosaurs
 #if DRAWPTERO == 1
 	Model pterosaurBody("resources/objects/dinosaurs/pterosaur/cuerpo-ptero.obj");
@@ -406,6 +421,7 @@ int main()
 	Model tree("resources/objects/tree/tree.obj");
 	Model palmTree("resources/objects/tree/bananatree.obj");
 #endif
+
 
 
 	// ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
@@ -565,7 +581,9 @@ int main()
 		drawObject(debugObjectLocation, allAxis, debugObjectRotation, glm::vec3(debugObjectScale), staticShader, originWorld, gate);
 		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
 #endif
-
+#if DRAWHOUSES == 1	
+	drawObject(houseLocation,houseRotationAxis, houseRotation, glm::vec3(houseScale), staticShader, originWorld, house);
+#endif
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Dinosaurs
 		// -------------------------------------------------------------------------------------------------------------------------
