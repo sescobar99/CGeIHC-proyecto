@@ -50,14 +50,14 @@
 ## 3D Models
 - [X] Trees
 - [ ] Rocks
-- [ ] People
+- [X] People
 - [X] Volcano
 - [X] Helicopter
 - [X] Helipad
 - [X] Buggy vehicle
 - [X] Park fence 
 - [X] Park gate 
-- [ ] Houses
+- [X] Houses
 - [X] Hotel
 - [X] Restaurant
 - [ ] Gift shop
@@ -70,7 +70,7 @@
 - [X] Pterosaur
 - [X] Ankylosaurus
 - [X] Velociraptor
-- [ ] Train + railroad
+- [X] Train + railroad
 
 ## Animations
 

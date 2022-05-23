@@ -11,7 +11,7 @@
   - [Vehicle (buggy)](#vehicle-buggy)
   - [The Wall](#the-wall)
   - [Park entrance (gate)](#park-entrance-gate)
-  - [Housing](#housing)
+  - [Houses](#houses)
   - [Hotel](#hotel)
   - [Restaurant](#restaurant)
   - [Gift shop](#gift-shop)
@@ -74,23 +74,25 @@ The "P" key toggles the background music **[PENDING]**
 ### Rocks
 
 ### People
+![TatooeWoman](../imgs/UserDocs/people_woman.png)
 
+![Worker](../imgs/UserDocs/people_worker.png)
 ### Volcano
 ![Volcano](../imgs/UserDocs/volcano.png)
 
 ### Helipad + helicopter
 ![Helicopter](../imgs/UserDocs/helicopter.png)
 ### Vehicle (buggy)
-![](../imgs/UserDocs/)
+![Buggy](../imgs/UserDocs/buggy.png)
 
 ### The Wall
 ![Fence](../imgs/UserDocs/fence.png)
 
 ### Park entrance (gate)
-![](../imgs/UserDocs/)
+![Park entrance](../imgs/UserDocs/gate.png)
 
-### Housing
-![](../imgs/UserDocs/)
+### Houses
+![Simple house](../imgs/UserDocs/house.png)
 
 ### Hotel
 ![Hotel](../imgs/UserDocs/hotel.png)
