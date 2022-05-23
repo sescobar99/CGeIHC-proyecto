@@ -39,7 +39,7 @@
 // Calculated load time in s
 // No objects 7s
 // In front of each one will be the approximate loading time of the model
-#define DRAWFLOOR 0 //1s
+#define DRAWFLOOR 1 //1s
 #define DRAWFENCE 0 //1s
 #define DRAWVOLCANO 0 //1s
 #define DRAWLAMBO 0 //1s
@@ -62,7 +62,8 @@
 #define DRAWTRAIN 0 // 14s [heavy++] 
 
 // Draws a gizmo and prints debug info to console
-#define DEBUGMODE 0 // 1s 
+#define DEBUGMODE 1 // 1s 
+#define EASTEREGGS 1
 
 // Changes between JP theme song and copyleft music
 #define COPYRIGHTMUSIC 1
@@ -637,7 +638,9 @@ int main()
 			tmp = drawObject(glm::vec3(0.0f, 0.0f, -roadTilingSpacing), yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad);
 		}
 #endif
-
+#if EASTEREGGS == 1
+		drawObject(glm::vec3(225.0f, 0.0f, -360.0f), glm::vec3(13.0f), staticShader, originWorld, pisoPTT);
+#endif
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Fence
 		// -------------------------------------------------------------------------------------------------------------------------
