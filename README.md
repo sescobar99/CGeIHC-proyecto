@@ -64,6 +64,7 @@ This project has been developed, built, executed, downloaded, and tested using V
 * Hotel - "Hotel Adriano - 1h 30min speed model" (https://skfb.ly/o8VUO) by Seafoam is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * "Train Track - Modular Pack" (https://skfb.ly/UEVF) by Digital Goblin is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * "Loco" (https://skfb.ly/G7SS) by Willy Decarpentrie is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* "Railway Signal Box No. 57 (Free)" (https://skfb.ly/onuTS) by Balaclava3DStudio is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
   
 ### Sound
 

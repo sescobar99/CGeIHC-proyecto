@@ -87,7 +87,7 @@ bool music = false;
 #define DRAWLAMBO 0
 #define DRAWPTERO 0
 #define DRAWHOTEL 1
-#define DRAWRESTAURANT 1
+#define DRAWRESTAURANT 0
 #define DRAWARLO 0
 #define DRAWHELICOPTER 0
 #define DRAWTREX 0
@@ -95,15 +95,15 @@ bool music = false;
 #define DRAWTRICERATOPS 0
 #define DRAWVELOCIRAPTOR 0
 #define DRAWHOUSES 1
-#define DRAWGATE 1
+#define DRAWGATE 0
 #define DRAWBUGGY 0
 // PENDING LOCATION
 #define DRAWTREES 1
 // PENDING SIZE+LOCATION
-#define ANIMATEWORKER 1
-#define ANIMATEWOMAN 1
+#define ANIMATEWORKER 0
+#define ANIMATEWOMAN 0
 // NON FUNCTIONAL
-#define DRAWTRAIN 1
+#define DRAWTRAIN 0
 
 
 
@@ -130,7 +130,7 @@ const int floorUpperLimitZ = 2;
 const float roadSize = 10.0f;
 const float roadScale = 4.0f;
 const float roadTilingSpacing = roadSize * roadScale;
-glm::vec3 roadLocation = glm::vec3(-(floorTilingSpacing/2) + (roadTilingSpacing/2), 0.0f, 0.0f);
+glm::vec3 roadLocation = glm::vec3(-(floorTilingSpacing / 2) + (roadTilingSpacing / 2), 0.0f, 0.0f);
 const float roadNumber = (floorLimitX * floorTilingSpacing) / roadTilingSpacing;
 // Fence
 const float fenceOffsetX = -floorTilingSpacing / 2;
@@ -250,13 +250,13 @@ const glm::vec3 velociraptorRotation = glm::vec3(-260.0f, -60.0f, 90.0f);
 
 // Woman
 const float womanScale = 0.9f;
-const glm::vec3 womanLocation = glm::vec3(780.0f,floorYOffset, 0.0f);
+const glm::vec3 womanLocation = glm::vec3(780.0f, floorYOffset, 0.0f);
 const glm::vec3 womanRotationAxis = yAxis;
 const float womanRotation = -90.0f;
 
 // Worker
 const float workerScale = 0.12f;
-const glm::vec3 workerLocation = glm::vec3(30.0, floorYOffset , -300.0f);
+const glm::vec3 workerLocation = glm::vec3(30.0, floorYOffset, -300.0f);
 const glm::vec3 workerRotationAxis = yAxis;
 const float workerRotation = -90.0f;
 
@@ -404,6 +404,7 @@ int main()
 #if DRAWTRAIN == 1
 	Model railRoads("resources/objects/train/railroad.obj");
 	Model train("resources/objects/train/train.obj");
+	Model trainStation("resources/objects/trainstation/trainStation.obj");
 #endif
 #if DRAWLAMBO == 1
 	Model carro("resources/objects/lambo/carroceria.obj");
@@ -555,7 +556,7 @@ int main()
 		animShader.setMat4("model", model);
 		defeatedWorker.Draw(animShader);
 #endif
-		
+
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -575,19 +576,19 @@ int main()
 			}
 		}
 		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f, 0.0f), glm::vec3(floorScale * 10), staticShader, originWorld, pisoAgua);
-		drawObject(glm::vec3(floorTilingSpacing * floorLimitX , floorYOffset, 0.0f), glm::vec3(floorScale), staticShader, originWorld, pisoArena );
-		tmp = drawObject(roadLocation, glm::vec3(roadScale), staticShader, originWorld, pisoRoad );
-		for (int i = 1; i <= roadNumber; i++){
-			tmp = drawObject(glm::vec3(roadTilingSpacing, 0.0f, 0.0f), glm::vec3(roadScale), staticShader, tmp, pisoRoad );
+		drawObject(glm::vec3(floorTilingSpacing * floorLimitX, floorYOffset, 0.0f), glm::vec3(floorScale), staticShader, originWorld, pisoArena);
+		tmp = drawObject(roadLocation, glm::vec3(roadScale), staticShader, originWorld, pisoRoad);
+		for (int i = 1; i <= roadNumber; i++) {
+			tmp = drawObject(glm::vec3(roadTilingSpacing, 0.0f, 0.0f), glm::vec3(roadScale), staticShader, tmp, pisoRoad);
 		}
-		
+
 		tmp = glm::translate(originWorld, glm::vec3(roadTilingSpacing * 4.5, roadLocation.y, roadLocation.z));
-		for (int i = 0; i <= 10; i++){
-			tmp = drawObject(glm::vec3(0.0f, 0.0f, roadTilingSpacing),yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad );
+		for (int i = 0; i <= 10; i++) {
+			tmp = drawObject(glm::vec3(0.0f, 0.0f, roadTilingSpacing), yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad);
 		}
 		tmp = glm::translate(originWorld, glm::vec3(roadTilingSpacing * 3.5, roadLocation.y, roadLocation.z));
-		for (int i = 0; i <= 10; i++){
-			tmp = drawObject(glm::vec3(0.0f, 0.0f, -roadTilingSpacing),yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad );
+		for (int i = 0; i <= 10; i++) {
+			tmp = drawObject(glm::vec3(0.0f, 0.0f, -roadTilingSpacing), yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad);
 		}
 #endif
 
@@ -628,8 +629,9 @@ int main()
 		drawObject(buggyLocation, buggyRotationAxis, buggyRotation, glm::vec3(buggyScale), staticShader, originWorld, buggy);
 #endif
 #if DRAWTRAIN == 1
-		drawObject(glm::vec3(0.0f, 1.0f, -300.0f), glm::vec3(20.0f), staticShader, originWorld, railRoads);
-		drawObject(glm::vec3(0.0f, 30.0f, -300.0f),yAxis, 90.0f, glm::vec3(0.7f), staticShader, originWorld, train);
+		drawObject(glm::vec3(20.0f, floorYOffset, -300.0f), glm::vec3(30.0f), staticShader, originWorld, railRoads);
+		drawObject(glm::vec3(0.0f, 13.0f, -300.0f), yAxis, 90.0f, glm::vec3(0.8f), staticShader, originWorld, train);
+		drawObject(glm::vec3(80.0f, floorYOffset, -210.0f), yAxis, 0.0f, glm::vec3(0.16f), staticShader, originWorld, trainStation);
 #endif
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -646,13 +648,13 @@ int main()
 		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
 #endif
 #if DRAWHOUSES == 1		
-	tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f , houseLocation.y, houseLocation.z));
-	for (int j = 0; j < housesNumber; j++){
-		for(int i = 0; i < housesNumber; i++){
-			tmp = drawObject(glm::vec3(100.0f, 0.0f, 0.0f),houseRotationAxis, houseRotation, glm::vec3(houseScale), staticShader, tmp, house);
+		tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f, houseLocation.y, houseLocation.z));
+		for (int j = 0; j < housesNumber; j++) {
+			for (int i = 0; i < housesNumber; i++) {
+				tmp = drawObject(glm::vec3(100.0f, 0.0f, 0.0f), houseRotationAxis, houseRotation, glm::vec3(houseScale), staticShader, tmp, house);
+			}
+			tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f, houseLocation.y, houseLocation.z - (100.0f * j)));
 		}
-		tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f, houseLocation.y, houseLocation.z - (100.0f * j)));
-	}
 #endif
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Dinosaurs
