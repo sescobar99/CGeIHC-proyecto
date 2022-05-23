@@ -26,7 +26,45 @@
 #include <Skybox.h>
 #include <iostream>
 
+#include <irrKlang/irrKlang.h>
+#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 //#pragma comment(lib, "winmm.lib")
+
+
+// -------------------------------------------------------------------------------------------------------------------------
+// Preprocessor directives to manage project
+// -------------------------------------------------------------------------------------------------------------------------
+// Load + Draw  models ->  1 = Draw model , otherwise e.g. 0 = does not draw
+// Gate and restaurant models are heavy, use with caution
+#define DRAWFLOOR 1
+#define DRAWFENCE 1
+#define DRAWVOLCANO 0
+#define DRAWLAMBO 0
+#define DRAWPTERO 0
+#define DRAWHOTEL 1
+#define DRAWRESTAURANT 0
+#define DRAWARLO 0
+#define DRAWHELICOPTER 0
+#define DRAWTREX 0
+#define DRAWANKYLO 0
+#define DRAWTRICERATOPS 0
+#define DRAWVELOCIRAPTOR 0
+#define DRAWHOUSES 1
+#define DRAWGATE 0
+#define DRAWBUGGY 0
+#define ANIMATEWORKER 0
+#define ANIMATEWOMAN 0
+// PENDING LOCATION
+#define DRAWTREES 1
+// PENDING SIZE+LOCATION
+// NON FUNCTIONAL
+#define DRAWTRAIN 0
+
+// Draws a gizmo and prints debug info to console
+#define DEBUGMODE 1
+
+// Changes between JP theme song and copyleft music
+#define COPYRIGHTMUSIC 1
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -72,40 +110,9 @@ recorrido2 = false,
 recorrido3 = false,
 recorrido4 = false;
 
-// Music
-bool music = false;
-
-// -------------------------------------------------------------------------------------------------------------------------
-// Preprocessor directives to control models (load + draw)
-// 1 = Draw model
-// Gate and restaurant models are heavy, use with caution
-// -------------------------------------------------------------------------------------------------------------------------
-#define DEBUGMODE 1
-#define DRAWFLOOR 1
-#define DRAWFENCE 1
-#define DRAWVOLCANO 0
-#define DRAWLAMBO 0
-#define DRAWPTERO 0
-#define DRAWHOTEL 1
-#define DRAWRESTAURANT 0
-#define DRAWARLO 0
-#define DRAWHELICOPTER 0
-#define DRAWTREX 0
-#define DRAWANKYLO 0
-#define DRAWTRICERATOPS 0
-#define DRAWVELOCIRAPTOR 0
-#define DRAWHOUSES 1
-#define DRAWGATE 0
-#define DRAWBUGGY 0
-// PENDING LOCATION
-#define DRAWTREES 1
-// PENDING SIZE+LOCATION
-#define ANIMATEWORKER 0
-#define ANIMATEWOMAN 0
-// NON FUNCTIONAL
-#define DRAWTRAIN 0
-
-
+// Controls music Play/Pause
+bool music = true;
+bool prevMusic = true;
 
 // -------------------------------------------------------------------------------------------------------------------------
 // Object location
@@ -301,6 +308,15 @@ void animate(void)
 
 int main()
 {
+	// start the sound engine with default parameters
+	irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
+	if (!engine)
+		return 0; // error starting up the engine
+
+	// load/play some sound, looped and unpaused
+	irrklang::ISound* backgroundMusic = engine->play2D("resources/sounds/John_Williams_Vienna_Philharmonic.mp3", true, false, true);
+
+
 	// glfw: initialize and configure
 	// ------------------------------
 	glfwInit();
@@ -466,10 +482,23 @@ int main()
 	// draw in wireframe
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+
 	// render loop
 	// -----------
 	while (!glfwWindowShouldClose(window))
 	{
+		if (music != prevMusic) {
+			if (music && backgroundMusic) {
+				backgroundMusic->setIsPaused(false);
+			}
+			else if (backgroundMusic)
+			{
+				backgroundMusic->setIsPaused(true);
+				//engine->stopAllSounds();
+			}
+			prevMusic = music;
+		}
+
 		skyboxShader.setInt("skybox", 0);
 
 		// per-frame time logic
@@ -768,6 +797,7 @@ int main()
 	skybox.Terminate();
 
 	glfwTerminate();
+	engine->drop();
 	return 0;
 }
 
@@ -785,7 +815,7 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(LEFT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		music = !music;
 #if DEBUGMODE == 1
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)

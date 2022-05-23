@@ -66,11 +66,13 @@ This project has been developed, built, executed, downloaded, and tested using V
 * "Loco" (https://skfb.ly/G7SS) by Willy Decarpentrie is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * "Railway Signal Box No. 57 (Free)" (https://skfb.ly/onuTS) by Balaclava3DStudio is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
   
-### Sound
-
 ### Animations
 * Worker animation took from https://www.mixamo.com
 
 ### Scaffold
 
 * Project scaffold took from "LCGeIHC" class material. Provided by Luis Sergio Valencia Castro
+### Sound
+* John Williams & Vienna Philharmonic – Williams: Theme from “Jurassic Park”
+Discover ©
+* Irrkland audio library. Copyright © Nikolaus Gebhardt / Ambiera 2001-2018.
