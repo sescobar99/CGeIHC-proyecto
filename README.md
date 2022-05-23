@@ -29,18 +29,47 @@ This project has been developed, built, executed, downloaded, and tested using V
 
 ---
 
+
 ## Acknowledgments
 
 ### Textures
 
-* Floor texture (FLOORSVARIOUS0033) took from: https://www.textures.com/download/FloorsVarious0033/24632
-* Grass texture (Grass0157) took from: https://www.textures.com/download/Grass0157/49062
+* Floor texture - (FLOORSVARIOUS0033) took from: https://www.textures.com/download/FloorsVarious0033/24632
+* Grass texture - (Grass0157) took from: https://www.textures.com/download/Grass0157/49062
+* Bricks texture - (BrickSmallNew0123) took from: https://www.textures.com/download/BrickSmallNew0123/111852
 
-### 3D Models
+* Volcano texture - (RockRough0001) took from: https://www.textures.com/download/RockRough0001/38669
+* Ocenan texture - (WaterPlain0012) took from: https://www.textures.com/download/WaterPlain0012/9438
+* Beach texture - (SoilBeach0131) took from: https://www.textures.com/download/SoilBeach0131/106132
+* Stadiumgate texture - (DoorsMetalBig0245) took from: https://www.textures.com/download/DoorsMetalBig0245/79191
+* House texture - (HouseWooden0026) took from: https://www.textures.com/download/HouseWooden0026/111815
+* Roof texture - (RooftilesCeramicOld0097) took from: https://www.textures.com/download/RooftilesCeramicOld0097/56289
 
+
+  ### 3D Models
+* Tree01 - "Low Poly Tree"(https://skfb.ly/ooBRz) by Šimon Ustal is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Tree02 - "Banana Plant" (https://skfb.ly/o99xU) by evolveduk is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* T-rex - took from: https://www.turbosquid.com/es/3d-models/t-rex-fbx-free/933905
+* Apatosaurus(arlo) - took from: https://www.turbosquid.com/es/3d-models/3d-arlo-good-dinosaur-model-1701149
+* Fence - took from: https://www.turbosquid.com/es/3d-models/3d-metal-fence-1393026#
+* Ankylosaurus- "Dino - Ankylosaurus" (https://skfb.ly/6wMs7) by pikabobalex is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Triceratops - "Triceratops Photogrammetry test" (https://skfb.ly/6qEDP) by Nick G. Gizelis is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Pterosaur - "Lego Pteronadon + Baby Ptero" (https://skfb.ly/o9DyF) by rabuhadavid is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Helicopter - "Low Poly Helicopter" (https://skfb.ly/6AOHw) by antonmoek is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Helipad - "Helipad" (https://skfb.ly/6ANDS) by srockzv is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Velociraptor - "Lego Velociraptor" (https://skfb.ly/oupnJ) by rabuhadavid is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Gate - "Jurassic Park Gate" (https://skfb.ly/6SZS6) by Elin is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Buggy - "Buggy_2" (https://skfb.ly/6UxxX) by Rzyas is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* "Restaurant" - "Street Food Vendor Challenge - Kokorec" (https://skfb.ly/6TRMT) by Berk Gedik is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Hotel - "Hotel Adriano - 1h 30min speed model" (https://skfb.ly/o8VUO) by Seafoam is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* "Train Track - Modular Pack" (https://skfb.ly/UEVF) by Digital Goblin is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* "Loco" (https://skfb.ly/G7SS) by Willy Decarpentrie is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* "Railway Signal Box No. 57 (Free)" (https://skfb.ly/onuTS) by Balaclava3DStudio is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
+  
 ### Sound
 
 ### Animations
+* Worker animation took from https://www.mixamo.com
 
 ### Scaffold
 

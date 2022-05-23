@@ -7,21 +7,28 @@
   - [Rocks](#rocks)
   - [People](#people)
   - [Volcano](#volcano)
-  - [Heliport](#heliport)
-  - [Vehicle](#vehicle)
+  - [Helipad + helicopter](#helipad--helicopter)
+  - [Vehicle (buggy)](#vehicle-buggy)
   - [The Wall](#the-wall)
-  - [Park entrance](#park-entrance)
-  - [Housing](#housing)
+  - [Park entrance (gate)](#park-entrance-gate)
+  - [Houses](#houses)
   - [Hotel](#hotel)
   - [Restaurant](#restaurant)
   - [Gift shop](#gift-shop)
-  - [Non animated dinosaurs](#non-animated-dinosaurs)
-- [Included animations](#included-animations)
-  - [Mosasaurus](#mosasaurus)
-  - [Helicopter](#helicopter)
-  - [Pterosaur](#pterosaur)
+  - [Dinosaurs](#dinosaurs)
+    - [T-rex](#t-rex)
+    - [Triceratops](#triceratops)
+    - [Apatosaurus](#apatosaurus)
+    - [Pterosaur](#pterosaur)
+    - [Ankylosaurus](#ankylosaurus)
+    - [Velociraptor](#velociraptor)
+    - [Mosasaurus](#mosasaurus)
+- [Animations [PENDING]](#animations-pending)
+  - [Mosasaurus](#mosasaurus-1)
+  - [Pterosaur](#pterosaur-1)
   - [Tyrannosaur](#tyrannosaur)
   - [Train](#train)
+  - [Helicopter](#helicopter)
 
 ## Brief introduction
 
@@ -62,37 +69,70 @@ The "P" key toggles the background music **[PENDING]**
 ## Included elements
 
 ### Trees
+![Trees](../imgs/UserDocs/trees.png)
 
 ### Rocks
 
 ### People
+![TatooeWoman](../imgs/UserDocs/people_woman.png)
 
+![Worker](../imgs/UserDocs/people_worker.png)
 ### Volcano
+![Volcano](../imgs/UserDocs/volcano.png)
 
-### Heliport
-
-### Vehicle
+### Helipad + helicopter
+![Helicopter](../imgs/UserDocs/helicopter.png)
+### Vehicle (buggy)
+![Buggy](../imgs/UserDocs/buggy.png)
 
 ### The Wall
+![Fence](../imgs/UserDocs/fence.png)
 
-### Park entrance
+### Park entrance (gate)
+![Park entrance](../imgs/UserDocs/gate.png)
 
-### Housing
+### Houses
+![Simple house](../imgs/UserDocs/house.png)
 
 ### Hotel
+![Hotel](../imgs/UserDocs/hotel.png)
 
 ### Restaurant
+![Restaurant](../imgs/UserDocs/restaurant.png)
 
 ### Gift shop
-### Non animated dinosaurs
+![](../imgs/UserDocs/)
+### Dinosaurs
 
-## Included animations
+#### T-rex
+![T-rex](../imgs/UserDocs/dinosaur_trex.png)
+
+#### Triceratops
+![Triceratops](../imgs/UserDocs/dinosaur_triceratops.png)
+
+#### Apatosaurus
+![Apatosaurus](../imgs/UserDocs/dinosaur_arlo.png)
+
+#### Pterosaur
+![Pterosaur](../imgs/UserDocs/dinosaur_pterosaur.png)
+
+#### Ankylosaurus
+![Ankylosaurus](../imgs/UserDocs/dinosaur_ankylo.png)
+
+#### Velociraptor
+![Velociraptor](../imgs/UserDocs/dinosaur_velociraptor.png)
+
+
+#### Mosasaurus
+![PENDING](../imgs/UserDocs/q.png)
+## Animations [PENDING]
 
 ### Mosasaurus
-### Helicopter
 
 ### Pterosaur
 
 ### Tyrannosaur
 
 ### Train
+
+### Helicopter

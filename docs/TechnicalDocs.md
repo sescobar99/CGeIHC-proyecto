@@ -1,40 +1,101 @@
 # Index <!-- omit in toc -->
 
-- [Schedule of tasks](#schedule-of-tasks)
-- [Adherence to schedule](#adherence-to-schedule)
+- [Planned Vs Achieved](#planned-vs-achieved)
+  - [Adherence to schedule](#adherence-to-schedule)
+    - [Planned](#planned)
+      - [First milestone](#first-milestone)
+      - [Second milestone](#second-milestone)
+      - [Third milestone](#third-milestone)
+    - [Achieved](#achieved)
+  - [Spatial distribution](#spatial-distribution)
+    - [Planned](#planned-1)
+    - [Achieved](#achieved-1)
+  - [3D Models](#3d-models)
+  - [Animations](#animations)
+    - [Complex](#complex)
+    - [Non-complex](#non-complex)
 - [Project budget and costs estimate](#project-budget-and-costs-estimate)
 - [Personal essay/comments referring to experience carrying out the project](#personal-essaycomments-referring-to-experience-carrying-out-the-project)
-  - [Team member 1](#team-member-1)
-  - [Team member 2](#team-member-2)
-  - [Team member 3](#team-member-3)
-- [Animations technical details](#animations-technical-details)
-  - [Mosasaurus](#mosasaurus)
-  - [Helicopter](#helicopter)
-  - [Pterosaur](#pterosaur)
-  - [Tyrannosaur](#tyrannosaur)
-  - [Train](#train)
+    - [Team member 1 (Santiago)](#team-member-1-santiago)
+- [Complex animations technical details](#complex-animations-technical-details)
+    - [Mosasaurus](#mosasaurus)
+    - [Helicopter](#helicopter)
+    - [Pterosaur](#pterosaur)
+    - [Tyrannosaur](#tyrannosaur)
+    - [Train](#train)
 
-
-## Schedule of tasks
-
-* Include individual and group responsibilities
-
+# Planned Vs Achieved
 
 ## Adherence to schedule
 
+* Include individual and group responsibilities
+### Planned
+#### First milestone
+#### Second milestone
+#### Third milestone
 
-## Project budget and costs estimate
+### Achieved
 
 
-## Personal essay/comments referring to experience carrying out the project
+## Spatial distribution
+ 
+### Planned
 
-### Team member 1
+![Park map](../imgs/UserDocs/map.png)
 
-### Team member 2
+### Achieved
 
-### Team member 3
+**image here**  [PENDING]
 
-## Animations technical details
+## 3D Models
+- [X] Trees
+- [ ] Rocks
+- [X] People
+- [X] Volcano
+- [X] Helicopter
+- [X] Helipad
+- [X] Buggy vehicle
+- [X] Park fence 
+- [X] Park gate 
+- [X] Houses
+- [X] Hotel
+- [X] Restaurant
+- [ ] Gift shop
+- [ ] Mosasaurus
+- [ ] Mosasaurus enclosure
+- [X] T-rex
+- [X] T-rex enclosure
+- [X] Triceratops
+- [X] Apatosaurus
+- [X] Pterosaur
+- [X] Ankylosaurus
+- [X] Velociraptor
+- [X] Train + railroad
+
+## Animations
+
+### Complex
+- [ ] Mosasaurus "jumping" and catching a prey
+- [ ] Helicopter takeoff, island ride and landing
+- [ ] Pterosaur flying around the volcano
+- [ ] T-rex tied up
+- [ ] Three wagon train touring along the park
+
+### Non-complex
+- [ ] Buggy ride
+- [ ] Volcanic ash/smoke
+
+# Project budget and costs estimate
+
+This information can be found here: [Propuesta.pdf](Propuesta.pdf)
+
+
+# Personal essay/comments referring to experience carrying out the project
+
+![Send help plz](../imgs/TechnicalDocs/send-help-help.gif)
+### Team member 1 (Santiago)
+
+# Complex animations technical details
 
 ### Mosasaurus
 ### Helicopter
@@ -44,3 +105,4 @@
 ### Tyrannosaur
 
 ### Train
+
