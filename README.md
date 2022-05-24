@@ -6,10 +6,10 @@
 
 * As the members of the team were in different classes, there are 3 guidelines documents. [Guidelines Aldair (Lab)](docs/Lineamientos%20Proyecto%20Lab-Aldair.pdf) , [Guidelines Luis (Lab)](docs/Lineamientos%20Proyecto%20Lab-Luis.pdf), [Guidelines Arturo (Lect)](docs/Lineamientos%20Proyecto%20Teoria-Arturo.pdf).
 * The project proposal can be found [here](docs/Propuesta.pdf)
-* The User documentation can be found [here](docs/UserDocs.md). [Pdf version](docs/UserDocs.pdf) [PENDING]
+* The User documentation can be found [here](docs/UserDocs.md). [Pdf version](docs/UserDocs.pdf).
 * The Technical documentation can be found [here](docs/TechnicalDocs.md).
 * Backup video [demo 1](vids/video_backup_01.mkv)
-* Backup video [demo 2](vids/demo2.mp4) [PENDING]
+* Backup video [demo 2](vids/video_backup_02.mkv)
 * Backup video [demo 3](vids/demo3.mp4) [PENDING]
 * A setup video can be found [here](vids/setup.mkv)
 
@@ -35,11 +35,9 @@ This project has been developed, built, executed, downloaded, and tested using V
 ## Acknowledgments
 
 ### Textures
-
 * Floor texture - (FLOORSVARIOUS0033) took from: https://www.textures.com/download/FloorsVarious0033/24632
 * Grass texture - (Grass0157) took from: https://www.textures.com/download/Grass0157/49062
 * Bricks texture - (BrickSmallNew0123) took from: https://www.textures.com/download/BrickSmallNew0123/111852
-
 * Volcano texture - (RockRough0001) took from: https://www.textures.com/download/RockRough0001/38669
 * Ocenan texture - (WaterPlain0012) took from: https://www.textures.com/download/WaterPlain0012/9438
 * Beach texture - (SoilBeach0131) took from: https://www.textures.com/download/SoilBeach0131/106132
@@ -70,6 +68,7 @@ This project has been developed, built, executed, downloaded, and tested using V
 * Shop01 - "Abandoned Shop/mall" (https://skfb.ly/6UwZA) by Thunder is licensed under Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/4.0/).
 * Shop02 - "shop" (https://skfb.ly/6YUUA) by kaya1 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * Mosasaur - "мозазавр mosasaur" (https://skfb.ly/o98xq) by victory_mirosya is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Rock - "A Simple Rock" (https://skfb.ly/QqvP) by Ozonek is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
   
 ### Animations
 * Worker animation took from https://www.mixamo.com

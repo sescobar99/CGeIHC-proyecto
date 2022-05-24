@@ -23,7 +23,7 @@
     - [Ankylosaurus](#ankylosaurus)
     - [Velociraptor](#velociraptor)
     - [Mosasaurus](#mosasaurus)
-- [Animations [PENDING]](#animations-pending)
+- [Animations](#animations)
   - [Mosasaurus](#mosasaurus-1)
   - [Pterosaur](#pterosaur-1)
   - [Tyrannosaur](#tyrannosaur)
@@ -126,7 +126,8 @@ The "P" key toggles the background music
 
 #### Mosasaurus
 ![Mosasaur](../imgs/UserDocs/dinosaur_mosasaur.png)
-## Animations [PENDING]
+## Animations
+**[UNACCOMPLISHED]**
 
 ### Mosasaurus
 
