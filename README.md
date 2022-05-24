@@ -67,6 +67,7 @@ This project has been developed, built, executed, downloaded, and tested using V
 * "Railway Signal Box No. 57 (Free)" (https://skfb.ly/onuTS) by Balaclava3DStudio is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
 * Shop01 - "Abandoned Shop/mall" (https://skfb.ly/6UwZA) by Thunder is licensed under Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/4.0/).
 * Shop02 - "shop" (https://skfb.ly/6YUUA) by kaya1 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Mosasaur - "мозазавр mosasaur" (https://skfb.ly/o98xq) by victory_mirosya is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
   
 ### Animations
 * Worker animation took from https://www.mixamo.com
@@ -75,6 +76,9 @@ This project has been developed, built, executed, downloaded, and tested using V
 
 * Project scaffold took from "LCGeIHC" class material. Provided by Luis Sergio Valencia Castro
 ### Sound
-* John Williams & Vienna Philharmonic – Williams: Theme from “Jurassic Park”
-Discover ©
 * Irrkland audio library. Copyright © Nikolaus Gebhardt / Ambiera 2001-2018.
+* Mystic Forest - Music from Uppbeat (free for Creators!):
+https://uppbeat.io/t/ak/mystic-forests
+License code: F9DNLDXJEF9YLCXB
+* John Williams & Vienna Philharmonic – Williams: Theme from “Jurassic Park”
+Discover©

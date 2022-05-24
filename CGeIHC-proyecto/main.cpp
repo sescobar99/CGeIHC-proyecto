@@ -39,7 +39,7 @@
 // Calculated load time in s
 // No objects 7s
 // In front of each one will be the approximate loading time of the model
-#define DRAWFLOOR 1 //1s
+#define DRAWFLOOR 0 //1s
 #define DRAWFENCE 0 //1s
 #define DRAWVOLCANO 0 //1s
 #define DRAWLAMBO 0 //1s
@@ -54,19 +54,21 @@
 #define ANIMATEWOMAN 0 // 1s
 #define DRAWTREES 0 // 1s // PENDING LOCATION
 #define DRAWBUGGY 0 // 2s
-#define DRAWSHOPS 1 // 4s [medium]
-#define DRAWGATE 0 // 6s [medium] 
+#define DRAWGATE 0 // 2s (before downscaling texture images: 6s [medium] )
+#define ANIMATEWORKER 0 //3s  (before downscaling texture images: 8s [heavy])
+#define DRAWSHOPS 0 // 4s [medium]
+#define DRAWTREX 0 // 4s [medium] (before downscaling texture images: 9s [heavy])
 #define DRAWRESTAURANT 0 //9s [heavy]
-#define DRAWTREX 0 // 9s [heavy]
-#define ANIMATEWORKER 0 // 8s [heavy]
-#define DRAWTRAIN 0 // 14s [heavy++] 
+#define DRAWTRAIN 0 // 10s [heavy] (before downscaling texture images: [heavy++] )
+
+#define DRAWMOSASAUR 1
 
 // Draws a gizmo and prints debug info to console
 #define DEBUGMODE 1 // 1s 
-#define EASTEREGGS 1
+#define EASTEREGGS 0
 
 // Changes between JP theme song and copyleft music
-#define COPYRIGHTMUSIC 1
+#define COPYRIGHTMUSIC 0
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -263,6 +265,11 @@ const float velociraptorScale = 0.2f;
 const glm::vec3 velociraptorLocation = glm::vec3(-130.0f, -floorYOffset * 10.0f, 0.0f);
 const glm::vec3 velociraptorRotationAxis = allAxis;
 const glm::vec3 velociraptorRotation = glm::vec3(-260.0f, -60.0f, 90.0f);
+// Mosasaur
+const float mosasaurScale = 5.6f;
+const glm::vec3 mosasaurLocation = glm::vec3(-130.0f, -floorYOffset * 10.0f, 0.0f);
+const glm::vec3 mosasaurRotationAxis = yAxis;
+const float mosasaurRotation = 10.0f;
 
 // ---------------
 // People
@@ -327,8 +334,11 @@ int main()
 		return 0; // error starting up the engine
 
 	// load/play some sound, looped and unpaused
+#if COPYRIGHTMUSIC == 1
 	irrklang::ISound* backgroundMusic = engine->play2D("resources/sounds/John_Williams_Vienna_Philharmonic.mp3", true, false, true);
-
+#else
+	irrklang::ISound* backgroundMusic = engine->play2D("resources/sounds/mystic-forests.mp3", true, false, true);
+#endif
 
 	// glfw: initialize and configure
 	// ------------------------------
@@ -449,7 +459,6 @@ int main()
 #endif
 #if DRAWGATE == 1	
 	Model gate("resources/objects/gate/gate.obj");
-	// Model gaten("resources/objects/gate/gate_no_normales.obj");
 #endif
 #if DRAWHOUSES == 1	
 	Model house("resources/objects/house/house.obj");
@@ -482,6 +491,9 @@ int main()
 #if DRAWVELOCIRAPTOR == 1
 	Model velociraptor("resources/objects/dinosaurs/velociraptor/velociraptor.obj");
 #endif
+#if DRAWMOSASAUR == 1
+	Model mosasaur("resources/objects/dinosaurs/mosasaur/mosasaur.obj");
+#endif	
 	// People
 #if ANIMATEWOMAN == 1
 	ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
@@ -694,7 +706,6 @@ int main()
 #endif
 #if DRAWGATE == 1
 		drawObject(gateLocation, gateRotationAxis, gateRotation, glm::vec3(gateScale), staticShader, originWorld, gate);
-		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
 #endif
 #if DRAWHOUSES == 1		
 		tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f, houseLocation.y, houseLocation.z));
@@ -734,6 +745,10 @@ int main()
 #if DRAWVELOCIRAPTOR == 1
 		drawObject(velociraptorLocation, velociraptorRotationAxis, velociraptorRotation, glm::vec3(velociraptorScale), staticShader, originWorld, velociraptor);
 #endif
+#if DRAWMOSASAUR == 1
+		drawObject(debugObjectLocation, mosasaurRotationAxis, debugObjectRotation, glm::vec3(mosasaurScale), staticShader, originWorld, mosasaur);
+#endif
+
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Biome
