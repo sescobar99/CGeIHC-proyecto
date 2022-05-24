@@ -17,6 +17,7 @@
 - [Project budget and costs estimate](#project-budget-and-costs-estimate)
 - [Personal essay/comments referring to experience carrying out the project](#personal-essaycomments-referring-to-experience-carrying-out-the-project)
     - [Team member 1 (Santiago)](#team-member-1-santiago)
+- [Work Evidences](#work-evidences)
 - [Complex animations technical details](#complex-animations-technical-details)
     - [Mosasaurus](#mosasaurus)
     - [Helicopter](#helicopter)
@@ -27,7 +28,7 @@
 # Planned Vs Achieved
 
 ## Adherence to schedule
-
+**[PENDING]**
 * Include individual and group responsibilities
 ### Planned
 #### First milestone
@@ -45,11 +46,11 @@
 
 ### Achieved
 
-**image here**  [PENDING]
+![Park aerial pic](../imgs/UserDocs/aerial.png)
 
 ## 3D Models
 - [X] Trees
-- [ ] Rocks
+- [X] Rocks
 - [X] People
 - [X] Volcano
 - [X] Helicopter
@@ -60,9 +61,9 @@
 - [X] Houses
 - [X] Hotel
 - [X] Restaurant
-- [ ] Gift shop
-- [ ] Mosasaurus
-- [ ] Mosasaurus enclosure
+- [X] Gift shop
+- [X] Mosasaurus
+- [X] Mosasaurus enclosure
 - [X] T-rex
 - [X] T-rex enclosure
 - [X] Triceratops
@@ -73,7 +74,7 @@
 - [X] Train + railroad
 
 ## Animations
-
+**[UNACCOMPLISHED]**
 ### Complex
 - [ ] Mosasaurus "jumping" and catching a prey
 - [ ] Helicopter takeoff, island ride and landing
@@ -91,11 +92,20 @@ This information can be found here: [Propuesta.pdf](Propuesta.pdf)
 
 
 # Personal essay/comments referring to experience carrying out the project
+**[PENDING]**
 
 ![Send help plz](../imgs/TechnicalDocs/send-help-help.gif)
 ### Team member 1 (Santiago)
 
+# Work Evidences
+
+* Gimp ![Gimp](../imgs/TechnicalDocs/uso_gimp.png)
+* 3DSMAX ![3DSMAX](../imgs/TechnicalDocs/uso_3dsmax.png)
+* Blender ![Blender](../imgs/TechnicalDocs/uso_blender.png)
+* Github ![Github](../imgs/TechnicalDocs/uso_github.png)
+* Trello ![Trello](../imgs/TechnicalDocs/uso_trello.png)
 # Complex animations technical details
+**[UNACCOMPLISHED]**
 
 ### Mosasaurus
 ### Helicopter
