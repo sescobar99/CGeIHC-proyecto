@@ -29,6 +29,7 @@
   - [Tyrannosaur](#tyrannosaur)
   - [Train](#train)
   - [Helicopter](#helicopter)
+- [Park overview](#park-overview)
 
 ## Brief introduction
 
@@ -136,3 +137,9 @@ The "P" key toggles the background music
 ### Train
 
 ### Helicopter
+
+## Park overview
+
+* Park entrance & commercial area ![Park01](../imgs/UserDocs/park_01.png)
+* Hotel & Helicopter ![Park02](../imgs/UserDocs/park_02.png)
+* Safari area ![Park03](../imgs/UserDocs/park_03.png)
