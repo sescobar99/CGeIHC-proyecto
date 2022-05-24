@@ -33,8 +33,11 @@
 ### Planned
 #### First milestone
 Para este primer hito se buscaba definir el tereno base, e importar lo primero modelos 3d (rocas, arboles,volcan,malla,entrada,jaula). Para tener aproximadamente un 30% del proyecto completado
+Fecha limite propuesta inicialmente 18 de abril
 
 #### Second milestone
+80% esperado del proyecto, animaciones 
+Fecha limite propuesta inicialmente 09 de abril
 #### Third milestone
 
 ### Achieved
