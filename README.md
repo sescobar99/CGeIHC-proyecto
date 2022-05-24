@@ -10,7 +10,7 @@
 * The Technical documentation can be found [here](docs/TechnicalDocs.md).
 * Backup video [demo 1](vids/video_backup_01.mkv)
 * Backup video [demo 2](vids/video_backup_02.mkv)
-* Backup video [demo 3](vids/demo3.mp4) [PENDING]
+* Backup video [demo 3](vids/video_backup_03.mkv)
 * A setup video can be found [here](vids/setup.mkv)
 
 ---
