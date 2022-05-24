@@ -27,8 +27,10 @@ This project has been developed, built, executed, downloaded, and tested using V
 6. At the top bar change the  platform to x86.<br/>![paso6](imgs/setup/6.png)<br/>
 7. Since the program settings have been preloaded when downloading and importing the project from GitHub, you should be able to run it directly. (Click the green arrow or press "F5").<br/>![paso7](imgs/setup/7.png)<br/>
 
+### Troubleshooting
+* The irrKlang library may not load properly at first. In such a case it is possible to fix it by repeating step 6, changing from x86 to x64 and back to x86
+  
 ---
-
 
 ## Acknowledgments
 
