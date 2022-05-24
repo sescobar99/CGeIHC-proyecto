@@ -52,14 +52,14 @@
 #define DRAWVELOCIRAPTOR 1 //1s
 #define DRAWHOUSES 1 // 1s
 #define ANIMATEWOMAN 1 // 1s
-#define DRAWTREES 1 // 1s // PENDING LOCATION
+#define DRAWTREES 1 // 1s
 #define DRAWBUGGY 1 // 2s
-#define DRAWGATE 1 // 2s (before downscaling texture images: 6s [medium] )
-#define ANIMATEWORKER 1 //3s  (before downscaling texture images: 8s [heavy])
+#define DRAWGATE 0 // 2s (before downscaling texture images: 6s [medium] )
+#define ANIMATEWORKER 0 //3s  (before downscaling texture images: 8s [heavy])
 #define DRAWSHOPS 1 // 4s [medium]
-#define DRAWTREX 1 // 4s [medium] (before downscaling texture images: 9s [heavy])
-#define DRAWRESTAURANT 1 //9s [heavy]
-#define DRAWTRAIN 1 // 10s [heavy] (before downscaling texture images: [heavy++] )
+#define DRAWTREX 0 // 4s [medium] (before downscaling texture images: 9s [heavy])
+#define DRAWRESTAURANT 0 //9s [heavy]
+#define DRAWTRAIN 0 // 10s [heavy] (before downscaling texture images: [heavy++] )
 #define DRAWMOSASAUR 1
 #define DRAWROCKS 1
 
@@ -88,7 +88,7 @@ GLFWmonitor* monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 80.0f, 40.0f));
+Camera camera(glm::vec3(800.0f,30.0f, 0.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
