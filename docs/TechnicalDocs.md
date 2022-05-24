@@ -92,10 +92,15 @@ This information can be found here: [Propuesta.pdf](Propuesta.pdf)
 
 
 # Personal essay/comments referring to experience carrying out the project
-**[PENDING]**
 
 ![Send help plz](../imgs/TechnicalDocs/send-help-help.gif)
 ### Team member 1 (Santiago)
+This was a project with a little bit of everything, good, not so good, and bad things.
+
+Among the good things were the exposure to topics of my interest, the discovery of new perspectives, and the deepening of some concepts.   Some of the regular I could mention that -for diverse reasons- I devoted less time to the project than I was supposed to, which led to the bad things.  Putting together the lack of dedication and poor communication as well as the poor teamwork resulted in a crunch situation, which is not good for either the completion of the project or the well-being of anybody involved in the project. 
+This is evident in the project results, which as I discussed (at least I hope to have been able to achieve) in the "adherence to the schedule" section was a release missing some important elements, features, and functionalities.
+I can finally say that I keep with me the knowledge, the passion, and enjoyment of the subjects and tools covered - including computer graphics theory, animation, 3d modeling, use of Blender, and 3dsmax -, as well as greater skills than the ones I had when I started.
+Thank you so much, pardon me for so little.
 
 # Work Evidences
 

@@ -6,7 +6,7 @@
 
 * As the members of the team were in different classes, there are 3 guidelines documents. [Guidelines Aldair (Lab)](docs/Lineamientos%20Proyecto%20Lab-Aldair.pdf) , [Guidelines Luis (Lab)](docs/Lineamientos%20Proyecto%20Lab-Luis.pdf), [Guidelines Arturo (Lect)](docs/Lineamientos%20Proyecto%20Teoria-Arturo.pdf).
 * The project proposal can be found [here](docs/Propuesta.pdf)
-* The User documentation can be found [here](docs/UserDocs.md). [Pdf version](docs/UserDocs.pdf).
+* The User documentation can be found [here](docs/UserDocs.md). Also a [Pdf version](docs/UserDocs.pdf).
 * The Technical documentation can be found [here](docs/TechnicalDocs.md).
 * Backup video [demo 1](vids/video_backup_01.mkv)
 * Backup video [demo 2](vids/video_backup_02.mkv)
