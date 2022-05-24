@@ -6,11 +6,11 @@
 
 * As the members of the team were in different classes, there are 3 guidelines documents. [Guidelines Aldair (Lab)](docs/Lineamientos%20Proyecto%20Lab-Aldair.pdf) , [Guidelines Luis (Lab)](docs/Lineamientos%20Proyecto%20Lab-Luis.pdf), [Guidelines Arturo (Lect)](docs/Lineamientos%20Proyecto%20Teoria-Arturo.pdf).
 * The project proposal can be found [here](docs/Propuesta.pdf)
-* The User documentation can be found [here](docs/UserDocs.md) [PENDING]. [Pdf version](docs/UserDocs.pdf) [PENDING]
-* The Technical documentation can be found [here](docs/TechnicalDocs.md) [PENDING]
-* Backup video [demo 1](vids/demo1.mp4) [PENDING]
-* Backup video [demo 2](vids/demo2.mp4) [PENDING]
-* Backup video [demo 3](vids/demo3.mp4) [PENDING]
+* The User documentation can be found [here](docs/UserDocs.md). [Pdf version](docs/UserDocs.pdf).
+* The Technical documentation can be found [here](docs/TechnicalDocs.md).
+* Backup video [demo 1](vids/video_backup_01.mkv)
+* Backup video [demo 2](vids/video_backup_02.mkv)
+* Backup video [demo 3](vids/video_backup_03.mkv)
 * A setup video can be found [here](vids/setup.mkv)
 
 ---
@@ -27,17 +27,17 @@ This project has been developed, built, executed, downloaded, and tested using V
 6. At the top bar change the  platform to x86.<br/>![paso6](imgs/setup/6.png)<br/>
 7. Since the program settings have been preloaded when downloading and importing the project from GitHub, you should be able to run it directly. (Click the green arrow or press "F5").<br/>![paso7](imgs/setup/7.png)<br/>
 
+### Troubleshooting
+* The irrKlang library may not load properly at first. In such a case it is possible to fix it by repeating step 6, changing from x86 to x64 and back to x86
+  
 ---
-
 
 ## Acknowledgments
 
 ### Textures
-
 * Floor texture - (FLOORSVARIOUS0033) took from: https://www.textures.com/download/FloorsVarious0033/24632
 * Grass texture - (Grass0157) took from: https://www.textures.com/download/Grass0157/49062
 * Bricks texture - (BrickSmallNew0123) took from: https://www.textures.com/download/BrickSmallNew0123/111852
-
 * Volcano texture - (RockRough0001) took from: https://www.textures.com/download/RockRough0001/38669
 * Ocenan texture - (WaterPlain0012) took from: https://www.textures.com/download/WaterPlain0012/9438
 * Beach texture - (SoilBeach0131) took from: https://www.textures.com/download/SoilBeach0131/106132
@@ -65,12 +65,21 @@ This project has been developed, built, executed, downloaded, and tested using V
 * "Train Track - Modular Pack" (https://skfb.ly/UEVF) by Digital Goblin is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * "Loco" (https://skfb.ly/G7SS) by Willy Decarpentrie is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 * "Railway Signal Box No. 57 (Free)" (https://skfb.ly/onuTS) by Balaclava3DStudio is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
+* Shop01 - "Abandoned Shop/mall" (https://skfb.ly/6UwZA) by Thunder is licensed under Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/4.0/).
+* Shop02 - "shop" (https://skfb.ly/6YUUA) by kaya1 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Mosasaur - "мозазавр mosasaur" (https://skfb.ly/o98xq) by victory_mirosya is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+* Rock - "A Simple Rock" (https://skfb.ly/QqvP) by Ozonek is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
   
-### Sound
-
 ### Animations
 * Worker animation took from https://www.mixamo.com
 
 ### Scaffold
 
 * Project scaffold took from "LCGeIHC" class material. Provided by Luis Sergio Valencia Castro
+### Sound
+* Irrkland audio library. Copyright © Nikolaus Gebhardt / Ambiera 2001-2018.
+* Mystic Forest - Music from Uppbeat (free for Creators!):
+https://uppbeat.io/t/ak/mystic-forests
+License code: F9DNLDXJEF9YLCXB
+* John Williams & Vienna Philharmonic – Williams: Theme from “Jurassic Park”
+Discover©

@@ -14,7 +14,7 @@
   - [Houses](#houses)
   - [Hotel](#hotel)
   - [Restaurant](#restaurant)
-  - [Gift shop](#gift-shop)
+  - ["Gift shop"](#gift-shop)
   - [Dinosaurs](#dinosaurs)
     - [T-rex](#t-rex)
     - [Triceratops](#triceratops)
@@ -23,12 +23,13 @@
     - [Ankylosaurus](#ankylosaurus)
     - [Velociraptor](#velociraptor)
     - [Mosasaurus](#mosasaurus)
-- [Animations [PENDING]](#animations-pending)
+- [Animations](#animations)
   - [Mosasaurus](#mosasaurus-1)
   - [Pterosaur](#pterosaur-1)
   - [Tyrannosaur](#tyrannosaur)
   - [Train](#train)
   - [Helicopter](#helicopter)
+- [Park overview](#park-overview)
 
 ## Brief introduction
 
@@ -49,7 +50,7 @@ In the other one, the commercial area (gray) you can find a restaurant, housing,
 
 Here is an aerial picture of the island
 
-![aerial-pic](../imgs/UserDocs/aerial-pic.png) **[PENDING]**
+![aerial-pic](../imgs/UserDocs/aerial.png) 
 
 ## How to move and explore
 
@@ -64,7 +65,7 @@ You can also rotate the camera view using the mouse cursor. If you move it up, t
 
 **Beware** of the 3dimensional movements. This means that depending on where the camera is pointing using WASD keys will move you on a different axis
 
-The "P" key toggles the background music **[PENDING]**
+The "P" key toggles the background music
 
 ## Included elements
 
@@ -72,7 +73,7 @@ The "P" key toggles the background music **[PENDING]**
 ![Trees](../imgs/UserDocs/trees.png)
 
 ### Rocks
-
+![Rock](../imgs/UserDocs/rock.png)
 ### People
 ![TatooeWoman](../imgs/UserDocs/people_woman.png)
 
@@ -100,8 +101,8 @@ The "P" key toggles the background music **[PENDING]**
 ### Restaurant
 ![Restaurant](../imgs/UserDocs/restaurant.png)
 
-### Gift shop
-![](../imgs/UserDocs/)
+### "Gift shop"
+![Shops](../imgs/UserDocs/shops.png)
 ### Dinosaurs
 
 #### T-rex
@@ -124,8 +125,9 @@ The "P" key toggles the background music **[PENDING]**
 
 
 #### Mosasaurus
-![PENDING](../imgs/UserDocs/q.png)
-## Animations [PENDING]
+![Mosasaur](../imgs/UserDocs/dinosaur_mosasaur.png)
+## Animations
+**[UNACCOMPLISHED]**
 
 ### Mosasaurus
 
@@ -136,3 +138,9 @@ The "P" key toggles the background music **[PENDING]**
 ### Train
 
 ### Helicopter
+
+## Park overview
+
+* Park entrance & commercial area ![Park01](../imgs/UserDocs/park_01.png)
+* Hotel & Helicopter ![Park02](../imgs/UserDocs/park_02.png)
+* Safari area ![Park03](../imgs/UserDocs/park_03.png)

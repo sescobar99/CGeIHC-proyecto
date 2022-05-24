@@ -26,7 +26,49 @@
 #include <Skybox.h>
 #include <iostream>
 
+#include <irrKlang/irrKlang.h>
+#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 //#pragma comment(lib, "winmm.lib")
+
+
+// -------------------------------------------------------------------------------------------------------------------------
+// Preprocessor directives to manage project
+// -------------------------------------------------------------------------------------------------------------------------
+// Load + Draw  models ->  1 = Draw model , otherwise e.g. 0 = does not draw
+// Be careful when activating [Heavy] and [medium]
+// Calculated load time in s
+// No objects 7s
+// In front of each one will be the approximate loading time of the model
+#define DRAWFLOOR 1 //1s
+#define DRAWFENCE 1 //1s
+#define DRAWVOLCANO 1 //1s
+#define DRAWLAMBO 1 //1s
+#define DRAWPTERO 1 //1s
+#define DRAWHOTEL 1 //1s
+#define DRAWARLO 1 // 1s
+#define DRAWHELICOPTER 1 // 1s
+#define DRAWANKYLO 1 // 1s 
+#define DRAWTRICERATOPS 1 //1s
+#define DRAWVELOCIRAPTOR 1 //1s
+#define DRAWHOUSES 1 // 1s
+#define ANIMATEWOMAN 1 // 1s
+#define DRAWTREES 1 // 1s
+#define DRAWBUGGY 1 // 2s
+#define DRAWGATE 0 // 2s (before downscaling texture images: 6s [medium] )
+#define ANIMATEWORKER 0 //3s  (before downscaling texture images: 8s [heavy])
+#define DRAWSHOPS 1 // 4s [medium]
+#define DRAWTREX 0 // 4s [medium] (before downscaling texture images: 9s [heavy])
+#define DRAWRESTAURANT 0 //9s [heavy]
+#define DRAWTRAIN 0 // 10s [heavy] (before downscaling texture images: [heavy++] )
+#define DRAWMOSASAUR 1
+#define DRAWROCKS 1
+
+// Draws a gizmo and prints debug info to console
+#define DEBUGMODE 0 // 1s 
+#define EASTEREGGS 0
+
+// Changes between JP theme song and copyleft music
+#define COPYRIGHTMUSIC 1
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -46,7 +88,7 @@ GLFWmonitor* monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 80.0f, 40.0f));
+Camera camera(glm::vec3(800.0f,30.0f, 0.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -72,40 +114,9 @@ recorrido2 = false,
 recorrido3 = false,
 recorrido4 = false;
 
-// Music
-bool music = false;
-
-// -------------------------------------------------------------------------------------------------------------------------
-// Preprocessor directives to control models (load + draw)
-// 1 = Draw model
-// Gate and restaurant models are heavy, use with caution
-// -------------------------------------------------------------------------------------------------------------------------
-#define DEBUGMODE 1
-#define DRAWFLOOR 1
-#define DRAWFENCE 1
-#define DRAWVOLCANO 0
-#define DRAWLAMBO 0
-#define DRAWPTERO 0
-#define DRAWHOTEL 1
-#define DRAWRESTAURANT 0
-#define DRAWARLO 0
-#define DRAWHELICOPTER 0
-#define DRAWTREX 0
-#define DRAWANKYLO 0
-#define DRAWTRICERATOPS 0
-#define DRAWVELOCIRAPTOR 0
-#define DRAWHOUSES 1
-#define DRAWGATE 0
-#define DRAWBUGGY 0
-// PENDING LOCATION
-#define DRAWTREES 1
-// PENDING SIZE+LOCATION
-#define ANIMATEWORKER 0
-#define ANIMATEWOMAN 0
-// NON FUNCTIONAL
-#define DRAWTRAIN 0
-
-
+// Controls music Play/Pause
+bool music = true;
+bool prevMusic = true;
 
 // -------------------------------------------------------------------------------------------------------------------------
 // Object location
@@ -198,6 +209,17 @@ const float houseRotation = 90.0f;
 const glm::vec3 houseLocation = glm::vec3(230.0f, floorYOffset, 400.0f);
 const int housesNumber = 5;
 
+// Shops
+const float shopAbandonedScale = 0.24f;
+const glm::vec3 shopAbandonedLocation = glm::vec3(400.0f, 0.0f, -60.0f);
+const glm::vec3 shopAbandonedRotationAxis = yAxis;
+const float shopAbandonedRotation = -90.0f;
+
+const float shopTobacoScale = 0.5f;
+const glm::vec3 shopTobacoLocation = glm::vec3(190.0f, 0.0f, -55.0f);
+const glm::vec3 shopTobacoRotationAxis = yAxis;
+const float shopTobacoRotation = 90.0f;
+
 // ---------------
 // Dinosaurs
 // ---------------
@@ -243,6 +265,12 @@ const float velociraptorScale = 0.2f;
 const glm::vec3 velociraptorLocation = glm::vec3(-130.0f, -floorYOffset * 10.0f, 0.0f);
 const glm::vec3 velociraptorRotationAxis = allAxis;
 const glm::vec3 velociraptorRotation = glm::vec3(-260.0f, -60.0f, 90.0f);
+// Mosasaur
+const float mosasaurScale = 5.6f;
+const glm::vec3 mosasaurLocation = glm::vec3(-330.0f, -floorYOffset * 10.0f, 360.0f);
+const glm::vec3 mosasaurJumpingLocation = glm::vec3(mosasaurLocation.x, 50.0f,mosasaurLocation.z);
+const glm::vec3 mosasaurRotationAxis = zAxis;
+const float mosasaurRotation = -90.0f;
 
 // ---------------
 // People
@@ -301,6 +329,18 @@ void animate(void)
 
 int main()
 {
+	// start the sound engine with default parameters
+	irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
+	if (!engine)
+		return 0; // error starting up the engine
+
+	// load/play some sound, looped and unpaused
+#if COPYRIGHTMUSIC == 1
+	irrklang::ISound* backgroundMusic = engine->play2D("resources/sounds/John_Williams_Vienna_Philharmonic.mp3", true, false, true);
+#else
+	irrklang::ISound* backgroundMusic = engine->play2D("resources/sounds/mystic-forests.mp3", true, false, true);
+#endif
+
 	// glfw: initialize and configure
 	// ------------------------------
 	glfwInit();
@@ -379,11 +419,12 @@ int main()
 #endif
 	//Floor
 #if DRAWFLOOR == 1
-	Model piso("resources/objects/piso/tile.obj");
-	Model pisoPasto("resources/objects/piso/pasto.obj");
-	Model pisoArena("resources/objects/piso/beach.obj");
-	Model pisoAgua("resources/objects/piso/ocean.obj");
+	Model piso("resources/objects/piso/light/tile.obj");
+	Model pisoPasto("resources/objects/piso/light/pasto.obj");
+	Model pisoArena("resources/objects/piso/light/beach.obj");
+	Model pisoAgua("resources/objects/piso/light/ocean.obj");
 	Model pisoRoad("resources/objects/piso/road.obj");
+	Model pisoPTT("resources/objects/piso/memePTT.obj");
 #endif
 #if DRAWFENCE == 1
 	Model fence("resources/objects/fence/fence.obj");
@@ -419,10 +460,13 @@ int main()
 #endif
 #if DRAWGATE == 1	
 	Model gate("resources/objects/gate/gate.obj");
-	// Model gaten("resources/objects/gate/gate_no_normales.obj");
 #endif
 #if DRAWHOUSES == 1	
 	Model house("resources/objects/house/house.obj");
+#endif
+#if DRAWSHOPS == 1
+	Model shopAbandoned("resources/objects/tiendas/abandonada/abandonada.obj");
+	Model shopTobaco("resources/objects/tiendas/tabaco/tabaco.obj");
 #endif
 
 	// Dinosaurs
@@ -437,8 +481,8 @@ int main()
 #endif
 #if DRAWTREX == 1
 	Model tRex("resources/objects/dinosaurs/t-rex/t-rex.obj");
-	Model stadium("resources/objects/stadium/stadium.obj");
 #endif
+	Model stadium("resources/objects/stadium/stadium.obj");
 #if DRAWANKYLO == 1
 	Model ankylosaurus("resources/objects/dinosaurs/anquilo/anquilo.obj");
 #endif
@@ -448,10 +492,14 @@ int main()
 #if DRAWVELOCIRAPTOR == 1
 	Model velociraptor("resources/objects/dinosaurs/velociraptor/velociraptor.obj");
 #endif
+#if DRAWMOSASAUR == 1
+	Model mosasaur("resources/objects/dinosaurs/mosasaur/mosasaur.obj");
+	Model waterCage("resources/objects/watercage/water_cage.obj");
+#endif	
 	// People
 #if ANIMATEWOMAN == 1
 	ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
-	animacionPersonaje.initShaders(animShader.ID);
+	animacionPersonaje.initShaders(animShader.ID);	
 #endif
 #if ANIMATEWORKER == 1
 	ModelAnim defeatedWorker("resources/objects/animated/Defeated/Defeated.dae");
@@ -462,14 +510,31 @@ int main()
 	Model tree("resources/objects/tree/tree.obj");
 	Model palmTree("resources/objects/tree/bananatree.obj");
 #endif
+#if DRAWROCKS == 1
+	Model rock("resources/objects/rock/rock.obj");
+#endif
+
 
 	// draw in wireframe
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 
 	// render loop
 	// -----------
 	while (!glfwWindowShouldClose(window))
 	{
+		if (music != prevMusic) {
+			if (music && backgroundMusic) {
+				backgroundMusic->setIsPaused(false);
+			}
+			else if (backgroundMusic)
+			{
+				backgroundMusic->setIsPaused(true);
+				//engine->stopAllSounds();
+			}
+			prevMusic = music;
+		}
+
 		skyboxShader.setInt("skybox", 0);
 
 		// per-frame time logic
@@ -575,7 +640,7 @@ int main()
 				drawObject(glm::vec3((-floorTilingSpacing * static_cast<float>(i + 1)), floorYOffset, (floorTilingSpacing * static_cast<float>(j))), glm::vec3(floorScale), staticShader, originWorld, pisoPasto);
 			}
 		}
-		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f, 0.0f), glm::vec3(floorScale * 10), staticShader, originWorld, pisoAgua);
+		drawObject(glm::vec3(0.0f, floorYOffset * 2.0f, 0.0f), glm::vec3(floorScale * 20), staticShader, originWorld, pisoAgua);
 		drawObject(glm::vec3(floorTilingSpacing * floorLimitX, floorYOffset, 0.0f), glm::vec3(floorScale), staticShader, originWorld, pisoArena);
 		tmp = drawObject(roadLocation, glm::vec3(roadScale), staticShader, originWorld, pisoRoad);
 		for (int i = 1; i <= roadNumber; i++) {
@@ -591,7 +656,9 @@ int main()
 			tmp = drawObject(glm::vec3(0.0f, 0.0f, -roadTilingSpacing), yAxis, 90.0f, glm::vec3(roadScale), staticShader, tmp, pisoRoad);
 		}
 #endif
-
+#if EASTEREGGS == 1
+		drawObject(glm::vec3(225.0f, 0.0f, -360.0f), glm::vec3(13.0f), staticShader, originWorld, pisoPTT);
+#endif
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Fence
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -645,7 +712,6 @@ int main()
 #endif
 #if DRAWGATE == 1
 		drawObject(gateLocation, gateRotationAxis, gateRotation, glm::vec3(gateScale), staticShader, originWorld, gate);
-		// drawObject(glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(1.0f), staticShader, originWorld, gaten);
 #endif
 #if DRAWHOUSES == 1		
 		tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f, houseLocation.y, houseLocation.z));
@@ -655,6 +721,10 @@ int main()
 			}
 			tmp = glm::translate(originWorld, glm::vec3(houseLocation.x - 100.0f, houseLocation.y, houseLocation.z - (100.0f * j)));
 		}
+#endif
+#if DRAWSHOPS == 1
+		drawObject(shopAbandonedLocation, shopAbandonedRotationAxis, shopAbandonedRotation, glm::vec3(shopAbandonedScale), staticShader, originWorld, shopAbandoned);
+		drawObject(shopTobacoLocation, shopTobacoRotationAxis, shopTobacoRotation, glm::vec3(shopTobacoScale), staticShader, originWorld, shopTobaco);
 #endif
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Dinosaurs
@@ -681,6 +751,12 @@ int main()
 #if DRAWVELOCIRAPTOR == 1
 		drawObject(velociraptorLocation, velociraptorRotationAxis, velociraptorRotation, glm::vec3(velociraptorScale), staticShader, originWorld, velociraptor);
 #endif
+#if DRAWMOSASAUR == 1
+		drawObject(mosasaurJumpingLocation, mosasaurRotationAxis, mosasaurRotation, glm::vec3(mosasaurScale), staticShader, originWorld, mosasaur);
+		drawObject(glm::vec3(mosasaurLocation.x, -15.0f, mosasaurLocation.z), glm::vec3(mosasaurScale), staticShader, originWorld, stadium);
+		drawObject(glm::vec3(mosasaurLocation.x, 40.0f, mosasaurLocation.z), glm::vec3(mosasaurScale*2.7f), staticShader, originWorld, waterCage);
+#endif
+
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Biome
@@ -692,6 +768,10 @@ int main()
 			drawObject(palmTreeLocation[i], glm::vec3(palmTreeScale), staticShader, originWorld, palmTree);
 		}
 #endif
+#if DRAWROCKS == 1
+		drawObject(glm::vec3(1.0f), glm::vec3(3.0f), staticShader, originWorld, rock);
+#endif
+
 
 
 #if DEBUGMODE == 1
@@ -768,6 +848,7 @@ int main()
 	skybox.Terminate();
 
 	glfwTerminate();
+	engine->drop();
 	return 0;
 }
 
@@ -785,7 +866,7 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(LEFT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		music = !music;
 #if DEBUGMODE == 1
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
