@@ -32,11 +32,13 @@
 * Include individual and group responsibilities
 ### Planned
 #### First milestone
+Para este primer hito se buscaba definir el tereno base, e importar lo primero modelos 3d (rocas, arboles,volcan,malla,entrada,jaula). Para tener aproximadamente un 30% del proyecto completado
+
 #### Second milestone
 #### Third milestone
 
 ### Achieved
-
+Finalmente no fueron cumplidos los objetivos propuestos, en cuanto a hitos, fechas ni funcionalidades del proyecto. Estimo que se entrega con aproximandamente un 66% (principalmente lo faltante son animaciones)
 
 ## Spatial distribution
  
